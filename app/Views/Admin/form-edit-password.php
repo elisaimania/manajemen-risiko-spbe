@@ -1,0 +1,72 @@
+<?= $this->extend('templates/index'); ?>
+<?= $this->section('content'); ?>
+<?php $val = service('validation') ?>
+<style>
+    .btn.float-right.tambah, .btn.float-right.edit{
+    background-color: #8CBA08; 
+    border-color: #8CBA08; 
+    color:#fff;
+}
+    .btn.float-right.tambah:hover, .btn.float-right.edit:hover{
+    background-color:#A1D70A;
+}
+    .form-control{
+        border: 2px solid #d1d3e2;
+        border-radius: 20px;
+
+    }
+</style>
+
+<div class="mb-2">
+    <h1 class="h3  text-gray-800 font-weight-bold" style="text-transform: uppercase;">
+        <a href="<?= base_url('admin'). '/'. $link ?>"><?= $title ?></a>
+    </h1>
+    <ol class="breadcrumb px-3 py-2 rounded mb-0">
+        <li class="breadcrumb-item ">
+            <a href="<?= base_url('admin'). '/'. $link ?>"><?= $title ?></a>
+        </li>
+        <li class="breadcrumb-item ">
+            <a href="<?= base_url('admin'). '/'. $sublink . '/'. $id ?>"><?= $subtitle ?></a>
+        </li>
+        <li class="breadcrumb-item active">
+            <?= $subsubtitle ?>
+        </li>
+    </ol>
+</div>
+
+<!-- DataTales Example -->
+<div id="flash"><?= session()->flash; ?></div>
+<div class="row justify-content-center">
+<div class="card shadow  m-5  col-sm-8 ">
+    <div class="card-body ">
+    	<br>
+    	<br>
+        <div class="form-group">
+        	<form class="user" method="post" action="">
+        		
+  				<?= ($val->hasError('password')) ? '<span class="text-sm text-danger" style="font-size:15px">' . $val->getError('password') .'*</span>' : ''; ?>
+                <?= ($val->hasError('konfirmasi_password')) ? '<br><span class="text-sm text-danger" style="font-size:15px">' . $val->getError('konfirmasi_password') .'*</span>' : ''; ?>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" value="<?= old('password'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="konfirmasi_password">Konfirmasi Password</label>
+                    <input type="password" class="form-control" id="konfirmasi_password" name="konfirmasi_password" value="<?= old('konfirmasi_password'); ?>" required>
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                	<a href="<?= base_url('admin/daftarPengguna'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
+                    Ubah
+                	</button>
+                </div>
+                
+            </form>                
+        </div>
+    </div>
+</div>
+</div>
+ 
+<?= $this->endSection(); ?>

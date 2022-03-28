@@ -1,0 +1,85 @@
+CRITICAL - 2022-03-15 03:30:25 --> Invalid file: PengelolaRisiko/penetapan-kirteria.php
+#0 C:\xampp\htdocs\manrisk\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('PengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#2 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(908): view('PengelolaRisiko...', Array)
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->kriteriaRisiko()
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-03-15 10:48:10 --> Call to a member function getKriteriaDampak() on null
+#0 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getDaftarKriteriaDampak()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-03-15 10:48:38 --> Call to a member function getKriteriaDampak() on null
+#0 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getDaftarKriteriaDampak()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-03-15 12:32:57 --> Undefined index: kategori_risiko
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\form-kriteria-kemungkinan.php(50): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 50, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(984): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputKriteriaKemungkinan()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-15 13:04:59 --> Array to string conversion
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1061): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string...', 'C:\\xampp\\htdocs...', 1061, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputKriteriaDampak()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-15 13:05:31 --> Array to string conversion
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1062): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string...', 'C:\\xampp\\htdocs...', 1062, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputKriteriaDampak()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-03-15 13:05:50 --> Cannot add or update a child row: a foreign key constraint fails (`manrisk`.`kriteria_dampak_risiko_spbe`, CONSTRAINT `kriteria_dampak_risiko_SPBE_id_jenis_risiko_foreign` FOREIGN KEY (`id_jenis_risiko`) REFERENCES `jenis_risiko` (`id`) ON DELETE CASCADE ON )
+CRITICAL - 2022-03-15 13:05:50 --> Cannot add or update a child row: a foreign key constraint fails (`manrisk`.`kriteria_dampak_risiko_spbe`, CONSTRAINT `kriteria_dampak_risiko_SPBE_id_jenis_risiko_foreign` FOREIGN KEY (`id_jenis_risiko`) REFERENCES `jenis_risiko` (`id`) ON DELETE CASCADE ON )
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `kr...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kr...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kr...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kr...', Array, false)
+#4 C:\xampp\htdocs\manrisk\system\Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\manrisk\system\BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\manrisk\system\Model.php(625): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1068): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputKriteriaDampak()
+#9 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#10 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#12 {main}
+ERROR - 2022-03-15 13:09:10 --> Cannot add or update a child row: a foreign key constraint fails (`manrisk`.`kriteria_dampak_risiko_spbe`, CONSTRAINT `kriteria_dampak_risiko_SPBE_id_jenis_risiko_foreign` FOREIGN KEY (`id_jenis_risiko`) REFERENCES `jenis_risiko` (`id`) ON DELETE CASCADE ON )
+CRITICAL - 2022-03-15 13:09:10 --> Cannot add or update a child row: a foreign key constraint fails (`manrisk`.`kriteria_dampak_risiko_spbe`, CONSTRAINT `kriteria_dampak_risiko_SPBE_id_jenis_risiko_foreign` FOREIGN KEY (`id_jenis_risiko`) REFERENCES `jenis_risiko` (`id`) ON DELETE CASCADE ON )
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `kr...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kr...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kr...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kr...', Array, false)
+#4 C:\xampp\htdocs\manrisk\system\Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\manrisk\system\BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\manrisk\system\Model.php(625): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1068): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputKriteriaDampak()
+#9 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#10 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2022-03-15 13:11:05 --> Invalid file: PengelolaRisiko/form-edit-kriteria-kemungkinan.php
+#0 C:\xampp\htdocs\manrisk\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('PengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#2 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1028): view('PengelolaRisiko...', Array)
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->updateKriteriaKemungkinan('1')
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}

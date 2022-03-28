@@ -1,0 +1,189 @@
+CRITICAL - 2022-03-23 10:11:28 --> Undefined variable: style
+#0 C:\xampp\htdocs\manrisk\app\Views\templates_risiko\header.php(22): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 22, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\View\View.php(424): CodeIgniter\View\View->render('templates_risik...', NULL, true)
+#4 C:\xampp\htdocs\manrisk\app\Views\templates_risiko\index.php(1): CodeIgniter\View\View->include('templates_risik...')
+#5 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\manrisk\system\View\View.php(226): CodeIgniter\View\View->render('templates_risik...', Array, true)
+#8 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#9 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(102): view('PengelolaRisiko...', Array)
+#10 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->penetapanKonteks()
+#11 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#12 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#14 {main}
+CRITICAL - 2022-03-23 13:39:45 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::get()
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1292): App\Models\PenilaianRisikoModel->getPenilaian()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenilaianRisiko()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-23 13:40:00 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::get()
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1292): App\Models\PenilaianRisikoModel->getPenilaian()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenilaianRisiko()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-23 14:31:41 --> Class 'Array' not found
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2022-03-23 14:59:14 --> Undefined property: App\Controllers\PengelolaRisiko::$PenilaianRisikoModel
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1298): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 1298, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-23 15:15:06 --> Undefined index: Sasaran SPBE
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\detail-risiko.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1310): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-23 15:15:25 --> Undefined index: sasaran_SPBE
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\detail-risiko.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1310): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-23 15:20:09 --> Undefined index: sasaran_SPBE
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\detail-risiko.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1310): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-23 15:24:58 --> Undefined index: sasaran_SPBE
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\detail-risiko.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1310): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-23 15:25:10 --> Undefined index: sasaran_SPBE
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\detail-risiko.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1310): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-23 15:26:53 --> Undefined index: sasaran_SPBE
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\detail-risiko.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 28, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1309): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-23 16:15:54 --> Undefined index: level_kemungkinan
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\detail-risiko.php(68): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 68, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1309): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-23 16:18:59 --> Unknown column 'penilaian_risiko_spbe.id_dampak_kemungkinan' in 'on clause'
+CRITICAL - 2022-03-23 16:18:59 --> Unknown column 'penilaian_risiko_spbe.id_dampak_kemungkinan' in 'on clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(61): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1298): App\Models\PenilaianRisikoModel->getPenilaian()
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-23 17:15:36 --> syntax error, unexpected 'if' (T_IF)
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-23 17:22:55 --> syntax error, unexpected '=>' (T_DOUBLE_ARROW)
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-23 17:23:58 --> syntax error, unexpected ''id_level_dampak'' (T_CONSTANT_ENCAPSED_STRING), expecting ']'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-23 17:44:12 --> Undefined variable: level_kemungkinan
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1329): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 1329, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputPenilaianRisiko()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-23 17:45:04 --> Cannot use object of type App\Models\MatriksRisikoModel as array
+#0 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputPenilaianRisiko()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+ERROR - 2022-03-23 17:46:06 --> Column 'id_keputusan' cannot be null
+CRITICAL - 2022-03-23 17:46:06 --> Column 'id_keputusan' cannot be null
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `pe...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pe...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pe...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pe...', Array, false)
+#4 C:\xampp\htdocs\manrisk\system\Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\manrisk\system\BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\manrisk\system\Model.php(625): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1366): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputPenilaianRisiko()
+#9 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#10 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2022-03-23 18:12:20 --> Undefined index: id_area_dampak_risiko
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\form-edit-penilaian-risiko.php(95): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 95, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1503): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->updatePenilaianRisiko('8')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

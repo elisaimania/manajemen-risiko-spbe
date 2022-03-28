@@ -1,0 +1,119 @@
+ERROR - 2022-03-21 20:09:12 --> Unknown column 'kode_IKU' in 'field list'
+CRITICAL - 2022-03-21 20:09:12 --> Unknown column 'kode_IKU' in 'field list'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `sasaran...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `sasaran...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `sasaran...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `sasaran...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\SasaranSPBEModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(292): App\Models\SasaranSPBEModel->getSasaranSPBE()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getDaftarSasaranSPBE()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-21 20:10:33 --> Unknown column 'kode_IKU' in 'field list'
+CRITICAL - 2022-03-21 20:10:33 --> Unknown column 'kode_IKU' in 'field list'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `sasaran...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `sasaran...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `sasaran...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `sasaran...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\SasaranSPBEModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(292): App\Models\SasaranSPBEModel->getSasaranSPBE()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getDaftarSasaranSPBE()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-21 20:13:03 --> Unknown column 'kode_IKU' in 'field list'
+CRITICAL - 2022-03-21 20:13:03 --> Unknown column 'kode_IKU' in 'field list'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `sasaran...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `sasaran...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `sasaran...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `sasaran...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\SasaranSPBEModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(292): App\Models\SasaranSPBEModel->getSasaranSPBE()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getDaftarSasaranSPBE()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-21 20:13:27 --> Unknown column 'kode_IKU' in 'field list'
+CRITICAL - 2022-03-21 20:13:27 --> Unknown column 'kode_IKU' in 'field list'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `sasaran...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `sasaran...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `sasaran...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `sasaran...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\SasaranSPBEModel.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(292): App\Models\SasaranSPBEModel->getSasaranSPBE()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getDaftarSasaranSPBE()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-21 20:43:46 --> Not unique table/alias: 'matriks_analisi_risiko'
+CRITICAL - 2022-03-21 20:43:46 --> Not unique table/alias: 'matriks_analisi_risiko'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `penilai...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `penilai...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `penilai...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `penilai...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(51): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1324): App\Models\PenilaianRisikoModel->getPenilaian()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenilaianRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-21 20:48:27 --> Column 'id_jenis_risiko' in field list is ambiguous
+CRITICAL - 2022-03-21 20:48:27 --> Column 'id_jenis_risiko' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `penilai...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `penilai...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `penilai...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `penilai...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(51): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1324): App\Models\PenilaianRisikoModel->getPenilaian()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenilaianRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-21 20:50:32 --> Column 'komentar' in field list is ambiguous
+CRITICAL - 2022-03-21 20:50:32 --> Column 'komentar' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `penilai...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `penilai...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `penilai...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `penilai...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(51): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1324): App\Models\PenilaianRisikoModel->getPenilaian()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenilaianRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-03-21 21:34:17 --> syntax error, unexpected 'return' (T_RETURN)
+#0 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Peni...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Peni...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(73): spl_autoload_call('App\\Models\\Peni...')
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(809): App\Controllers\PengelolaRisiko->__construct()
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-03-21 21:34:31 --> Undefined property: CodeIgniter\Database\MySQLi\Result::$getResultArray
+#0 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(83): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 83, Array)
+#1 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1324): App\Models\PenilaianRisikoModel->getPenilaian()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenilaianRisiko()
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-21 22:31:53 --> syntax error, unexpected '$db' (T_VARIABLE), expecting ';' or '{'
+#0 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Peni...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Peni...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(73): spl_autoload_call('App\\Models\\Peni...')
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(809): App\Controllers\PengelolaRisiko->__construct()
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}

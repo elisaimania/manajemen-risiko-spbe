@@ -1,0 +1,102 @@
+CRITICAL - 2022-03-16 07:32:17 --> syntax error, unexpected '}', expecting ';'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-16 07:32:29 --> syntax error, unexpected 'getMatriks' (T_STRING), expecting function (T_FUNCTION) or const (T_CONST)
+#0 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Matr...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Matr...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(64): spl_autoload_call('App\\Models\\Matr...')
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(809): App\Controllers\PengelolaRisiko->__construct()
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-03-16 07:32:57 --> syntax error, unexpected 'return' (T_RETURN)
+#0 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\Autoloader\Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Matr...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Matr...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(64): spl_autoload_call('App\\Models\\Matr...')
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(809): App\Controllers\PengelolaRisiko->__construct()
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-03-16 07:33:10 --> Call to a member function join() on null
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1189): App\Models\MatriksRisikoModel->getMatriks()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getMatriksRisiko()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-03-16 07:34:30 --> Unknown column 'matriks_analisi_risiko.id' in 'field list'
+CRITICAL - 2022-03-16 07:34:30 --> Unknown column 'matriks_analisi_risiko.id' in 'field list'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `matriks...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `matriks...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `matriks...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `matriks...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\MatriksRisikoModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1189): App\Models\MatriksRisikoModel->getMatriks()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getMatriksRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-16 07:35:13 --> Table 'manrisk.matriks_analisis_risiko' doesn't exist
+CRITICAL - 2022-03-16 07:35:13 --> Table 'manrisk.matriks_analisis_risiko' doesn't exist
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `matriks...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `matriks...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `matriks...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `matriks...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\MatriksRisikoModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1189): App\Models\MatriksRisikoModel->getMatriks()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getMatriksRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-16 07:36:00 --> Table 'manrisk.matriks_analisis_risiko' doesn't exist
+CRITICAL - 2022-03-16 07:36:00 --> Table 'manrisk.matriks_analisis_risiko' doesn't exist
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `id_leve...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_leve...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_leve...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `id_leve...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\MatriksRisikoModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1189): App\Models\MatriksRisikoModel->getMatriks()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getMatriksRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-16 07:36:48 --> Table 'manrisk.matriks_analisis_risiko' doesn't exist
+CRITICAL - 2022-03-16 07:36:48 --> Table 'manrisk.matriks_analisis_risiko' doesn't exist
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `id_leve...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_leve...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_leve...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `id_leve...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\MatriksRisikoModel.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1189): App\Models\MatriksRisikoModel->getMatriks()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getMatriksRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-16 18:43:37 --> Incorrect table definition; there can be only one auto column and it must be defined as a key
+ERROR - 2022-03-16 18:45:28 --> Incorrect table definition; there can be only one auto column and it must be defined as a key
+CRITICAL - 2022-03-16 19:04:35 --> Call to undefined method App\Models\LevelRisikoModel::getSelera
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1220): CodeIgniter\Model->__call('getSelera', Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getSeleraRisiko()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-16 19:04:59 --> Call to undefined method App\Models\LevelRisikoModel::getSelera
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1220): CodeIgniter\Model->__call('getSelera', Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getSeleraRisiko()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

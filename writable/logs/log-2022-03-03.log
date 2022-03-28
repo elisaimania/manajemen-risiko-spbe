@@ -1,0 +1,50 @@
+CRITICAL - 2022-03-03 11:20:08 --> Call to a member function view() on null
+#0 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Auth->index()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\manrisk\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-03-03 11:21:41 --> Undefined property: App\Controllers\Auth::$load
+#0 C:\xampp\htdocs\manrisk\app\Controllers\auth.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 8, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Auth->index()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-03-03 15:26:32 --> Unknown table 'manrisk.role_pengguna'
+ERROR - 2022-03-03 15:32:15 --> Unknown table 'manrisk.role_pengguna'
+ERROR - 2022-03-03 15:57:22 --> Can't create table `manrisk`.`pengguna` (errno: 150 "Foreign key constraint is incorrectly formed")
+ERROR - 2022-03-03 16:03:19 --> Can't create table `manrisk`.`pengguna` (errno: 150 "Foreign key constraint is incorrectly formed")
+ERROR - 2022-03-03 16:11:08 --> Can't create table `manrisk`.`pengguna` (errno: 150 "Foreign key constraint is incorrectly formed")
+CRITICAL - 2022-03-03 18:02:21 --> Use of undefined constant Admin - assumed 'Admin' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\manrisk\app\Controllers\Admin.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 10, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Admin->daftarPengguna()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-03 18:03:06 --> Use of undefined constant admin - assumed 'admin' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\manrisk\app\Controllers\Admin.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 10, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Admin->daftarPengguna()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-03 18:21:04 --> Use of undefined constant auth - assumed 'auth' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\manrisk\app\Views\auth\login.php(18): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 18, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('auth/login', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\auth.php(20): view('auth/login')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Auth->index()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-03-03 18:22:54 --> Undefined index: nama
+#0 C:\xampp\htdocs\manrisk\app\Controllers\auth.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 49, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Auth->login()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

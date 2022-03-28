@@ -1,0 +1,15 @@
+CRITICAL - 2022-03-13 03:34:48 --> Invalid file: PengelolaRisiko/sasaran-SPBE.php
+#0 C:\xampp\htdocs\manrisk\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('PengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#2 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(233): view('PengelolaRisiko...', Array)
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->sasaranSPBE()
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+ERROR - 2022-03-13 07:41:03 --> Unknown table 'manrisk.sasaran_spbe'
+ERROR - 2022-03-13 15:07:10 --> Can't create table `manrisk`.`area_dampak_spbe_terpilih` (errno: 150 "Foreign key constraint is incorrectly formed")
+ERROR - 2022-03-13 15:46:59 --> Can't create table `manrisk`.`selera_risiko_spbe` (errno: 150 "Foreign key constraint is incorrectly formed")
+ERROR - 2022-03-13 15:48:52 --> Incorrect table definition; there can be only one auto column and it must be defined as a key
+ERROR - 2022-03-13 23:43:23 --> Can't create table `manrisk`.`selera_risiko_spbe` (errno: 150 "Foreign key constraint is incorrectly formed")
+ERROR - 2022-03-13 23:59:21 --> Can't create table `manrisk`.`kriteria_kemungkinan_risiko_spbe` (errno: 150 "Foreign key constraint is incorrectly formed")

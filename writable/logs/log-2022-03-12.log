@@ -1,0 +1,68 @@
+CRITICAL - 2022-03-12 08:51:53 --> Invalid file: PengelolaRisiko/informasi-umum.php
+#0 C:\xampp\htdocs\manrisk\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('PengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#2 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(77): view('PengelolaRisiko...', Array)
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->informasiUmum()
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-03-12 09:00:26 --> Invalid file: PengelolaRisiko/informasi-umum.php
+#0 C:\xampp\htdocs\manrisk\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('PengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#2 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(77): view('PengelolaRisiko...', Array)
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->informasiUmum()
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-03-12 09:15:12 --> Undefined property: App\Controllers\PengelolaRisiko::$informasiUmum
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(93): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 93, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getInformasiUmum()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-12 10:40:02 --> Cannot declare class App\Database\Migrations\Pengguna, because the name is already in use
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2022-03-12 12:07:45 --> syntax error, unexpected ''script'' (T_CONSTANT_ENCAPSED_STRING), expecting ']'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-12 14:43:31 --> Non-static method CodeIgniter\I18n\Time::toDateTime() should not be called statically
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8192, 'Non-static meth...', 'C:\\xampp\\htdocs...', 103, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputInformasiUmum()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-12 14:48:16 --> "dd/mm/yyyy" is not a valid datetime format
+#0 C:\xampp\htdocs\manrisk\system\I18n\Time.php(242): CodeIgniter\I18n\Exceptions\I18nException::forInvalidFormat('dd/mm/yyyy')
+#1 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(103): CodeIgniter\I18n\Time::createFromFormat('dd/mm/yyyy', '03/09/2020')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputInformasiUmum()
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-03-12 16:18:46 --> syntax error, unexpected 'return' (T_RETURN)
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-03-12 16:19:27 --> Undefined variable: val
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\form-informasi-umum.php(64): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 64, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(149): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->inputInformasiUmum()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

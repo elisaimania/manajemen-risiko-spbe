@@ -1,0 +1,960 @@
+CRITICAL - 2022-03-24 04:27:08 --> Cannot declare class App\Models\PenilaianRisikoModel, because the name is already in use
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2022-03-24 04:33:16 --> Cannot declare class App\Models\PenilaianRisikoModel, because the name is already in use
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+ERROR - 2022-03-24 04:44:56 --> Column 'id_status_persetujuan' in field list is ambiguous
+CRITICAL - 2022-03-24 04:44:56 --> Column 'id_status_persetujuan' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `rencana...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `rencana...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `rencana...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `rencana...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\PenangananRisikoModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1529): App\Models\PenangananRisikoModel->getPenanganan()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenangananRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-24 04:46:10 --> Column 'komentar' in field list is ambiguous
+CRITICAL - 2022-03-24 04:46:10 --> Column 'komentar' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `rencana...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `rencana...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `rencana...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `rencana...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\PenangananRisikoModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1529): App\Models\PenangananRisikoModel->getPenanganan()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenangananRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-24 04:46:29 --> Unknown column 'rencana_penanganan_risiko_spbe.id_status_risiko' in 'on clause'
+CRITICAL - 2022-03-24 04:46:29 --> Unknown column 'rencana_penanganan_risiko_spbe.id_status_risiko' in 'on clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `rencana...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `rencana...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `rencana...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `rencana...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\PenangananRisikoModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1529): App\Models\PenangananRisikoModel->getPenanganan()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenangananRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-03-24 05:02:56 --> Cannot declare class App\Database\Migrations\OpsiPenangananRisikoSPBE, because the name is already in use
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+ERROR - 2022-03-24 05:17:34 --> Unknown column 'jadwal_implementasi' in 'field list'
+CRITICAL - 2022-03-24 05:17:34 --> Unknown column 'jadwal_implementasi' in 'field list'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `rencana...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `rencana...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `rencana...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `rencana...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\PenangananRisikoModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1529): App\Models\PenangananRisikoModel->getPenanganan()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->getPenangananRisiko()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-24 05:19:22 --> Column 'id' in field list is ambiguous
+CRITICAL - 2022-03-24 05:19:22 --> Column 'id' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `opsi_pe...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `opsi_pe...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `opsi_pe...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `opsi_pe...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\OpsiPenangananModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\Admin.php(430): App\Models\OpsiPenangananModel->getOpsi()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Admin->getDaftarPenanganan()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-24 05:19:24 --> Column 'id' in field list is ambiguous
+CRITICAL - 2022-03-24 05:19:24 --> Column 'id' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `opsi_pe...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `opsi_pe...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `opsi_pe...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `opsi_pe...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\OpsiPenangananModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\Admin.php(430): App\Models\OpsiPenangananModel->getOpsi()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Admin->getDaftarPenanganan()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-24 05:20:17 --> Column 'id' in field list is ambiguous
+CRITICAL - 2022-03-24 05:20:17 --> Column 'id' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `opsi_pe...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `opsi_pe...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `opsi_pe...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `opsi_pe...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\OpsiPenangananModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\Admin.php(430): App\Models\OpsiPenangananModel->getOpsi()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Admin->getDaftarPenanganan()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-03-24 05:21:08 --> Column 'id' in field list is ambiguous
+CRITICAL - 2022-03-24 05:21:08 --> Column 'id' in field list is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `opsi_pe...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `opsi_pe...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `opsi_pe...')
+#3 C:\xampp\htdocs\manrisk\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT `opsi_pe...', Array, false)
+#4 C:\xampp\htdocs\manrisk\app\Models\OpsiPenangananModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\manrisk\app\Controllers\Admin.php(430): App\Models\OpsiPenangananModel->getOpsi()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\Admin->getDaftarPenanganan()
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2022-03-24 05:42:17 --> Undefined variable: id
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1534): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 1534, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->pilihRisiko()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2022-03-24 13:05:57 --> Column 'id' in where clause is ambiguous
+CRITICAL - 2022-03-24 13:05:57 --> Column 'id' in where clause is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(151): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('7')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:11:30 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BY besaran_risiko DESC' at line 34
+CRITICAL - 2022-03-24 13:11:30 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BY besaran_risiko DESC' at line 34
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(151): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('7')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:11:58 --> Column 'id' in where clause is ambiguous
+CRITICAL - 2022-03-24 13:11:58 --> Column 'id' in where clause is ambiguous
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(151): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('7')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('7')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:09 --> Unknown column 'getMatriksRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:09 --> Unknown column 'getMatriksRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getMatriksRisik...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getMatriksRisik...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:09 --> Unknown column 'getLevelRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:09 --> Unknown column 'getLevelRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getLevelRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getLevelRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:09 --> Unknown column 'getSeleraRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:09 --> Unknown column 'getSeleraRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getSeleraRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getSeleraRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:09 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:09 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:09 --> Unknown column 'getPenangananRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:09 --> Unknown column 'getPenangananRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenangananRi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenangananRi...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:10 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:10 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getRisikoByKepu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getRisikoByKepu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:10 --> Unknown column 'getInformasiUmum' in 'where clause'
+CRITICAL - 2022-03-24 13:13:10 --> Unknown column 'getInformasiUmum' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getInformasiUmu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getInformasiUmu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:10 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:10 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPemang...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPemang...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:10 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:10 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarAreaDa...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarAreaDa...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:11 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:11 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:11 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+CRITICAL - 2022-03-24 13:13:11 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:11 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:11 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKatego...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKatego...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:11 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+CRITICAL - 2022-03-24 13:13:11 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarSasara...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarSasara...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:11 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:11 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPeratu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPeratu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:11 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+CRITICAL - 2022-03-24 13:13:11 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarStrukt...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarStrukt...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:12 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:12 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:12 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:12 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:20 --> Unknown column 'getMatriksRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:20 --> Unknown column 'getMatriksRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getMatriksRisik...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getMatriksRisik...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:20 --> Unknown column 'getLevelRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:20 --> Unknown column 'getLevelRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getLevelRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getLevelRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:20 --> Unknown column 'getSeleraRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:20 --> Unknown column 'getSeleraRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getSeleraRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getSeleraRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:21 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:21 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:21 --> Unknown column 'getPenangananRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:21 --> Unknown column 'getPenangananRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenangananRi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenangananRi...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:21 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:21 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getRisikoByKepu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getRisikoByKepu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:21 --> Unknown column 'getInformasiUmum' in 'where clause'
+CRITICAL - 2022-03-24 13:13:21 --> Unknown column 'getInformasiUmum' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getInformasiUmu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getInformasiUmu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:21 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:21 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPemang...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPemang...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:21 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:21 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarAreaDa...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarAreaDa...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:22 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:22 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKatego...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKatego...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:22 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:22 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:22 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+CRITICAL - 2022-03-24 13:13:22 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:22 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:22 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPeratu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPeratu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:22 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+CRITICAL - 2022-03-24 13:13:22 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarStrukt...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarStrukt...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:22 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+CRITICAL - 2022-03-24 13:13:22 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarSasara...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarSasara...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:23 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:23 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:23 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:23 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:31 --> Unknown column 'getMatriksRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:31 --> Unknown column 'getMatriksRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getMatriksRisik...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getMatriksRisik...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:31 --> Unknown column 'getLevelRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:31 --> Unknown column 'getLevelRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getLevelRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getLevelRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:31 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:31 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:31 --> Unknown column 'getSeleraRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:31 --> Unknown column 'getSeleraRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getSeleraRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getSeleraRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:31 --> Unknown column 'getPenangananRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:31 --> Unknown column 'getPenangananRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenangananRi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenangananRi...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:32 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:32 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getRisikoByKepu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getRisikoByKepu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:32 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:32 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPemang...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPemang...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:32 --> Unknown column 'getInformasiUmum' in 'where clause'
+CRITICAL - 2022-03-24 13:13:32 --> Unknown column 'getInformasiUmum' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getInformasiUmu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getInformasiUmu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:32 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:32 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarAreaDa...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarAreaDa...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:32 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:32 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKatego...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKatego...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:33 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:33 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:33 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+CRITICAL - 2022-03-24 13:13:33 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:33 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:33 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPeratu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPeratu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:33 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+CRITICAL - 2022-03-24 13:13:33 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarSasara...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarSasara...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:34 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+CRITICAL - 2022-03-24 13:13:34 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarStrukt...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarStrukt...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:34 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:34 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:41 --> Unknown column 'getLevelRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:41 --> Unknown column 'getLevelRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getLevelRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getLevelRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:41 --> Unknown column 'getPenangananRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:41 --> Unknown column 'getPenangananRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenangananRi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenangananRi...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:41 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:41 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:41 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:41 --> Unknown column 'getRisikoByKeputusan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getRisikoByKepu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getRisikoByKepu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:42 --> Unknown column 'getSeleraRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:42 --> Unknown column 'getSeleraRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getSeleraRisiko')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getSeleraRisiko')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:42 --> Unknown column 'getMatriksRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:42 --> Unknown column 'getMatriksRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getMatriksRisik...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getMatriksRisik...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:42 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:42 --> Unknown column 'getDaftarPemangkuKepentingan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPemang...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPemang...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:42 --> Unknown column 'getInformasiUmum' in 'where clause'
+CRITICAL - 2022-03-24 13:13:42 --> Unknown column 'getInformasiUmum' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getInformasiUmu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getInformasiUmu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:42 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:42 --> Unknown column 'getDaftarAreaDampakRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarAreaDa...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarAreaDa...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:42 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+CRITICAL - 2022-03-24 13:13:42 --> Unknown column 'getDaftarKategoriRisikoTerpilih' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKatego...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKatego...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:43 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:43 --> Unknown column 'getDaftarKriteriaKemungkinan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:43 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+CRITICAL - 2022-03-24 13:13:43 --> Unknown column 'getDaftarKriteriaDampak' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarKriter...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarKriter...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:43 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+CRITICAL - 2022-03-24 13:13:43 --> Unknown column 'getDaftarPeraturanPerundangan' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarPeratu...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarPeratu...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:43 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+CRITICAL - 2022-03-24 13:13:43 --> Unknown column 'getDaftarSasaranSPBE' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarSasara...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarSasara...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:44 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+CRITICAL - 2022-03-24 13:13:44 --> Unknown column 'getDaftarStrukturPelaksana' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getDaftarStrukt...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getDaftarStrukt...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:44 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:44 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-03-24 13:13:45 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+CRITICAL - 2022-03-24 13:13:45 --> Unknown column 'getPenilaianRisiko' in 'where clause'
+#0 C:\xampp\htdocs\manrisk\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT penilaia...', 0)
+#1 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('SELECT penilaia...')
+#2 C:\xampp\htdocs\manrisk\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT penilaia...')
+#3 C:\xampp\htdocs\manrisk\app\Models\PenilaianRisikoModel.php(152): CodeIgniter\Database\BaseConnection->query('SELECT penilaia...')
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1320): App\Models\PenilaianRisikoModel->getPenilaianById('getPenilaianRis...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->detailRisiko('getPenilaianRis...')
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}

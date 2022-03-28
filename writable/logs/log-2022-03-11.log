@@ -1,0 +1,10 @@
+ERROR - 2022-03-11 13:06:11 --> Can't create table `manrisk`.`informasi_umum` (errno: 150 "Foreign key constraint is incorrectly formed")
+CRITICAL - 2022-03-11 13:32:39 --> Invalid file: PengelolaRisiko/informasi-umum.php
+#0 C:\xampp\htdocs\manrisk\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('PengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#2 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(77): view('PengelolaRisiko...', Array)
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->informasiUmum()
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
