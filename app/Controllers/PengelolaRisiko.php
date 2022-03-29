@@ -792,27 +792,9 @@ class PengelolaRisiko extends BaseController
     {
         if(isset($_POST['tambah'])){
 
-            $kategoriTerpilih = $this->kategoriRisikoModel->where('kategori_risiko',$this->request->getPost('kategori_risiko'))->get()->getRowArray();
-
-            $cek_id = $this->kategoriRisikoTerpilihModel->where('id',$kategoriTerpilih['id'])->get()->getRowArray();
-
-
-            if($cek_id){
-                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    Kategori risiko "'.$kategoriTerpilih['kategori_risiko'].'" telah dipilih sebelumnya. Pilih kategori risiko yang lain!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                </div>';
-                
-                $flash = session()->setFlashdata('flash', $flash);
-                return redirect()->to(base_url('pengelolaRisiko/inputKategoriRisikoTerpilih'));
-
-            }
-
-
+            
             $inputData = [
-                'id_kategori' => $kategoriTerpilih['id'],
+                'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
                 'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
@@ -829,7 +811,7 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $kategoriRisiko = $this->kategoriRisikoModel->findAll();
+        $kategoriRisiko = $this->kategoriRisikoModel->getKategori();
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
@@ -887,23 +869,8 @@ class PengelolaRisiko extends BaseController
     {
         if(isset($_POST['tambah'])){
 
-            $areaDampakTerpilih = $this->areaDampakRisikoModel->where('area_dampak',$this->request->getPost('area_dampak'))->get()->getRowArray();
+            $areaDampakTerpilih = $this->areaDampakRisikoModel->where('id',$this->request->getPost('id_area_dampak'))->get()->getRowArray();
 
-            $cek_id = $this->areaDampakRisikoTerpilihModel->where('id',$areaDampakTerpilih['id'])->get()->getRowArray();
-
-
-            if($cek_id){
-                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    Area dampak risiko "'.$areaDampakTerpilih['area_dampak'].'" telah dipilih sebelumny. Pilih kategori risiko yang lain!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                </div>';
-                
-                $flash = session()->setFlashdata('flash', $flash);
-                return redirect()->to(base_url('pengelolaRisiko/inputAreaDampakRisikoTerpilih'));
-
-            }
 
             $inputData = [
                 'id_area_dampak' => $areaDampakTerpilih['id'],
@@ -923,7 +890,7 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $areaDampak = $this->areaDampakRisikoModel->findAll();
+        $areaDampak = $this->areaDampakRisikoModel->getAreaDampak();
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
@@ -1063,8 +1030,10 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
+
         $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -1447,6 +1416,7 @@ class PengelolaRisiko extends BaseController
                 'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
                 'id_jenis_risiko' => $jenisRisiko1['id'],
                 'besaran_risiko_min' => $this->request->getPost('besaran_risiko_min1'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1454,6 +1424,7 @@ class PengelolaRisiko extends BaseController
                 'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
                 'id_jenis_risiko' => $jenisRisiko2['id'],
                 'besaran_risiko_min' => $this->request->getPost('besaran_risiko_min2'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1650,11 +1621,11 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_upr',session()->id_upr)->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_upr', session()->id_upr)->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
         $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
@@ -1676,11 +1647,11 @@ class PengelolaRisiko extends BaseController
     public function updatePenilaianRisiko($id=null){
 
         $risiko = $this->penilaianRisikoModel->find($id);
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_upr',session()->id_upr)->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_upr', session()->id_upr)->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
         $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',

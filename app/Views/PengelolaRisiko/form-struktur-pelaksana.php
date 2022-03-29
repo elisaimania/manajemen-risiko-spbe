@@ -46,6 +46,7 @@
                 <div class="form-group">
                     <label for="nama_role">Pilih Role</label>
                     <select class="form-control" id="nama_role" name="nama_role" required>
+                        <option value=""></option>
                         <?php foreach ($role as $r ) : ?>
                             <option value="<?= $r['nama_role']; ?>"><?= $r['nama_role']; ?></option>
                         <?php endforeach; ?>

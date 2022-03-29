@@ -57,7 +57,7 @@
                     <label for="id_kategori_risiko" class=" font-weight-bold">Pilih Kategori Risiko SPBE</label>
                     <select class="form-control" id="id_kategori_risiko" name="id_kategori_risiko" required>
                         <?php foreach ($daftarKategoriRisiko as $r ) : ?>
-                            <option value="<?= $r['id']; ?>" <?= ( $kriteriaKemungkinan[0]['id_kategori_risiko']==$r['id']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
+                            <option value="<?= $r['id_kategori_risiko']; ?>" <?= ( $kriteriaKemungkinan[0]['id_kategori_risiko']==$r['id_kategori_risiko']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

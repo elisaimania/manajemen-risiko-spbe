@@ -64,7 +64,7 @@ class PenilaianRisikoModel extends Model
             INNER JOIN keputusan
             ON keputusan.id = penilaian_risiko_spbe.id_keputusan
             WHERE penilaian_risiko_spbe.id_upr = " . session()->id_upr.
-            "ORDER BY besaran_risiko DESC
+            " ORDER BY besaran_risiko DESC
             ";
         return $db->query($query)->getResultArray();
     }
@@ -117,7 +117,7 @@ class PenilaianRisikoModel extends Model
             ON keputusan.id = penilaian_risiko_spbe.id_keputusan
             WHERE id_keputusan =2 AND penilaian_risiko_spbe.id NOT IN (
                                                                         SELECT id_risiko FROM rencana_penanganan_risiko_spbe) AND penilaian_risiko_spbe.id_upr = " . session()->id_upr.
-            "ORDER BY besaran_risiko DESC
+            " ORDER BY besaran_risiko DESC
             ";
         return $db->query($query)->getResultArray();
     }
@@ -163,7 +163,7 @@ class PenilaianRisikoModel extends Model
             ON keputusan.id = penilaian_risiko_spbe.id_keputusan
             WHERE penilaian_risiko_spbe.id = ".$id.
             "
-            ORDER BY besaran_risiko DESC
+             ORDER BY besaran_risiko DESC
             ";
         return $db->query($query)->getResultArray();
         

@@ -54,7 +54,7 @@
                     <select class="form-control" id="id_kategori_risiko" name="id_kategori_risiko" required>
                         <option value="" ></option>
                         <?php foreach ($daftarKategoriRisiko as $r ) : ?>
-                            <option value="<?= $r['id']; ?>" <?= ( old('id_kategori_risiko')==$r['id']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
+                            <option value="<?= $r['id_kategori_risiko']; ?>" <?= ( old('id_kategori_risiko')==$r['id_kategori_risiko']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

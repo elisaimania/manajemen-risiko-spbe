@@ -54,7 +54,7 @@
                     <select class="form-control" id="id_area_dampak" name="id_area_dampak" required>
                         <option value=""></option>
                         <?php foreach ($daftarAreaDampak as $r ) : ?>
-                            <option value="<?= $r['id']; ?>" <?= ( old('id_area_dampak')==$r['id']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
+                            <option value="<?= $r['id_area_dampak']; ?>" <?= ( old('id_area_dampak')==$r['id_area_dampak']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

@@ -44,10 +44,11 @@
         <div class="form-group">
         	<form class="user" method="post" action="">
                 <div class="form-group">
-                    <label for="kategori_risiko">Pilih Kategori Risiko</label>
-                    <select class="form-control" id="kategori_risiko" name="kategori_risiko" required>
+                    <label for="id_kategori_risiko">Pilih Kategori Risiko</label>
+                    <select class="form-control" id="id_kategori_risiko" name="id_kategori_risiko" required>
+                        <option value=""></option>
                         <?php foreach ($kategoriRisiko as $r ) : ?>
-                            <option value="<?= $r['kategori_risiko']; ?>"><?= $r['kategori_risiko']; ?></option>
+                            <option value="<?= $r['id']; ?>"><?= $r['kategori_risiko']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
