@@ -1,0 +1,6 @@
+CRITICAL - 2022-03-29 06:41:35 --> Class 'App\Models\UPRSPBEModel' not found
+#0 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(809): App\Controllers\PengelolaRisiko->__construct()
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(410): CodeIgniter\CodeIgniter->createController()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}

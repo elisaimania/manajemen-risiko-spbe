@@ -13,7 +13,7 @@ class SeleraRisikoModel extends Model
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
-    protected $allowedFields =['id','id_kategori_risiko','id_jenis_risiko', 'besaran_risiko_min','id_status_persetujuan','komentar'];
+    protected $allowedFields =['id','id_kategori_risiko','id_jenis_risiko', 'besaran_risiko_min', 'id_upr', 'id_status_persetujuan','komentar'];
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -25,7 +25,7 @@ class SeleraRisikoModel extends Model
 
         $this->builder()->join('jenis_risiko','jenis_risiko.id = selera_risiko_spbe.id_jenis_risiko');
 
-        return $this->builder()->select('selera_risiko_spbe.id, id_kategori_risiko, id_jenis_risiko, id_status_persetujuan, status_persetujuan.status,komentar, kategori_risiko_spbe.kategori_risiko, jenis_risiko.jenis_risiko, besaran_risiko_min')->get()->getResultArray();
+        return $this->builder()->select('selera_risiko_spbe.id, id_kategori_risiko, id_jenis_risiko, id_status_persetujuan, status_persetujuan.status,komentar, kategori_risiko_spbe.kategori_risiko, jenis_risiko.jenis_risiko, besaran_risiko_min, id_upr')->get()->getResultArray();
         
     }
 

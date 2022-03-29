@@ -50,6 +50,7 @@ class Auth extends BaseController
             session()->set('username' , $user['username']);
 			session()->set('role' , $user['id_role']);
             session()->set('email' , $user['email']);
+			session()->set('id_upr' , $user['id_upr']);
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
 									Anda berhasil masuk!
 									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -57,7 +58,7 @@ class Auth extends BaseController
 									</button>
 								</div>';
 			$flash = session()->setFlashdata('flash', $flash);
-			if(session()-> role == 2){
+			if(session()->role == 2){
 				return redirect()->to(base_url('pengelolaRisiko/dashboard'));
 			} elseif (session()->role == 3) {
 				return redirect()->to(base_url('koordinatorRisiko/dashboard'));

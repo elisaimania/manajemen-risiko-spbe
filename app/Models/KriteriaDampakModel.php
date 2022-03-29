@@ -13,7 +13,7 @@ class KriteriaDampakModel extends Model
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
-    protected $allowedFields =['id','id_area_dampak', 'id_jenis_risiko', 'id_level_dampak','penjelasan','id_status_persetujuan','komentar'];
+    protected $allowedFields =['id','id_area_dampak', 'id_jenis_risiko', 'id_level_dampak','penjelasan', 'id_upr', 'id_status_persetujuan','komentar'];
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -28,7 +28,7 @@ class KriteriaDampakModel extends Model
 
         $this->builder()->join('jenis_risiko','jenis_risiko.id = kriteria_dampak_risiko_spbe.id_jenis_risiko');
 
-        return $this->builder()->select('kriteria_dampak_risiko_spbe.id, id_area_dampak, id_jenis_risiko, id_level_dampak, level_dampak_risiko_spbe.level_dampak, area_dampak_risiko_spbe.area_dampak, jenis_risiko.jenis_risiko, id_status_persetujuan, status_persetujuan.status,komentar, penjelasan')->get()->getResultArray();
+        return $this->builder()->select('kriteria_dampak_risiko_spbe.id, id_area_dampak, id_jenis_risiko, id_level_dampak, level_dampak_risiko_spbe.level_dampak, area_dampak_risiko_spbe.area_dampak, jenis_risiko.jenis_risiko, id_upr, id_status_persetujuan, status_persetujuan.status,komentar, penjelasan')->get()->getResultArray();
         
     }
 

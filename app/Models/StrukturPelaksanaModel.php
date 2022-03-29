@@ -13,7 +13,7 @@ class StrukturPelaksanaModel extends Model
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
-    protected $allowedFields =['id','id_role','pelaksana','id_status_persetujuan','komentar'];
+    protected $allowedFields =['id','id_role','pelaksana', 'id_upr', 'id_status_persetujuan','komentar'];
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -21,7 +21,7 @@ class StrukturPelaksanaModel extends Model
     public function getStrukturPelaksana(){
         $this->builder()->join('status_persetujuan','status_persetujuan.id = struktur_pelaksana.id_status_persetujuan');
         $this->builder()->join('role_pengguna','role_pengguna.id = struktur_pelaksana.id_role');
-        return $this->builder()->select('struktur_pelaksana.id, id_role, role_pengguna.nama_role, pelaksana, id_status_persetujuan, status_persetujuan.status,komentar')->get()->getResultArray();
+        return $this->builder()->select('struktur_pelaksana.id, id_role, role_pengguna.nama_role, pelaksana, id_upr, id_status_persetujuan, status_persetujuan.status,komentar')->get()->getResultArray();
         
     }
 

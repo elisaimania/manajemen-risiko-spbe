@@ -23,6 +23,7 @@ use App\Models\SeleraRisikoModel;
 use App\Models\PenilaianRisikoModel;
 use App\Models\PenangananRisikoModel;
 use App\Models\OpsiPenangananModel;
+use App\Models\UPRSPBEModel;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\API\ResponseTrait;
 use PHPExcel;
@@ -53,6 +54,7 @@ class PengelolaRisiko extends BaseController
     public $penilaianRisikoModel = null;
     public $penangananRisikoModel = null;
     public $opsiPenangananModel = null;
+    public $uprSPBEModel = null;
 
     public function __construct(){
 
@@ -79,6 +81,7 @@ class PengelolaRisiko extends BaseController
         $this->penilaianRisikoModel = new PenilaianRisikoModel();
         $this->penangananRisikoModel = new PenangananRisikoModel();
         $this->opsiPenangananModel = new OpsiPenangananModel();
+        $this->uprSPBEModel = new UPRSPBEModel();
 
 
     }
@@ -156,7 +159,7 @@ class PengelolaRisiko extends BaseController
 
     public function getInformasiUmum(){
 
-        return $this->respond($this->informasiUmumModel->getInfoUmum());
+        return $this->respond($this->informasiUmumModel->where('id_upr', session()->id_upr)->getInfoUmum());
 
     }
 
@@ -182,6 +185,7 @@ class PengelolaRisiko extends BaseController
                 'fungsi_UPR' => $this->request->getPost('fungsi_UPR'),
                 'tanggal_mulai' => $this->request->getPost('tanggal_mulai'),
                 'tanggal_selesai' => $this->request->getPost('tanggal_selesai'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -329,7 +333,7 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarSasaranSPBE(){
 
-        return $this->respond($this->sasaranSPBEModel->getSasaranSPBE());
+        return $this->respond($this->sasaranSPBEModel->where('id_upr',session()->id_upr)->getSasaranSPBE());
 
     }
 
@@ -342,6 +346,7 @@ class PengelolaRisiko extends BaseController
                 'sasaran_SPBE' => $this->request->getPost('sasaran_SPBE'),
                 'indikator_kinerja_SPBE' => $this->request->getPost('indikator_kinerja_SPBE'),
                 'target_kinerja' => $this->request->getPost('target_kinerja'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -441,7 +446,7 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarStrukturPelaksana(){
 
-        return $this->respond($this->strukturPelaksanaModel->getStrukturPelaksana());
+        return $this->respond($this->strukturPelaksanaModel->where('id_upr', session()->id_upr)->getStrukturPelaksana());
 
     }
 
@@ -453,6 +458,7 @@ class PengelolaRisiko extends BaseController
             $inputData = [
                 'id_role' => $id_role['id'],
                 'pelaksana' => $this->request->getPost('pelaksana'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -555,7 +561,7 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarPemangkuKepentingan(){
 
-        return $this->respond($this->pemangkuKepentinganModel->getPemangkuKepentingan());
+        return $this->respond($this->pemangkuKepentinganModel->where('id_upr', session()->id_upr)->getPemangkuKepentingan());
 
     }
 
@@ -566,6 +572,7 @@ class PengelolaRisiko extends BaseController
             $inputData = [
                 'nama_unit' => $this->request->getPost('nama_unit'),
                 'hubungan' => $this->request->getPost('hubungan'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -664,7 +671,7 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarPeraturanPerundangan(){
 
-        return $this->respond($this->peraturanPerundanganModel->getPeraturanPerundangan());
+        return $this->respond($this->peraturanPerundanganModel->where('id_upr', session()->id_upr)->getPeraturanPerundangan());
 
     }
 
@@ -675,6 +682,7 @@ class PengelolaRisiko extends BaseController
             $inputData = [
                 'nama_peraturan' => $this->request->getPost('nama_peraturan'),
                 'amanat' => $this->request->getPost('amanat'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -775,7 +783,7 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarKategoriRisikoTerpilih(){
 
-        return $this->respond($this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih());
+        return $this->respond($this->kategoriRisikoTerpilihModel->where('id_upr',session()->id_upr)->getKategoriRisikoTerpilih());
 
     }
 
@@ -804,6 +812,7 @@ class PengelolaRisiko extends BaseController
 
             $inputData = [
                 'id' => $kategoriTerpilih['id'],
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -869,7 +878,7 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarAreaDampakRisikoTerpilih(){
 
-        return $this->respond($this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih());
+        return $this->respond($this->areaDampakRisikoTerpilihModel->where('id_upr', session()->id_upr)->getAreaDampakRisikoTerpilih());
 
     }
 
@@ -897,6 +906,7 @@ class PengelolaRisiko extends BaseController
 
             $inputData = [
                 'id' => $areaDampakTerpilih['id'],
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -961,13 +971,13 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarKriteriaKemungkinan(){
 
-        return $this->respond($this->kriteriaKemungkinanModel->getKriteriaKemungkinan());
+        return $this->respond($this->kriteriaKemungkinanModel->where('id_upr', session()->id_upr)->getKriteriaKemungkinan());
 
     }
 
     public function getDaftarKriteriaDampak(){
 
-        return $this->respond($this->kriteriaDampakModel->getKriteriaDampak());
+        return $this->respond($this->kriteriaDampakModel->where('id_upr', session()->id_upr)->getKriteriaDampak());
 
     }
 
@@ -996,6 +1006,7 @@ class PengelolaRisiko extends BaseController
                 'id_level_kemungkinan' => $levelKemungkinan[0]['id'],
                 'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan1')),
                 'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi1'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1004,6 +1015,7 @@ class PengelolaRisiko extends BaseController
                 'id_level_kemungkinan' => $levelKemungkinan[1]['id'],
                 'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan2')),
                 'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi2'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1012,6 +1024,7 @@ class PengelolaRisiko extends BaseController
                 'id_level_kemungkinan' => $levelKemungkinan[2]['id'],
                 'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan3')),
                 'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi3'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1020,6 +1033,7 @@ class PengelolaRisiko extends BaseController
                 'id_level_kemungkinan' => $levelKemungkinan[3]['id'],
                 'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan4')),
                 'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi4'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1028,6 +1042,7 @@ class PengelolaRisiko extends BaseController
                 'id_level_kemungkinan' => $levelKemungkinan[4]['id'],
                 'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan5')),
                 'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi5'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1187,60 +1202,70 @@ class PengelolaRisiko extends BaseController
                 'id_jenis_risiko' => $jenisRisiko[0]['id'],
                 'id_level_dampak' => $levelDampak[0]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan1'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[0]['id'],
                 'id_level_dampak' => $levelDampak[1]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan2'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[0]['id'],
                 'id_level_dampak' => $levelDampak[2]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan3'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[0]['id'],
                 'id_level_dampak' => $levelDampak[3]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan4'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[0]['id'],
                 'id_level_dampak' => $levelDampak[4]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan5'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[1]['id'],
                 'id_level_dampak' => $levelDampak[0]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan6'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[1]['id'],
                 'id_level_dampak' => $levelDampak[1]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan7'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[1]['id'],
                 'id_level_dampak' => $levelDampak[2]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan8'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[1]['id'],
                 'id_level_dampak' => $levelDampak[3]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan9'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ],[
                 'id_area_dampak' => $this->request->getPost('id_area_dampak'),
                 'id_jenis_risiko' => $jenisRisiko[1]['id'],
                 'id_level_dampak' => $levelDampak[4]['id'],
                 'penjelasan' => $this->request->getPost('penjelasan10'),
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ]];
 
@@ -1392,7 +1417,7 @@ class PengelolaRisiko extends BaseController
 
     public function getSeleraRisiko(){
 
-        return $this->respond($this->seleraRisikoModel->orderBy('id','ASC')->getSelera());
+        return $this->respond($this->seleraRisikoModel->orderBy('id','ASC')->where('id_upr',session()->id_upr)->getSelera());
     }
 
     public function inputSeleraRisiko()
