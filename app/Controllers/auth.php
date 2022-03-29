@@ -58,11 +58,11 @@ class Auth extends BaseController
 									</button>
 								</div>';
 			$flash = session()->setFlashdata('flash', $flash);
-			if(session()->role == 2){
+			if(session()->role == 1){
 				return redirect()->to(base_url('pengelolaRisiko/dashboard'));
-			} elseif (session()->role == 3) {
+			} elseif (session()->role == 2) {
 				return redirect()->to(base_url('koordinatorRisiko/dashboard'));
-			} elseif (session()->role == 4) {
+			} elseif (session()->role == 3) {
 				return redirect()->to(base_url('pemilikRisiko/dashboard'));
 			} else {
 				return redirect()->to(base_url('admin/daftarPengguna'));

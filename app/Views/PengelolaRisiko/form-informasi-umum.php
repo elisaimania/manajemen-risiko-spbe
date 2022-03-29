@@ -15,6 +15,11 @@
 		border-radius: 20px;
 
 	}
+    .form-control[readonly]{
+        background-color: #fff;
+}
+
+
 </style>
 
 <div class="mb-2">
@@ -46,7 +51,7 @@
                 <div class="form-group row">
                     <div class="col">
                     	<label for="nama_UPR">Nama UPR SPBE</label>
-                    	<input type="text" class="form-control" id="nama_UPR" name="nama_UPR" required value="<?= old('nama_UPR'); ?>">
+                    	<input type="text" class="form-control" id="nama_UPR" name="nama_UPR" value="<?= $namaUpr['upr_SPBE']; ?>" readonly>
                     </div>
                 </div>
                 <div class="form-group row">

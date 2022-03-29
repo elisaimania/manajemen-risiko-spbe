@@ -165,6 +165,7 @@ class PengelolaRisiko extends BaseController
 
     public function inputInformasiUmum()
     {
+        $namaUpr = $this->uprSPBEModel->where('id', session()->id_upr)->get()->getRowArray();
         if(isset($_POST['tambah'])){
             $rules =[
                 'tanggal_mulai' => 'datePeriodeValidation[tanggal_mulai,tanggal_selesai]'
@@ -180,7 +181,6 @@ class PengelolaRisiko extends BaseController
             }
             
             $inputData = [
-                'nama_UPR' => $this->request->getPost('nama_UPR'),
                 'tugas_UPR' => $this->request->getPost('tugas_UPR'),
                 'fungsi_UPR' => $this->request->getPost('fungsi_UPR'),
                 'tanggal_mulai' => $this->request->getPost('tanggal_mulai'),
@@ -200,7 +200,8 @@ class PengelolaRisiko extends BaseController
 
             $flash = session()->setFlashdata('flash', $flash);
         }
-
+        
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
@@ -208,6 +209,7 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
+            'namaUpr' => $namaUpr,
             'sublink' => 'informasiUmum'
         ];
 
@@ -279,7 +281,6 @@ class PengelolaRisiko extends BaseController
             }
 
             $this->informasiUmumModel
-            ->set('nama_UPR' , $this->request->getPost('nama_UPR'))
             ->set('tugas_UPR' , $this->request->getPost('tugas_UPR'))
             ->set('fungsi_UPR' , $this->request->getPost('fungsi_UPR'))
             ->set('tanggal_mulai' , $this->request->getPost('tanggal_mulai'))
@@ -811,7 +812,7 @@ class PengelolaRisiko extends BaseController
 
 
             $inputData = [
-                'id' => $kategoriTerpilih['id'],
+                'id_kategori' => $kategoriTerpilih['id'],
                 'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
@@ -905,7 +906,7 @@ class PengelolaRisiko extends BaseController
             }
 
             $inputData = [
-                'id' => $areaDampakTerpilih['id'],
+                'id_area_dampak' => $areaDampakTerpilih['id'],
                 'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
@@ -1595,12 +1596,12 @@ class PengelolaRisiko extends BaseController
 
             $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko',$this->request->getPost('kategori_risiko'))->get()->getRowArray();
 
-            $indikatorKinerja = $this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$this->request->getPost('indikator_kinerja_SPBE'))->get()->getRowArray();
+            $indikatorKinerja = $this->sasaranSPBEModel->where('id',$this->request->getPost('id_sasaran_SPBE'))->get()->getRowArray();
 
             $levelKemungkinan = $this->levelKemungkinanModel->where('level_kemungkinan',$this->request->getPost('level_kemungkinan'))->get()->getRowArray();
 
             $multiClause = array('id_level_kemungkinan' => $levelKemungkinan['id'], 'id_level_dampak' => $levelDampak['id']);
-            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id']);
+            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr);
 
             $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
             $besaranRisiko = $matriksRisiko['besaran_risiko'];
@@ -1633,6 +1634,7 @@ class PengelolaRisiko extends BaseController
                 'id_level_dampak' => $levelDampak['id'],
                 'id_level_risiko' => $levelRisiko['id'],
                 'id_keputusan' => $id_keputusan,
+                'id_upr' => session()->id_upr,
                 'id_status_persetujuan' => 1
             ];
 
@@ -1648,12 +1650,12 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_upr',session()->id_upr)->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
-        $daftarKategoriRisiko = $this->kategoriRisikoModel->findAll();
-        $daftarIndikatorKinerja = $this->sasaranSPBEModel->findAll();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_upr', session()->id_upr)->getKategoriRisikoTerpilih();
+        $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  => 'Tambah Penilaian Risiko SPBE (3.0)',
@@ -1674,12 +1676,12 @@ class PengelolaRisiko extends BaseController
     public function updatePenilaianRisiko($id=null){
 
         $risiko = $this->penilaianRisikoModel->find($id);
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_upr',session()->id_upr)->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
-        $daftarKategoriRisiko = $this->kategoriRisikoModel->findAll();
-        $daftarIndikatorKinerja = $this->sasaranSPBEModel->findAll();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_upr', session()->id_upr)->getKategoriRisikoTerpilih();
+        $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  => 'Edit Penilaian Risiko SPBE (3.0)',
@@ -1705,12 +1707,12 @@ class PengelolaRisiko extends BaseController
 
             $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko',$this->request->getPost('kategori_risiko'))->get()->getRowArray();
 
-            $indikatorKinerja = $this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$this->request->getPost('indikator_kinerja_SPBE'))->get()->getRowArray();
+            $indikatorKinerja = $this->sasaranSPBEModel->where('id',$this->request->getPost('id_sasaran_SPBE'))->get()->getRowArray();
 
             $levelKemungkinan = $this->levelKemungkinanModel->where('level_kemungkinan',$this->request->getPost('level_kemungkinan'))->get()->getRowArray();
 
             $multiClause = array('id_level_kemungkinan' => $levelKemungkinan['id'], 'id_level_dampak' => $levelDampak['id']);
-            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id']);
+            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr);
 
             $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
             $besaranRisiko = $matriksRisiko['besaran_risiko'];
@@ -1777,7 +1779,7 @@ class PengelolaRisiko extends BaseController
 
     public function getPenangananRisiko(){
 
-        return $this->respond($this->penangananRisikoModel->getPenanganan());
+        return $this->respond($this->penangananRisikoModel->where('id_upr', session()->id_upr)->getPenanganan());
 
     }
 

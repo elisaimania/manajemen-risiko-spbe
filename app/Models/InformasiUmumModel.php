@@ -20,7 +20,8 @@ class InformasiUmumModel extends Model
 
     public function getInfoUmum(){
         $this->builder()->join('status_persetujuan','status_persetujuan.id = informasi_umum.id_status_persetujuan');
-        return $this->builder()->select('informasi_umum.id, nama_UPR, tugas_UPR, fungsi_UPR, tanggal_mulai,tanggal_selesai, id_upr, id_status_persetujuan, status_persetujuan.status,komentar')->get()->getResultArray();
+        $this->builder()->join('upr_spbe','upr_spbe.id = informasi_umum.id_upr');
+        return $this->builder()->select('informasi_umum.id, nama_UPR, tugas_UPR, fungsi_UPR, tanggal_mulai,tanggal_selesai, id_upr, id_status_persetujuan, status_persetujuan.status,komentar, upr_spbe.upr_SPBE')->get()->getResultArray();
         
     }
 

@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class InformasiUmum extends Migration
+class KategoriRisikoTerpilih extends Migration
 {
     public function up()
     {
-        // Membuat kolom/field untuk tabel informasi_umum
+        // Membuat kolom/field untuk tabel kategori_risiko_SPBE_terpilih
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
@@ -16,23 +16,10 @@ class InformasiUmum extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'nama_UPR'       => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 100
-			],
-			'tugas_UPR'      => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 255
-			],
-			'fungsi_UPR' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 255
-			],
-			'tanggal_mulai'      => [
-				'type'           => 'DATE'
-			],
-            'tanggal_selesai'      => [
-				'type'           => 'DATE'
+            'id_kategori_risiko'          => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+				'unsigned'       => true
 			],
             'id_upr'          => [
 				'type'           => 'INT',
@@ -54,16 +41,17 @@ class InformasiUmum extends Migration
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
+     
 
-		// Membuat tabel informasi_umum
-		$this->forge->createTable('informasi_umum', TRUE);
+		// Membuat tabel kategori_risiko_SPBE_terpilih
+		$this->forge->createTable('kategori_risiko_SPBE_terpilih', TRUE);
     }
 
     public function down()
     {
-        // menghapus tabel informasi_umum
-		$this->forge->dropTable('informasi_umum');
+        // menghapus tabel kategori_risiko_SPBE_terpilih
+		$this->forge->dropTable('kategori_risiko_SPBE_terpilih');
     }
-
 }

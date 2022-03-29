@@ -26,7 +26,7 @@ class PenangananRisikoModel extends Model
 
         $this->builder()->join('opsi_penanganan_risiko_spbe','opsi_penanganan_risiko_spbe.id = rencana_penanganan_risiko_spbe.id_opsi_penanganan');
 
-        return $this->builder()->select('rencana_penanganan_risiko_spbe.id, id_risiko, id_opsi_penanganan, opsi_penanganan_risiko_spbe.opsi_penanganan, rencana_aksi, keluaran, penanggungjawab, risiko_residual, rencana_penanganan_risiko_spbe.id_status_persetujuan, status_persetujuan.status, rencana_penanganan_risiko_spbe.komentar, jadwal_mulai,jadwal_selesai')->get()->getResultArray();
+        return $this->builder()->select('rencana_penanganan_risiko_spbe.id, id_risiko, id_opsi_penanganan, opsi_penanganan_risiko_spbe.opsi_penanganan, rencana_aksi, keluaran, penanggungjawab, risiko_residual, rencana_penanganan_risiko_spbe.id_status_persetujuan, status_persetujuan.status, rencana_penanganan_risiko_spbe.komentar, jadwal_mulai,jadwal_selesai, penilaian_risiko_spbe.id_upr')->get()->getResultArray();
     }
 
 }

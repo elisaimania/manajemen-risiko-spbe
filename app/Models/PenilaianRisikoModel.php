@@ -13,7 +13,7 @@ class PenilaianRisikoModel extends Model
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
-    protected $allowedFields = ['id', 'id_sasaran_SPBE', 'id_jenis_risiko', 'kejadian', 'penyebab', 'id_kategori_risiko', 'dampak', 'id_area_dampak', 'sistem_pengendalian', 'id_level_kemungkinan', 'id_level_dampak', 'id_level_risiko', 'id_keputusan',  'id_status_persetujuan','komentar'];
+    protected $allowedFields = ['id', 'id_sasaran_SPBE', 'id_jenis_risiko', 'kejadian', 'penyebab', 'id_kategori_risiko', 'dampak', 'id_area_dampak', 'sistem_pengendalian', 'id_level_kemungkinan', 'id_level_dampak', 'id_level_risiko', 'id_keputusan',  'id_status_persetujuan','komentar', 'id_upr'];
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -23,7 +23,14 @@ class PenilaianRisikoModel extends Model
 
         $db = db_connect();
 
-        $query = "SELECT penilaian_risiko_spbe.id, id_sasaran_SPBE, penilaian_risiko_spbe.id_jenis_risiko, kejadian, penyebab, penilaian_risiko_spbe.id_kategori_risiko, dampak, penilaian_risiko_spbe.id_area_dampak, sistem_pengendalian, penilaian_risiko_spbe.id_level_kemungkinan, penilaian_risiko_spbe.id_level_dampak, penilaian_risiko_spbe.id_level_risiko, id_keputusan, penilaian_risiko_spbe.id_status_persetujuan, status_persetujuan.status, penilaian_risiko_spbe.komentar, sasaran_spbe.sasaran_SPBE, sasaran_spbe.indikator_kinerja_SPBE, jenis_risiko.jenis_risiko, kategori_risiko_spbe.kategori_risiko, area_dampak_risiko_spbe.area_dampak, matriks_analisi_risiko.besaran_risiko, level_risiko_spbe.level_risiko, keputusan.keputusan, kriteria_dampak_risiko_spbe.penjelasan, kriteria_kemungkinan_risiko_spbe.presentase_kemungkinan, level_kemungkinan_risiko_spbe.level_kemungkinan, level_dampak_risiko_spbe.level_dampak,
+        $query = "SELECT penilaian_risiko_spbe.id, id_sasaran_SPBE, penilaian_risiko_spbe.id_jenis_risiko, kejadian, 
+        penyebab, penilaian_risiko_spbe.id_kategori_risiko, dampak, penilaian_risiko_spbe.id_area_dampak, sistem_pengendalian, 
+        penilaian_risiko_spbe.id_level_kemungkinan, penilaian_risiko_spbe.id_level_dampak, penilaian_risiko_spbe.id_level_risiko, 
+        id_keputusan, penilaian_risiko_spbe.id_status_persetujuan, status_persetujuan.status, penilaian_risiko_spbe.komentar, 
+        sasaran_spbe.sasaran_SPBE, sasaran_spbe.indikator_kinerja_SPBE, jenis_risiko.jenis_risiko, kategori_risiko_spbe.kategori_risiko, 
+        area_dampak_risiko_spbe.area_dampak, matriks_analisi_risiko.besaran_risiko, level_risiko_spbe.level_risiko, keputusan.keputusan, 
+        kriteria_dampak_risiko_spbe.penjelasan, kriteria_kemungkinan_risiko_spbe.presentase_kemungkinan, 
+        level_kemungkinan_risiko_spbe.level_kemungkinan, level_dampak_risiko_spbe.level_dampak, penilaian_risiko_spbe.id_upr,
             CASE 
                 WHEN id_keputusan = 2 
                 THEN DENSE_RANK() OVER (ORDER BY besaran_risiko DESC) ELSE ''
@@ -56,7 +63,8 @@ class PenilaianRisikoModel extends Model
             ON level_risiko_spbe.id = penilaian_risiko_spbe.id_level_risiko
             INNER JOIN keputusan
             ON keputusan.id = penilaian_risiko_spbe.id_keputusan
-            ORDER BY besaran_risiko DESC
+            WHERE penilaian_risiko_spbe.id_upr = " . session()->id_upr.
+            "ORDER BY besaran_risiko DESC
             ";
         return $db->query($query)->getResultArray();
     }
@@ -67,7 +75,14 @@ class PenilaianRisikoModel extends Model
 
         $db = db_connect();
 
-        $query = "SELECT penilaian_risiko_spbe.id, id_sasaran_SPBE, penilaian_risiko_spbe.id_jenis_risiko, kejadian, penyebab, penilaian_risiko_spbe.id_kategori_risiko, dampak, penilaian_risiko_spbe.id_area_dampak, sistem_pengendalian, penilaian_risiko_spbe.id_level_kemungkinan, penilaian_risiko_spbe.id_level_dampak, penilaian_risiko_spbe.id_level_risiko, id_keputusan, penilaian_risiko_spbe.id_status_persetujuan, status_persetujuan.status, penilaian_risiko_spbe.komentar, sasaran_spbe.sasaran_SPBE, sasaran_spbe.indikator_kinerja_SPBE, jenis_risiko.jenis_risiko, kategori_risiko_spbe.kategori_risiko, area_dampak_risiko_spbe.area_dampak, matriks_analisi_risiko.besaran_risiko, level_risiko_spbe.level_risiko, keputusan.keputusan, kriteria_dampak_risiko_spbe.penjelasan, kriteria_kemungkinan_risiko_spbe.presentase_kemungkinan, level_kemungkinan_risiko_spbe.level_kemungkinan, level_dampak_risiko_spbe.level_dampak,
+        $query = "SELECT penilaian_risiko_spbe.id, id_sasaran_SPBE, penilaian_risiko_spbe.id_jenis_risiko, kejadian, penyebab, 
+        penilaian_risiko_spbe.id_kategori_risiko, dampak, penilaian_risiko_spbe.id_area_dampak, sistem_pengendalian, 
+        penilaian_risiko_spbe.id_level_kemungkinan, penilaian_risiko_spbe.id_level_dampak, penilaian_risiko_spbe.id_level_risiko, 
+        id_keputusan, penilaian_risiko_spbe.id_status_persetujuan, status_persetujuan.status, penilaian_risiko_spbe.komentar, 
+        sasaran_spbe.sasaran_SPBE, sasaran_spbe.indikator_kinerja_SPBE, jenis_risiko.jenis_risiko, kategori_risiko_spbe.kategori_risiko, 
+        area_dampak_risiko_spbe.area_dampak, matriks_analisi_risiko.besaran_risiko, level_risiko_spbe.level_risiko, keputusan.keputusan, 
+        kriteria_dampak_risiko_spbe.penjelasan, kriteria_kemungkinan_risiko_spbe.presentase_kemungkinan, 
+        level_kemungkinan_risiko_spbe.level_kemungkinan, level_dampak_risiko_spbe.level_dampak, penilaian_risiko_spbe.id_upr,
             CASE 
                 WHEN id_keputusan = 2 
                 THEN DENSE_RANK() OVER (ORDER BY besaran_risiko DESC) ELSE ''
@@ -101,8 +116,8 @@ class PenilaianRisikoModel extends Model
             INNER JOIN keputusan
             ON keputusan.id = penilaian_risiko_spbe.id_keputusan
             WHERE id_keputusan =2 AND penilaian_risiko_spbe.id NOT IN (
-                                                                        SELECT id_risiko FROM rencana_penanganan_risiko_spbe)
-            ORDER BY besaran_risiko DESC
+                                                                        SELECT id_risiko FROM rencana_penanganan_risiko_spbe) AND penilaian_risiko_spbe.id_upr = " . session()->id_upr.
+            "ORDER BY besaran_risiko DESC
             ";
         return $db->query($query)->getResultArray();
     }

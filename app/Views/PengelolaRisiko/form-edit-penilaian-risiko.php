@@ -53,11 +53,11 @@
             <form class="user" method="post" action="">
                 <h3 class="font-weight-bold" style="font-size: 0.9rem;">IDENTIFIKASI RISIKO SPBE</h3>
                 <div class="form-group m-3">
-                    <label for="indikator_kinerja_SPBE">Pilih Indikator Kinerja SPBE</label>
-                    <select class="form-control" id="indikator_kinerja_SPBE" name="indikator_kinerja_SPBE" required>
+                    <label for="id_sasaran_SPBE">Pilih Indikator Kinerja SPBE</label>
+                    <select class="form-control" id="id_sasaran_SPBE" name="id_sasaran_SPBE" required>
                         <option value="" ></option>
                         <?php foreach ($daftarIndikatorKinerja as $r ) : ?>
-                            <option value="<?= $r['indikator_kinerja_SPBE']; ?>" <?= ($risiko['id_sasaran_SPBE']==$r['id']) ? 'selected' : ''; ?> ><?= $r['indikator_kinerja_SPBE']; ?></option>
+                            <option value="<?= $r['id']; ?>" <?= ($risiko['id_sasaran_SPBE']==$r['id']) ? 'selected' : ''; ?> ><?= $r['indikator_kinerja_SPBE']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

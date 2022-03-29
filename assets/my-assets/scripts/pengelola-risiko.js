@@ -24,7 +24,7 @@ function loadDataInformasiUmum() {
                         ${no++}
                     </td>
                     <td>
-                        ${d.nama_UPR}
+                        ${d.upr_SPBE}
                     </td>
                     <td>
                         ${d.tugas_UPR.replace(/\n/g, "<br>")}
