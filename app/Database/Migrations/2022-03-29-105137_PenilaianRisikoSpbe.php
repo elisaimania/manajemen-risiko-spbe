@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PenilaianRisikoSPBE extends Migration
+class PenilaianRisikoSpbe extends Migration
 {
     public function up()
     {

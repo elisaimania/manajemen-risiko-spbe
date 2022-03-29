@@ -36,6 +36,11 @@ class Pengguna extends Migration
             'email'      => [
 				'type'           => 'VARCHAR',
 				'constraint'     => 100
+			],
+			'id_upr'       => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+                'unsigned'       => true
 			]
 		]);
 
@@ -44,6 +49,7 @@ class Pengguna extends Migration
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_role', 'role_pengguna', 'id', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
 
 		// Membuat tabel pengguna
 		$this->forge->createTable('pengguna', TRUE);

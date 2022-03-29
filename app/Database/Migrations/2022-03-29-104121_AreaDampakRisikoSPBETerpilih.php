@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class SasaranSPBE extends Migration
+class AreaDampakRisikoSPBETerpilih extends Migration
 {
     public function up()
     {
-        // Membuat kolom/field untuk tabel sasaran_SPBE
+        // Membuat kolom/field untuk tabel area_dampak_SPBE_terpilih
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
@@ -16,21 +16,10 @@ class SasaranSPBE extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'sasaran_UPR_SPBE'      => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 255
-			],
-			'sasaran_SPBE' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 255
-			],
-			'indikator_kinerja_SPBE'      => [
-				'type'           => 'VARCHAR',
-                'constraint'     => 255
-			],
-            'target_kinerja'      => [
-				'type'           => 'CHAR',
-                'constraint'     => 10
+            'id_upr'          => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+				'unsigned'       => true
 			],
 			'id_status_persetujuan'      => [
 				'type'           => 'INT',
@@ -47,14 +36,18 @@ class SasaranSPBE extends Migration
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id', 'area_dampak_risiko_spbe', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
+     
 
-		// Membuat tabel sasaran_SPBE
-		$this->forge->createTable('sasaran_SPBE', TRUE);
+		// Membuat tabel area_dampak_SPBE_terpilih
+		$this->forge->createTable('area_dampak_risiko_SPBE_terpilih', TRUE);
     }
 
     public function down()
     {
-        // menghapus tabel sasaran_SPBE
-		$this->forge->dropTable('sasaran_SPBE');
+        // menghapus tabel kategori_risiko_SPBE_terpilih
+		$this->forge->dropTable('area_dampak_risiko_SPBE_terpilih');
     }
 }
+

@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PeraturanPerundangan extends Migration
+class SasaranSPBE extends Migration
 {
     public function up()
     {
-        // Membuat kolom/field untuk tabel peraturan_perundangan
+        // Membuat kolom/field untuk tabel sasaran_SPBE
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
@@ -16,13 +16,26 @@ class PeraturanPerundangan extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'nama_peraturan'       => [
+			'sasaran_UPR_SPBE'      => [
 				'type'           => 'VARCHAR',
 				'constraint'     => 255
 			],
-			'amanat'      => [
+			'sasaran_SPBE' => [
 				'type'           => 'VARCHAR',
 				'constraint'     => 255
+			],
+			'indikator_kinerja_SPBE'      => [
+				'type'           => 'VARCHAR',
+                'constraint'     => 255
+			],
+            'target_kinerja'      => [
+				'type'           => 'CHAR',
+                'constraint'     => 10
+			],
+            'id_upr'          => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+				'unsigned'       => true
 			],
 			'id_status_persetujuan'      => [
 				'type'           => 'INT',
@@ -39,15 +52,15 @@ class PeraturanPerundangan extends Migration
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
-     
+        $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
 
-		// Membuat tabel peraturan_perundangan
-		$this->forge->createTable('peraturan_perundangan', TRUE);
+		// Membuat tabel sasaran_SPBE
+		$this->forge->createTable('sasaran_SPBE', TRUE);
     }
 
     public function down()
     {
-        // menghapus tabel peraturan_perundangan
-		$this->forge->dropTable('peraturan_perundangan');
+        // menghapus tabel sasaran_SPBE
+		$this->forge->dropTable('sasaran_SPBE');
     }
 }

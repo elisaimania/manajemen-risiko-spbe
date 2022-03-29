@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PemangkuKepentingan extends Migration
+class InformasiUmum extends Migration
 {
     public function up()
     {
-        // Membuat kolom/field untuk tabel pemangku_kepentingan
+        // Membuat kolom/field untuk tabel informasi_umum
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
@@ -16,13 +16,28 @@ class PemangkuKepentingan extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'nama_unit'       => [
+			'nama_UPR'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => 100
 			],
-			'hubungan'      => [
+			'tugas_UPR'      => [
 				'type'           => 'VARCHAR',
 				'constraint'     => 255
+			],
+			'fungsi_UPR' => [
+				'type'           => 'VARCHAR',
+				'constraint'     => 255
+			],
+			'tanggal_mulai'      => [
+				'type'           => 'DATE'
+			],
+            'tanggal_selesai'      => [
+				'type'           => 'DATE'
+			],
+            'id_upr'          => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+				'unsigned'       => true
 			],
 			'id_status_persetujuan'      => [
 				'type'           => 'INT',
@@ -39,15 +54,16 @@ class PemangkuKepentingan extends Migration
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
-     
+        $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
 
-		// Membuat tabel pemangku_kepentingan
-		$this->forge->createTable('pemangku_kepentingan', TRUE);
+		// Membuat tabel informasi_umum
+		$this->forge->createTable('informasi_umum', TRUE);
     }
 
     public function down()
     {
-        // menghapus tabel pemangku_kepentingan
-		$this->forge->dropTable('pemangku_kepentingan');
+        // menghapus tabel informasi_umum
+		$this->forge->dropTable('informasi_umum');
     }
+
 }

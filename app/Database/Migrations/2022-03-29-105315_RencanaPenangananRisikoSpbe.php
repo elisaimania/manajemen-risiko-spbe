@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class RencanaPenangananRisikoSPBE extends Migration
+class RencanaPenangananRisikoSpbe extends Migration
 {
     public function up()
     {
@@ -34,7 +34,10 @@ class RencanaPenangananRisikoSPBE extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => 255
             ],
-            'jadwal_implementasi'      => [
+            'jadwal_mulai'      => [
+				'type'           => 'DATE'
+            ],
+            'jadwal_selesai'      => [
 				'type'           => 'DATE'
             ],
             'penanggungjawab'      => [

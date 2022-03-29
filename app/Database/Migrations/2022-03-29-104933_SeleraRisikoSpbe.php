@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class KriteriaDampakRisikoSPBE extends Migration
+class SeleraRisikoSpbe extends Migration
 {
     public function up()
     {
-        // Membuat kolom/field untuk tabel kriteria_dampak_risiko_SPBE
+        // Membuat kolom/field untuk tabel selera_risiko_SPBE
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
@@ -16,23 +16,24 @@ class KriteriaDampakRisikoSPBE extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'id_area_dampak'      => [
+			'id_kategori_risiko'      => [
 				'type'           => 'INT',
 				'constraint'     => 4,
                 'unsigned'       => true,
             ],
-            'id_jenis_risiko'      => [
+			'id_jenis_risiko'      => [
 				'type'           => 'INT',
 				'constraint'     => 1
 			],
-            'id_level_dampak'      => [
+            'besaran_risiko_min'      => [
 				'type'           => 'INT',
-				'constraint'     => 4
+				'constraint'     => 3
 			],
-            'penjelasan'      => [
-				'type'           => 'VARCHAR',
-				'constraint'     => 255
-			],
+            'id_upr'      => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+                'unsigned'       => true,
+            ],
             'id_status_persetujuan'      => [
 				'type'           => 'INT',
 				'constraint'     => 1
@@ -48,18 +49,17 @@ class KriteriaDampakRisikoSPBE extends Migration
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_area_dampak', 'area_dampak_risiko_spbe_terpilih', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_level_dampak', 'level_dampak_risiko_spbe', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_jenis_risiko', 'jenis_risiko', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe_terpilih', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
 
 
-		// Membuat tabel kriteria_dampak_risiko_SPBE
-		$this->forge->createTable('kriteria_dampak_risiko_SPBE', TRUE);
+		// Membuat tabel selera_risiko_SPBE
+		$this->forge->createTable('selera_risiko_SPBE', TRUE);
     }
 
     public function down()
     {
-        // menghapus tabel kriteria_dampak_risiko_SPBE
-		$this->forge->dropTable('kriteria_dampak_risiko_SPBE');
+        // menghapus tabel selera_risiko_SPBE
+		$this->forge->dropTable('selera_risiko_SPBE');
     }
 }

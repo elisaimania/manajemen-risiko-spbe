@@ -24,6 +24,11 @@ class StrukturPelaksana extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => 100
 			],
+            'id_upr'          => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+				'unsigned'       => true
+			],
 			'id_status_persetujuan'      => [
 				'type'           => 'INT',
 				'constraint'     => 1
@@ -40,6 +45,7 @@ class StrukturPelaksana extends Migration
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_role', 'role_pengguna', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
 
 		// Membuat tabel struktur_pelaksana
 		$this->forge->createTable('struktur_pelaksana', TRUE);

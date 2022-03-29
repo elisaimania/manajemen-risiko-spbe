@@ -20,7 +20,6 @@ class KriteriaKemungkinanRisikoSPBE extends Migration
 				'type'           => 'INT',
 				'constraint'     => 4,
                 'unsigned'       => true
-
             ],
             'id_level_kemungkinan'      => [
 				'type'           => 'INT',
@@ -34,6 +33,11 @@ class KriteriaKemungkinanRisikoSPBE extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => 30
 			],
+            'id_upr'      => [
+				'type'           => 'INT',
+				'constraint'     => 4,
+                'unsigned'       => true
+            ],
             'id_status_persetujuan'      => [
 				'type'           => 'INT',
 				'constraint'     => 1
@@ -50,8 +54,8 @@ class KriteriaKemungkinanRisikoSPBE extends Migration
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_level_kemungkinan', 'level_kemungkinan_risiko_spbe', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe', 'id', 'CASCADE', 'CASCADE');
-        
+        $this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe_terpilih', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
 
 
 		// Membuat tabel kriteria_kemungkinan_risiko_SPBE
