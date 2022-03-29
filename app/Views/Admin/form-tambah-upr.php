@@ -2,12 +2,12 @@
 <?= $this->section('content'); ?>
 
 <style>
-	.btn.float-right.tambah, .btn.float-right.edit{
+	.btn.float-right.tambah {
     background-color: #8CBA08; 
     border-color: #8CBA08; 
     color:#fff;
 }
-	.btn.float-right.tambah:hover, .btn.float-right.edit:hover{
+	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
 	.form-control{
@@ -30,7 +30,7 @@
         </li>
     </ol>
 </div>
-                
+                    
 <!-- DataTales Example -->
 <div id="flash"><?= session()->flash; ?></div>
 <div class="row justify-content-center">
@@ -39,19 +39,19 @@
     	<br>
     	<br>
         <div class="form-group">
-        	<form class="user" method="post" action="">
+        	<form class="user" method="post" action="<?= base_url('admin/inputUPR') ?>">
                 <div class="form-group row">
                     <div class="col">
-                        <label for="kategori_risiko">Kategori Risiko SPBE</label>
-                        <input type="text" class="form-control" id="kategori_risiko" name="kategori_risiko" value="<?= $kategori['kategori_risiko']; ?>" required>
+                    	<label for="upr_SPBE">Unit Pemilik Risiko (UPR) SPBE</label>
+                    	<input type="text" class="form-control" id="upr_SPBE" name="upr_SPBE" required>
                     </div>
                 </div>
                 <div class="col">
                 </div>
                 <div class="col">
-                	<a href="<?= base_url('admin/daftarKategori'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
-                    Edit
+                	<a href="<?= base_url('admin/daftarUPR'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="tambah" style="border-radius: 30px; width: 120px; height: 40px;">
+                    Tambah
                 	</button>
                 </div>
                 

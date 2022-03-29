@@ -36,20 +36,20 @@
 <div class="row justify-content-center">
 <div class="card shadow  m-5  col-sm-8 ">
     <div class="card-body ">
-    	<br>
+        <br>
     	<br>
         <div class="form-group">
         	<form class="user" method="post" action="">
                 <div class="form-group row">
                     <div class="col">
-                        <label for="kategori_risiko">Kategori Risiko SPBE</label>
-                        <input type="text" class="form-control" id="kategori_risiko" name="kategori_risiko" value="<?= $kategori['kategori_risiko']; ?>" required>
+                        <label for="upr_SPBE">Unit Pemilik Risiko (UPR) SPBE</label>
+                        <input type="text" class="form-control" id="upr_SPBE" name="upr_SPBE" value="<?= $upr['upr_SPBE']; ?>" required>
                     </div>
                 </div>
                 <div class="col">
                 </div>
                 <div class="col">
-                	<a href="<?= base_url('admin/daftarKategori'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
+                	<a href="<?= base_url('admin/daftarUPR'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
                 	<button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
                     Edit
                 	</button>

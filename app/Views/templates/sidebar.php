@@ -90,6 +90,13 @@
             <span>Daftar Opsi Penanganan Risiko</span></a>
     </li>
 
+    <!-- Nav Item - Charts -->
+    <li class="nav-item <?= ($active==='Daftar Unit Pemilik Risiko (UPR)') ? 'active' : ''; ?>">
+        <a class="nav-link " href="<?= base_url('admin/daftarUPR'); ?>" >
+            <i class="fas fa-fw fa-table"></i>
+            <span>Daftar Unit Pemilik Risiko (UPR) SPBE</span></a>
+    </li>
+
 
 
     <!-- Divider -->

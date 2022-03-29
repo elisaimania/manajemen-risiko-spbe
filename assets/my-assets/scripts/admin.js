@@ -199,9 +199,55 @@ function loadDataPengguna() {
     })
 }
 
+function loadDataUPR() {
+    $.get('getDaftarUPR/', (data) => {
+        
+        th = ``
+        th+= `
+        <th>No</th>
+        <th>Unit Pemilik Risiko (UPR) SPBE</th>
+        <th>Aksi</th>
+        `
+        thead = `<thead>
+        <tr>${th}</tr>
+        </thead>`
+
+        cell = ``
+        no = 1
+        data.forEach(d => {
+            cell+=`
+                <tr>
+                    <td>
+                        ${no++}
+                    </td>
+                    <td>
+                        ${d.upr_SPBE}
+                    </td>
+                    <td>
+                        <a href="updateUPR/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
+                        <a href="hapusUPR/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                    </td>
+                </tr>
+            `
+        });
+        tbody = `<tbody>${cell}</tbody>`
+        table = `<table id="table5" class="table table-bordered">
+        ${thead}
+        ${tbody}
+        </table>`
+
+        $('#tabel-upr').html(table)
+        $("#table5").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#table2_wrapper .col-md-6:eq(0)');
+    })
+}
+
 $(document).ready( () => {
     loadDataDampak()
     loadDataKategori()
     loadDataOpsiPenanganan()
     loadDataPengguna()
+    loadDataUPR()
 })
