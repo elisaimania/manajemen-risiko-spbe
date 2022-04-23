@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 <?php $val = service('validation') ?>
 

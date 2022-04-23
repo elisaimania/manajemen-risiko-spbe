@@ -58,7 +58,7 @@
                     <label for="upr">Pilih Unit Pemilik Risiko</label>
                     <select class="form-control" id="upr" name="upr" required>
                         <?php foreach ($upr as $r ) : ?>
-                            <option value="<?= $r['id']; ?>"><?= $r['nama_role']; ?></option>
+                            <option value="<?= $r['id']; ?>"><?= $r['upr_SPBE']; ?></option>
                         <?php endforeach; ?>
                 </select>
                 </div>

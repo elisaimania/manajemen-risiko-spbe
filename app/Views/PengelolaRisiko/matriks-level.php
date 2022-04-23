@@ -1,11 +1,11 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
-  .page-item.active .page-link {
-    color: #6C9005;
-    background-color: #E8F8BD;
-    border-color: #E8F8BD;
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #8CBA08;
+    border-color: #8CBA08;
 }
 
 .page-link:hover {
@@ -73,7 +73,7 @@ a {
                     
 <!-- Matriks analisi risiko -->
 <div class="card shadow  m-5">
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #E8F8BD; color: #6C9005;">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
         <h6 class="m-0 font-weight-bold ">Matriks Analisis Risiko SPBE (2.9A)</h6>                  
     </div>
     <div class="card-body mt-3">
@@ -84,7 +84,7 @@ a {
 
 <!-- level risiko -->
 <div class="card shadow  m-5">
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #E8F8BD; color: #6C9005;">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
         <h6 class="m-0 font-weight-bold">Level Risiko SPBE (2.9B)</h6>                  
     </div>
     <div class="card-body mt-3">

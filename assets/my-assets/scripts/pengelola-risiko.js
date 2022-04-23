@@ -744,6 +744,7 @@ function loadDataIdentifikasiRisiko() {
         th = ``
         th+= `
                 <th>Aksi</th>
+                <th>Status Persetujuan</th>
                 <th>ID</th>
                 <th>Sasaran SPBE</th>
                 <th>Indikator Kinerja</th>
@@ -767,6 +768,9 @@ function loadDataIdentifikasiRisiko() {
                         <a href="updatePenilaianRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPenilaianRisiko/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
                         <a href="detailPersetujuanPenilaianRisiko/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
+                    </td>
+                    <td>
+                        ${d.status}
                     </td>
                     <td>
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>

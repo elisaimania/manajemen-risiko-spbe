@@ -446,6 +446,8 @@ class PengelolaRisiko extends BaseController
         return redirect()->to(base_url('pengelolaRisiko/informasiUmum'));
         
     }
+
+    //Lihat detail persetujuan
     public function detailPersetujuanInformasiUmum($id){
 
         $informasiUmum = $this->informasiUmumModel->find($id);
@@ -698,7 +700,7 @@ class PengelolaRisiko extends BaseController
     }
 
     //Melihat deatil persetujuan
-    public function detailPersetujuanSasaranSpbe($id){
+    public function detailPersetujuanSasaranSPBE($id){
 
         $sasaranSpbe = $this->sasaranSPBEModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$sasaranSpbe['id_status_persetujuan'])->get()->getRowArray();

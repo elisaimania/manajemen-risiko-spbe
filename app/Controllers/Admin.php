@@ -137,6 +137,7 @@ class Admin extends BaseController
                 'id_role' => $id_role
             ];
 
+            //var_dump($inputData['id_upr']);
             $this->penggunaModel->insert($inputData);
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
