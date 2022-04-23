@@ -43,6 +43,7 @@ function loadDataInformasiUmum() {
                     <td>
                         <a href="updateInformasiUmum/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusInformasiUmum/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanInformasiUmum/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -261,6 +262,7 @@ function loadDataPemangkuKepentingan() {
                     <td>
                         <a href="updatePemangkuKepentingan/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPemangkuKepentingan/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanPemangkuKepentingan/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -309,6 +311,7 @@ function loadDataPenetapanAreaDampak() {
                     </td>
                     <td>
                         <a href="hapusAreaDampakRisikoTerpilih/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanAreaDampakTerpilih/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -357,6 +360,7 @@ function loadDataPenetapanKategori() {
                     </td>
                     <td>
                         <a href="hapusKategoriRisikoTerpilih/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanKategoriRisikoTerpilih/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -384,7 +388,7 @@ function loadDataKriteriaKemungkinan() {
         <th>Kategori Risiko SPBE</th>
         <th>Level Kemungkinan</th>
         <th>Presentase Kemungkinan</th>
-        <th>Jumlah Frekuensi</th>
+        <th>Jumlah Frekuensi Kemungkinan Terjadinya dalam Satu Tahun</th>
         <th>Status Persetujuan</th>
         `
         thead = `<thead>
@@ -399,6 +403,7 @@ function loadDataKriteriaKemungkinan() {
                     <td>
                         <a href="hapusKriteriaKemungkinan/${d.id_kategori_risiko}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
                         <a href="updateKriteriaKemungkinan/${d.id_kategori_risiko}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
+                        <a href="detailPersetujuanKriteriaKemungkinan/${d.id_kategori_risiko}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
                         ${d.kategori_risiko}
@@ -457,6 +462,7 @@ function loadDataKriteriaDampak() {
                     <td>
                         <a href="hapusKriteriaDampak/${d.id_area_dampak}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
                         <a href="updateKriteriaDampak/${d.id_area_dampak}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
+                        <a href="detailPersetujuanKriteriaDampak/${d.id_area_dampak}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
                         ${d.area_dampak}
@@ -526,6 +532,7 @@ function loadDataPerundangan() {
                     <td>
                         <a href="updatePeraturanPerundangan/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPeraturanPerundangan/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanPeraturanPerundangan/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -549,7 +556,6 @@ function loadDataSasaranSPBE() {
         
         th = ``
         th+= `
-        <th>No</th>
         <th>Sasaran UPR SPBE</th>
         <th>Sasaran SPBE</th>
         <th>Indikator Kinerja SPBE</th>
@@ -566,9 +572,6 @@ function loadDataSasaranSPBE() {
         data.forEach(d => {
             cell+=`
                 <tr>
-                    <td>
-                        ${no++}
-                    </td>
                     <td>
                         ${d.sasaran_UPR_SPBE}
                     </td>
@@ -587,6 +590,7 @@ function loadDataSasaranSPBE() {
                     <td>
                         <a href="updateSasaranSPBE/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusSasaranSPBE/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanSasaranSPBE/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -600,7 +604,8 @@ function loadDataSasaranSPBE() {
         $('#tabel-sasaranSPBE').html(table)
         $("#table10").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf", "print", "colvis"],
+            "rowsGroup" : [0,1]
         }).buttons().container().appendTo('#table10_wrapper .col-md-6:eq(0)');
     })
 }
@@ -627,6 +632,7 @@ function loadDataSeleraRisiko() {
                     <td>
                         <a href="updateSeleraRisiko/${d.id_kategori_risiko}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusSeleraRisiko/${d.id_kategori_risiko}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanSeleraRisiko/${d.id_kategori_risiko}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
                         ${d.kategori_risiko}
@@ -695,6 +701,7 @@ function loadDataStrukturPelaksana() {
                     <td>
                         <a href="updateStrukturPelaksana/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusStrukturPelaksana/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanStrukturPelaksana/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -759,6 +766,7 @@ function loadDataIdentifikasiRisiko() {
                     <td>
                         <a href="updatePenilaianRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPenilaianRisiko/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanPenilaianRisiko/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
@@ -861,6 +869,7 @@ function loadDataAnalisisRisiko() {
                     <td>
                         <a href="updatePenilaianRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPenilaianRisiko/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanPenilaianRisiko/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
@@ -932,6 +941,7 @@ function loadDataEvaluasiRisiko() {
                     <td>
                         <a href="updatePenilaianRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPenilaianRisiko/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanPenilaianRisiko/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
@@ -991,9 +1001,10 @@ function loadDataPenangananRisiko() {
                     <td>
                         <a href="updatePenangananRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPenangananRisiko/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                        <a href="detailPersetujuanPenangananRisiko/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
-                        <a href="detailRisiko/${d.id_risiko}" class="font-weight-bold" id="id_risiko">${'ID_'+d.id_risiko}</a>
+                        <a href="detailRisikoPenanganan/${d.id_risiko}" class="font-weight-bold" id="id_risiko">${'ID_'+d.id_risiko}</a>
                     </td>
                     <td>
                         ${d.opsi_penanganan}
@@ -1097,6 +1108,7 @@ function loadDataPilihRisiko() {
 }
 
 
+
 $(document).ready( () => {
     loadDataInformasiUmum()
     loadDataLevelRisiko()
@@ -1115,5 +1127,6 @@ $(document).ready( () => {
     loadDataEvaluasiRisiko()
     loadDataPenangananRisiko()
     loadDataPilihRisiko()
+    
 })
 

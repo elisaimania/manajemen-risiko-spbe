@@ -83,6 +83,7 @@ a {
                 </div>
                 <div class="col">
                     <a href="<?= base_url('pengelolaRisiko/inputKriteriaKemungkinan'); ?>" class="btn float-right" >Tambah Kriteria</a>
+                    <a href="<?= base_url('pengelolaRisiko/importKriteriaKemungkinan'); ?>" class="btn float-right mr-3" >Import Excel</a>
                 </div>
             </div>
         </div>
@@ -103,6 +104,7 @@ a {
                 </div>
                 <div class="col">
                     <a href="<?= base_url('pengelolaRisiko/inputKriteriaDampak'); ?>" class="btn float-right" >Tambah Kriteria</a>
+                    <a href="<?= base_url('pengelolaRisiko/importKriteriaDampak'); ?>" class="btn float-right mr-3" >Import Excel</a>
                 </div>
             </div>
         </div>

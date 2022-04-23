@@ -48,8 +48,11 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
   text-decoration: none;
   background-color: #858796;
 }
-a {
-    
+
+a:hover {
+        color: #858796;
+        text-decoration: underline;
+
 }
 
 </style>
@@ -77,6 +80,7 @@ a {
                 </div>
                 <div class="col">
                     <a href="<?= base_url('pengelolaRisiko/pilihRisiko'); ?>" class="btn float-right" >Tambah</a>
+                    <a href="<?= base_url('pengelolaRisiko/importPenangananRisiko'); ?>" class="btn float-right mr-3" >Import Excel</a>
                 </div>
             </div>
         </div>

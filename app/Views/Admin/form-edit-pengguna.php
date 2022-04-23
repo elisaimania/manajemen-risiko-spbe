@@ -57,6 +57,16 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="upr">Pilih Unit Pemilik Risiko</label>
+                    <select class="form-control" id="upr" name="upr" required>
+                        <?php foreach ($upr as $r ) : ?>
+                            <option value="<?= $r['id']; ?>" <?php if ($r['id']==$pengguna['id_upr']) {
+                                echo "selected";
+                            }  ?>><?= $r['upr_SPBE']; ?></option>
+                        <?php endforeach; ?>
+                </select>
+                </div>
+                <div class="form-group">
     				<label for="nama_role">Pilih Role Pengguna</label>
     				<select class="form-control" id="nama_role" name="nama_role" required>
     					<?php foreach ($role as $r ) : ?>

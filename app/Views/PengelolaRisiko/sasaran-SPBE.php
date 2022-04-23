@@ -83,6 +83,7 @@ a {
                 </div>
                 <div class="col">
                     <a href="<?= base_url('pengelolaRisiko/inputSasaranSPBE'); ?>" class="btn float-right" >Tambah Data</a>
+                    <a href="<?= base_url('pengelolaRisiko/importSasaranSPBE'); ?>" class="btn float-right mr-3" >Import Excel</a>
                 </div>
             </div>
         </div>

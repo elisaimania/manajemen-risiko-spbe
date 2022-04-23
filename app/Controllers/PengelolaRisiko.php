@@ -86,13 +86,12 @@ class PengelolaRisiko extends BaseController
 
     }
 
-// Menampilkan dashboard
+// Menampilkan dashboard.
     public function dashboard(){
 
     	$data = [
             'title'     => 'Dashboard',
-            'subtitle'  =>  '',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'dashboard',
             'active'    => 'Dashboard',
             'link'      => 'dashboard'
         ];
@@ -134,7 +133,7 @@ class PengelolaRisiko extends BaseController
     public function penangananRisiko(){
 
         $data = [
-            'title'     => 'Penanganan Risiko SPBE (4.0)',
+            'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subtitle'  =>  '',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penanganan Risiko SPBE',
@@ -142,6 +141,24 @@ class PengelolaRisiko extends BaseController
         ];
 
         return view('PengelolaRisiko/penanganan-risiko', $data);
+    }
+
+    //Lihat detail risiko
+    public function detailRisikoDashboard($id){
+
+        $risiko = $this->penilaianRisikoModel->getPenilaianById($id);
+
+        $data = [
+            'title'     => 'Dashboard',
+            'subtitle'  => 'Detail Risiko SPBE',
+            'script'    => 'dashboard',
+            'active'    => 'Dashboard',
+            'link'      => 'dashboard',
+            'risiko' => $risiko
+        ];
+
+        return view('PengelolaRisiko/detail-risiko' , $data);
+
     }
 
     public function informasiUmum(){
@@ -217,39 +234,150 @@ class PengelolaRisiko extends BaseController
     }
 
 //Menambah data informasi umum dengan melakukan import file excel
-    // public function importInformasiUmum(){
+    public function importInformasiUmum(){
 
-    //     $file = $this->request->getFile('fileexcel');
-    //     if($file){
-    //         $excelReader  = new PHPExcel();
-    //         //mengambil lokasi temp file
-    //         $fileLocation = $file->getTempName();
-    //         //baca file
-    //         $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
-    //         //ambil sheet active
-    //         $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-    //         //looping untuk mengambil data
-    //         foreach ($sheet as $idx => $data) {
-    //             //skip index 1 karena title excel
-    //             if($idx==1){
-    //                 continue;
-    //             }
-    //             $nama = $data['A'];
-    //             $hp = $data['B'];
-    //             $email = $data['C'];
-    //             // insert data
-    //             $this->contact->insert([
-    //                 'nama'=>$nama,
-    //                 'handphone'=>$hp,
-    //                 'email'=>$email
-    //             ]);
-    //         }
-    //     }
-    //     session()->setFlashdata('message','Berhasil import excel');
-    //     return redirect()->to('/home');
-    // }
+        
+        if(isset($_POST['tambah'])){
 
-    // }
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                    $kolom4 = $data['D'];
+                    $kolom5 = $data['E'];
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+                    if (empty($kolom3)) {
+                        continue;
+                    }
+                    if (empty($kolom4)) {
+                        continue;
+                    }
+                    if (empty($kolom5)) {
+                        continue;
+                    }
+
+
+                    $format= explode('-',$kolom4);
+                    $format1= explode('-',$kolom5);
+
+                    if (sizeof($format)==1 or sizeof($format1)==1) {
+                        $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Format tanggal salah, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                        </div>';
+
+                        $flash = session()->setFlashdata('flash', $flash);
+                        return redirect()->to(base_url('pengelolaRisiko/informasiUmum'));
+                    }
+                    
+                    $date_mulai = Time::createFromFormat('Y-m-d', $kolom4);
+                    $date_selesai = Time::createFromFormat('Y-m-d', $kolom5);
+                    if($date_mulai->isBefore($date_selesai)){
+        	            continue;
+                    }
+
+                    // insert data
+                    $this->informasiUmumModel->insert([
+                        'tugas_UPR' => $kolom2,
+                        'fungsi_UPR' => $kolom3,
+                        'tanggal_mulai' => $kolom4,
+                        'tanggal_selesai' =>$kolom5,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/informasiUmum'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/informasiUmum'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
+            'subsubtitle' => 'Import Data Informasi Umum (2.1)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'informasiUmum',
+            'template' => 'informasi_umum.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    }
+
 
     public function updateInformasiUmum($id=null){
 
@@ -318,6 +446,23 @@ class PengelolaRisiko extends BaseController
         return redirect()->to(base_url('pengelolaRisiko/informasiUmum'));
         
     }
+    public function detailPersetujuanInformasiUmum($id){
+
+        $informasiUmum = $this->informasiUmumModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$informasiUmum['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'informasiUmum',
+            'status' => $status,
+            'data' => $informasiUmum
+        ];
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
 
     public function sasaranSPBE(){
 
@@ -376,6 +521,126 @@ class PengelolaRisiko extends BaseController
         return view('PengelolaRisiko/form-sasaran-SPBE' , $data);
     }
 
+//Menambah data sasaran SPBE dengan melakukan import file excel
+    public function importSasaranSPBE(){
+
+        
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                    $kolom4 = $data['D'];
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+                    if (empty($kolom3)) {
+                        continue;
+                    }
+                    if (empty($kolom4)) {
+                        continue;
+                    }
+
+                    // insert data
+                    $this->sasaranSPBEModel->insert([
+                        'sasaran_SPBE' => $kolom1,
+                        'sasaran_UPR_SPBE' => $kolom2,
+                        'indikator_kinerja_SPBE' => $kolom3,
+                        'target_kinerja' => $kolom4,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/sasaranSPBE'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/sasaranSPBE'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Identifikasi Sasaran SPBE (2.2)',
+            'subsubtitle' => 'Import Data Sasaran SPBE (2.2)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'sasaranSPBE',
+            'template' => 'sasaran_spbe.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    }
+
+
     public function updateSasaranSPBE($id=null){
 
         $sasaranSPBE = $this->sasaranSPBEModel->find($id);
@@ -430,6 +695,26 @@ class PengelolaRisiko extends BaseController
         $flash = session()->setFlashdata('flash', $flash);
         return redirect()->to(base_url('pengelolaRisiko/sasaranSPBE'));
         
+    }
+
+    //Melihat deatil persetujuan
+    public function detailPersetujuanSasaranSpbe($id){
+
+        $sasaranSpbe = $this->sasaranSPBEModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$sasaranSpbe['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Identifikasi Sasaran SPBE (2.2)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'status' => $status,
+            'sublink'   => 'sasaranSPBE',
+            'data' => $sasaranSpbe
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
     }
 
     public function strukturPelaksana(){
@@ -490,6 +775,133 @@ class PengelolaRisiko extends BaseController
         return view('PengelolaRisiko/form-struktur-pelaksana' , $data);
     }
 
+//Menambah data sasaran SPBE dengan melakukan import file excel
+    public function importStrukturPelaksana(){
+
+        
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1 || $idx==2){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+                    
+
+                    $role = explode(' ',$kolom1);
+                    if (sizeof($role)==3){
+                        ucfirst($role[0]);
+                        ucfirst($role[1]);
+                        strtoupper($role[2]);
+                    } else{
+                        ucfirst($role[0]);
+                    }
+
+                    $kolom1 = implode(' ',$role);
+
+                    //ambil data role di dalam database dimana nama_role nya sama dengan role yang diinput dalam excel
+                    $id_role = $this->roleModel->where('nama_role', $kolom1)->get()->getRowArray();
+                    if (!$id_role) {
+                        continue;
+                    }
+
+                    // insert data
+                    $this->strukturPelaksanaModel->insert([
+                        'id_role' => $id_role['id'],
+                        'pelaksana' => $kolom2,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/strukturPelaksana'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/strukturPelaksana'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
+            'subsubtitle' => 'Import Data Struktur Pelaksana (2.3)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'strukturPelaksana',
+            'template' => 'struktur_pelaksana.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    }
+
     public function updateStrukturPelaksana($id=null){
 
         $strukturPelaksana = $this->strukturPelaksanaModel->find($id);
@@ -547,6 +959,26 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanStrukturPelaksana($id){
+
+        $strukturPelaksana = $this->strukturPelaksanaModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$strukturPelaksana['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'strukturPelaksana',
+            'status' => $status,
+            'data' => $strukturPelaksana
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
     public function pemangkuKepentingan(){
 
         $data = [
@@ -589,7 +1021,6 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $role = $this->roleModel->findAll();
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
@@ -602,6 +1033,114 @@ class PengelolaRisiko extends BaseController
 
         return view('PengelolaRisiko/form-pemangku-kepentingan' , $data);
     }
+
+//Menambah data pemangku kepentingan dengan melakukan import file excel
+    public function importPemangkuKepentingan(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+            
+                    // insert data
+                    $this->pemangkuKepentinganModel->insert([
+                        'nama_unit' => $kolom1,
+                        'hubungan' => $kolom2,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/pemangkuKepentingan'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/pemangkuKepentingan'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
+            'subsubtitle' => 'Import Data Pemangku Kepentingan (2.4)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'pemangkuKepentingan',
+            'template' => 'pemangku_kepentingan.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    }    
+
 
     public function updatePemangkuKepentingan($id=null){
 
@@ -655,6 +1194,26 @@ class PengelolaRisiko extends BaseController
         $flash = session()->setFlashdata('flash', $flash);
         return redirect()->to(base_url('pengelolaRisiko/pemangkuKepentingan'));
         
+    }
+
+    //Melihat deatil persetujuan
+    public function detailPersetujuanPemangkuKepentingan($id){
+
+        $pemangkuKepentingan = $this->pemangkuKepentinganModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$pemangkuKepentingan['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'pemangkuKepentingan',
+            'status' => $status,
+            'data' => $pemangkuKepentingan
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
     }
 
     public function peraturanPerundangan(){
@@ -713,6 +1272,114 @@ class PengelolaRisiko extends BaseController
         return view('PengelolaRisiko/form-peraturan-perundangan' , $data);
     }
 
+//Menambah data peraturan perundangan dengan melakukan import file excel
+    public function importPeraturanPerundangan(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+            
+                    // insert data
+                    $this->peraturanPerundanganModel->insert([
+                        'nama_peraturan' => $kolom1,
+                        'amanat' => $kolom2,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/peraturanPerundangan'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/peraturanPerundangan'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
+            'subsubtitle' => 'Import Data Peraturan Perundang-undangan (2.5)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'peraturanPerundangan',
+            'template' => 'peraturan_perundangan.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    }    
+
+
     public function updatePeraturanPerundangan($id=null){
 
         $peraturanPerundangan = $this->peraturanPerundanganModel->find($id);
@@ -767,16 +1434,34 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanPeraturanPerundangan($id){
+
+        $peraturanPerundangan = $this->peraturanPerundanganModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$peraturanPerundangan['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'peraturanPerundangan',
+            'status' => $status,
+            'data' => $peraturanPerundangan
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
     public function kategoriRisikoTerpilih(){
 
-        $kategoriRisiko = $this->kategoriRisikoModel->findAll();
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'kategoriRisiko' => $kategoriRisiko
+            'link'      => 'penetapanKonteks'
         ];
 
         return view('PengelolaRisiko/penetapan-kategori',$data);
@@ -844,16 +1529,34 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanKategoriRisikoTerpilih($id){
+
+        $kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$kategoriRisikoTerpilih['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'kategoriRisikoTerpilih',
+            'status' => $status,
+            'data' => $kategoriRisikoTerpilih
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
     public function areaDampakRisikoTerpilih(){
 
-        $areaDampak = $this->areaDampakRisikoModel->findAll();
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'areaDampak' => $areaDampak
+            'link'      => 'penetapanKonteks'
         ];
 
         return view('PengelolaRisiko/penetapan-area-dampak',$data);
@@ -923,6 +1626,26 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanAreaDampakTerpilih($id){
+
+        $areaDampakTerpilih = $this->areaDampakRisikoTerpilihModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$areaDampakTerpilih['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'areaDampakRisikoTerpilih',
+            'status' => $status,
+            'data' => $areaDampakTerpilih
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
     public function kriteriaRisiko(){
 
 
@@ -933,6 +1656,7 @@ class PengelolaRisiko extends BaseController
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks'
         ];
+
 
         return view('PengelolaRisiko/penetapan-kriteria',$data);
     }
@@ -953,72 +1677,37 @@ class PengelolaRisiko extends BaseController
     {
         if(isset($_POST['tambah'])){
 
-            $rules =[
-                'id_kategori_risiko' => 'is_unique[kriteria_kemungkinan_risiko_spbe.id_kategori_risiko]'
-            ];
 
-            $errors = [
-                'id_kategori_risiko'=> [
-                    'is_unique' => 'Kriteria kemungkinan risiko untuk kategori risiko ini telah lengkap. Pilih jenis risiko yang lain']
-            ];
+            if ($this->kriteriaKemungkinanModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko')) && $this->kriteriaKemungkinanModel->where('id_upr',session()->id_upr)) {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Kriteria kemungkinan risiko untuk kategori risiko ini telah lengkap. Pilih kategori risiko yang lain
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
 
-            if(!$this->validate($rules, $errors)){
-                return redirect()->back()->withInput();
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->back();
             }
 
 
             $levelKemungkinan = $this->levelKemungkinanModel->findAll();
 
-            $inputData1 = [
-                'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
-                'id_level_kemungkinan' => $levelKemungkinan[0]['id'],
-                'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan1')),
-                'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi1'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ];
+            $k = 0;
+            for ($i=0; $i < sizeof($levelKemungkinan) ; $i++) { 
 
-            $inputData2 = [
-                'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
-                'id_level_kemungkinan' => $levelKemungkinan[1]['id'],
-                'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan2')),
-                'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi2'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ];
+                $k += 1;
+                $this->kriteriaKemungkinanModel->insert([
+                    'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
+                    'id_level_kemungkinan' => $levelKemungkinan[$i]['id'],
+                    'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan'.strval($k))),
+                    'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi'.strval($k)),
+                    'id_upr' => session()->id_upr,
+                    'id_status_persetujuan' => 1
+                ]);
+                
+            }            
 
-            $inputData3 = [
-                'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
-                'id_level_kemungkinan' => $levelKemungkinan[2]['id'],
-                'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan3')),
-                'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi3'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ];
-
-            $inputData4 = [
-                'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
-                'id_level_kemungkinan' => $levelKemungkinan[3]['id'],
-                'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan4')),
-                'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi4'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ];
-
-            $inputData5 = [
-                'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
-                'id_level_kemungkinan' => $levelKemungkinan[4]['id'],
-                'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan5')),
-                'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi5'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ];
-
-            $this->kriteriaKemungkinanModel->insert($inputData1);
-            $this->kriteriaKemungkinanModel->insert($inputData2);
-            $this->kriteriaKemungkinanModel->insert($inputData3);
-            $this->kriteriaKemungkinanModel->insert($inputData4);
-            $this->kriteriaKemungkinanModel->insert($inputData5);
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Kriteria kemungkinan risiko berhasil ditambahkan
@@ -1049,9 +1738,150 @@ class PengelolaRisiko extends BaseController
          return view('PengelolaRisiko/form-kriteria-kemungkinan',$data);
     }
 
+//Menambah data kriteria kemungkinan dengan melakukan import file excel
+    public function importKriteriaKemungkinan(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                    $kolom4 = $data['D'];
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+                    if (empty($kolom3)) {
+                        continue;
+                    }
+                    if (empty($kolom4)) {
+                        continue;
+                    }
+
+                    // $kolom1 = explode(' ',$kolom1);
+                    // $kolomBaru = array();
+                    // for ($i=0; $i < sizeof($kolom1); $i++) { 
+                    //     if (ctype_alpha($kolom1[$i])) {
+                    //         array_push($kolomBaru,$kolom1[$i]);
+                    //     }
+                    // }
+                    // $kolom1 = implode(' ', $kolomBaru);
+                    // var_dump($kolomBaru);
+                    $kategori = $this->kategoriRisikoModel->where('kategori_risiko', $kolom1)->get()->getRowArray();
+                    $level = $this->levelKemungkinanModel->where('id', $kolom2)->get()->getRowArray();
+
+                    if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategori['id'])->getKategoriRisikoTerpilih()) {
+                        continue;
+                    }
+                    if (!$level) {
+                        continue;
+                    }
+                    if ($this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $kategori['id'], 'id_level_kemungkinan' => $level['id'], 'id_upr' => session()->id_upr])->get()->getRowArray()) {
+                        continue;
+                    }
+            
+                    //insert data
+                    $this->kriteriaKemungkinanModel->insert([
+                        'id_kategori_risiko' => $kategori['id'],
+                        'id_level_kemungkinan' => $level['id'],
+                        'presentase_kemungkinan' => $kolom3,
+                        'jumlah_frekuensi' =>$kolom4,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/kriteriaRisiko'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            
+            return redirect()->to(base_url('pengelolaRisiko/kriteriaRisiko'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
+            'subsubtitle' => 'Import Data Kriteria Kemungkinan Risiko SPBE (2.8A)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'kriteriaRisiko',
+            'template' => 'kriteria_kemungkinan.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    }  
+
     public function updateKriteriaKemungkinan($id=null){
 
-        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where('id_kategori_risiko',$id)->get()->getResultArray();
+        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])->get()->getResultArray();
         $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
         $data = [
@@ -1073,45 +1903,21 @@ class PengelolaRisiko extends BaseController
 
             $levelKemungkinan = $this->levelKemungkinanModel->findAll();
             
-            $this->kriteriaKemungkinanModel
-            ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-            ->set('id_level_kemungkinan' , $levelKemungkinan[0]['id'])
-            ->set('presentase_kemungkinan' , strtoupper($this->request->getPost('presentase_kemungkinan1')))
-            ->set('jumlah_frekuensi' , $this->request->getPost('jumlah_frekuensi1'))
-            ->where('id' , $kriteriaKemungkinan[0]['id'])
-            ->update();
-
-            $this->kriteriaKemungkinanModel
-            ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-            ->set('id_level_kemungkinan' , $levelKemungkinan[1]['id'])
-            ->set('presentase_kemungkinan' , strtoupper($this->request->getPost('presentase_kemungkinan2')))
-            ->set('jumlah_frekuensi' , $this->request->getPost('jumlah_frekuensi2'))
-            ->where('id' , $kriteriaKemungkinan[1]['id'])
-            ->update();
-
-            $this->kriteriaKemungkinanModel
-            ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-            ->set('id_level_kemungkinan' , $levelKemungkinan[2]['id'])
-            ->set('presentase_kemungkinan' , strtoupper($this->request->getPost('presentase_kemungkinan3')))
-            ->set('jumlah_frekuensi' , $this->request->getPost('jumlah_frekuensi3'))
-            ->where('id' , $kriteriaKemungkinan[2]['id'])
-            ->update();
-
-            $this->kriteriaKemungkinanModel
-            ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-            ->set('id_level_kemungkinan' , $levelKemungkinan[3]['id'])
-            ->set('presentase_kemungkinan' , strtoupper($this->request->getPost('presentase_kemungkinan4')))
-            ->set('jumlah_frekuensi' , $this->request->getPost('jumlah_frekuensi4'))
-            ->where('id' , $kriteriaKemungkinan[3]['id'])
-            ->update();
-
-            $this->kriteriaKemungkinanModel
-            ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-            ->set('id_level_kemungkinan' , $levelKemungkinan[4]['id'])
-            ->set('presentase_kemungkinan' , strtoupper($this->request->getPost('presentase_kemungkinan5')))
-            ->set('jumlah_frekuensi' , $this->request->getPost('jumlah_frekuensi5'))
-            ->where('id' , $kriteriaKemungkinan[4]['id'])
-            ->update();
+            $k = 0;
+            $l = 0;
+            for ($i=0; $i < sizeof($levelKemungkinan) ; $i++) { 
+            
+                $k += 1;
+                $this->kriteriaKemungkinanModel
+                ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
+                ->set('id_level_kemungkinan' , $levelKemungkinan[$i]['id'])
+                ->set('presentase_kemungkinan' , strtoupper($this->request->getPost('presentase_kemungkinan'.strval($k))))
+                ->set('jumlah_frekuensi' , $this->request->getPost('jumlah_frekuensi'.strval($k)))
+                ->where('id' , $kriteriaKemungkinan[$l]['id'])
+                ->update();
+                $l += 1;
+            }
+        
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data kriteria kemungkinan risiko berhasil diubah
@@ -1129,7 +1935,7 @@ class PengelolaRisiko extends BaseController
     public function hapusKriteriaKemungkinan($id = null)
     {
         
-        $delete = $this->kriteriaKemungkinanModel->where('id_kategori_risiko', $id)
+        $delete = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])
         ->delete();
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1144,21 +1950,41 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanKriteriaKemungkinan($id){
+
+        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$kriteriaKemungkinan['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'kriteriaRisiko',
+            'status' => $status,
+            'data' => $kriteriaKemungkinan
+        ];
+        
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
     public function inputKriteriaDampak()
     {
         if(isset($_POST['tambah'])){
 
-            $rules =[
-                'id_area_dampak' => 'is_unique[kriteria_dampak_risiko_spbe.id_area_dampak]'
-            ];
 
-            $errors = [
-                'id_area_dampak'=> [
-                    'is_unique' => 'Kriteria kemungkinan risiko untuk kategori risiko ini telah lengkap. Pilih jenis risiko yang lain']
-            ];
+            if ($this->kriteriaDampakModel->where('id_area_dampak',$this->request->getPost('id_area_dampak')) && $this->kriteriaDampakModel->where('id_upr',session()->id_upr)) {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Kriteria Dampak risiko untuk area dampak ini telah lengkap. Pilih area dampak yang lain
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
 
-            if(!$this->validate($rules, $errors)){
-                return redirect()->back()->withInput();
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->back();
             }
 
 
@@ -1166,83 +1992,22 @@ class PengelolaRisiko extends BaseController
 
             $jenisRisiko = $this->jenisRisikoModel->findAll();
 
+            $k = 0;
+            $l = 0;
+            for ($i=0; $i < sizeof($jenisRisiko) ; $i++) { 
+                for ($j=0; $j < sizeof($levelDampak) ; $j++) { 
 
-            $inputData = [[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[0]['id'],
-                'id_level_dampak' => $levelDampak[0]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan1'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[0]['id'],
-                'id_level_dampak' => $levelDampak[1]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan2'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[0]['id'],
-                'id_level_dampak' => $levelDampak[2]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan3'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[0]['id'],
-                'id_level_dampak' => $levelDampak[3]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan4'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[0]['id'],
-                'id_level_dampak' => $levelDampak[4]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan5'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[1]['id'],
-                'id_level_dampak' => $levelDampak[0]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan6'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[1]['id'],
-                'id_level_dampak' => $levelDampak[1]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan7'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[1]['id'],
-                'id_level_dampak' => $levelDampak[2]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan8'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[1]['id'],
-                'id_level_dampak' => $levelDampak[3]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan9'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ],[
-                'id_area_dampak' => $this->request->getPost('id_area_dampak'),
-                'id_jenis_risiko' => $jenisRisiko[1]['id'],
-                'id_level_dampak' => $levelDampak[4]['id'],
-                'penjelasan' => $this->request->getPost('penjelasan10'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ]];
-
-            for ($i=0; $i < sizeof($inputData) ; $i++) { 
-
-                $this->kriteriaDampakModel->insert($inputData[$i]);
-            }
+                    $k += 1;
+                    $this->kriteriaDampakModel->insert([
+                        'id_area_dampak' => $this->request->getPost('id_area_dampak'),
+                        'id_jenis_risiko' => $jenisRisiko[$i]['id'],
+                        'id_level_dampak' => $levelDampak[$j]['id'],
+                        'penjelasan' => $this->request->getPost('penjelasan'.strval($k)),
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+                }
+            }            
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Kriteria dampak risiko berhasil ditambahkan
@@ -1273,9 +2038,146 @@ class PengelolaRisiko extends BaseController
          return view('PengelolaRisiko/form-kriteria-dampak',$data);
     }
 
+    //Menambah data kriteria dampak dengan melakukan import file excel
+    public function importKriteriaDampak(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                    $kolom4 = $data['D'];
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+                    if (empty($kolom3)) {
+                        continue;
+                    }
+                    if (empty($kolom4)) {
+                        continue;
+                    }
+
+
+                    $dampak = $this->areaDampakRisikoModel->where('area_dampak', $kolom1)->get()->getRowArray();
+                    $level = $this->levelDampakModel->where('id', $kolom3)->get()->getRowArray();
+                    $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko', $kolom2)->get()->getRowArray();
+
+                    if (!$this->areaDampakRisikoTerpilihModel->where('id_area_dampak', $dampak['id'])->getAreaDampakRisikoTerpilih()) {
+                        continue;
+                    }
+                    if (!$level) {
+                        continue;
+                    }
+                    if (!$jenisRisiko) {
+                        continue;
+                    }
+                    if ($this->kriteriaDampakModel->where(['id_area_dampak' => $dampak['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_level_dampak' => $level['id'],  'id_upr' => session()->id_upr])->get()->getRowArray()) {
+                        continue;
+                    }
+            
+                    //insert data
+                    $this->kriteriaDampakModel->insert([
+                        'id_area_dampak' => $dampak['id'],
+                        'id_jenis_risiko' => $jenisRisiko['id'],
+                        'id_level_dampak' => $level['id'],
+                        'penjelasan' => $kolom4,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/kriteriaRisiko'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            
+            return redirect()->to(base_url('pengelolaRisiko/kriteriaRisiko'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
+            'subsubtitle' => 'Import Data Kriteria Kemungkinan Risiko SPBE (2.8A)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'kriteriaRisiko',
+            'template' => 'kriteria_dampak.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    }
+
     public function updateKriteriaDampak($id=null){
 
-        $kriteriaDampak = $this->kriteriaDampakModel->where('id_area_dampak',$id)->get()->getResultArray();
+        $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])->get()->getResultArray();
         $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
@@ -1299,10 +2201,10 @@ class PengelolaRisiko extends BaseController
 
             $jenisRisiko = $this->jenisRisikoModel->findAll();
 
-            $k = 0;
-            $l = 0;
-        for ($i=0; $i < 2 ; $i++) { 
-            for ($j=0; $j < 5 ; $j++) { 
+        $k = 0;
+        $l = 0;
+        for ($i=0; $i < sizeof($jenisRisiko) ; $i++) { 
+            for ($j=0; $j < sizeof($levelDampak) ; $j++) { 
 
                 $k += 1;
                 $this->kriteriaDampakModel
@@ -1334,7 +2236,7 @@ class PengelolaRisiko extends BaseController
     public function hapusKriteriaDampak($id = null)
     {
         
-        $delete = $this->kriteriaDampakModel->where('id_area_dampak', $id)
+        $delete = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])
         ->delete();
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1347,6 +2249,26 @@ class PengelolaRisiko extends BaseController
         $flash = session()->setFlashdata('flash', $flash);
         return redirect()->to(base_url('pengelolaRisiko/kriteriaRisiko'));
         
+    }
+
+    //Melihat deatil persetujuan
+    public function detailPersetujuanKriteriaDampak($id){
+
+        $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$kriteriaDampak['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'kriteriaRisiko',
+            'status' => $status,
+            'data' => $kriteriaDampak
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
     }
 
     public function matriksLevelRisiko(){
@@ -1399,18 +2321,18 @@ class PengelolaRisiko extends BaseController
             $jenisRisiko2 = $this->jenisRisikoModel->where('jenis_risiko',$this->request->getPost('jenis_risiko2'))->get()->getRowArray();
 
 
-           $rules =[
-                'id_kategori_risiko' => 'is_unique[selera_risiko_spbe.id_kategori_risiko]'
-            ];
+            if ($this->seleraRisikoModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko')) && $this->seleraRisikoModel->where('id_upr',session()->id_upr)) {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Selera risiko untuk kategori risiko ini telah lengkap. Pilih kategori risiko yang lain
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
 
-            $errors = [
-                'id_kategori_risiko'=> [
-                    'is_unique' => 'Selera risiko untuk kategori risiko ini telah lengkap. Pilih jenis risiko yang lain']
-            ];
-
-            if(!$this->validate($rules, $errors)){
-                return redirect()->back()->withInput();
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->back();
             }
+
             
             $inputData1 = [
                 'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
@@ -1460,9 +2382,141 @@ class PengelolaRisiko extends BaseController
          return view('PengelolaRisiko/form-selera-risiko',$data);
     }
 
+    //Menambah data selera risiko dengan melakukan import file excel
+    public function importSeleraRisiko(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1 karena title excel
+                    if($idx==1){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                   
+
+                    if (empty($kolom1)) {
+                        continue;
+                    }
+                    if (empty($kolom2)) {
+                        continue;
+                    }
+                    if (empty($kolom3)) {
+                        continue;
+                    }
+
+
+                    $kategori = $this->kategoriRisikoModel->where('kategori_risiko', $kolom1)->get()->getRowArray();
+                    $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko', $kolom2)->get()->getRowArray();
+                    $besaranRisiko = $this->matriksRisikoModel->where('besaran_risiko', $kolom3)->get()->getRowArray();
+
+                    if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategori['id'])->getKategoriRisikoTerpilih()) {
+                        continue;
+                    }
+                    if ($this->seleraRisikoModel->where(['id_kategori_risiko' => $kategori['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr])->get()->getRowArray() ) {
+                        continue;
+                    }
+                    if (!$jenisRisiko) {
+                        continue;
+                    }
+                    if (!$besaranRisiko) {
+                        continue;
+                    }
+            
+                    //insert data
+                    $this->seleraRisikoModel->insert([
+                        'id_kategori_risiko' => $kategori['id'],
+                        'id_jenis_risiko' => $jenisRisiko['id'],
+                        'besaran_risiko_min' => $besaranRisiko['besaran_risiko'],
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/seleraRisiko'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/seleraRisiko'));
+
+        }
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
+            'subsubtitle' => 'Import Data Selera Risiko SPBE (2.10)',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penetapan Konteks Risiko SPBE',
+            'link'  => 'penetapanKonteks',
+            'sublink' => 'seleraRisiko',
+            'template' => 'selera_risiko.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    } 
+
     public function updateSeleraRisiko($id=null){
 
-        $seleraRisiko = $this->seleraRisikoModel->where('id_kategori_risiko',$id)->get()->getResultArray();
+        $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])->get()->getResultArray();
         $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $besaranRisiko = $this->matriksRisikoModel->orderBy('besaran_risiko', 'ASC')->findAll();
@@ -1516,7 +2570,7 @@ class PengelolaRisiko extends BaseController
     public function hapusSeleraRisiko($id = null)
     {
         
-        $delete = $this->seleraRisikoModel->where('id_kategori_risiko', $id)
+        $delete = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])
         ->delete();
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1531,6 +2585,25 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanSeleraRisiko($id){
+
+        $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$seleraRisiko['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
+            'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
+            'subsubtitle' => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penetapan Konteks Risiko SPBE',
+            'link'      => 'penetapanKonteks',
+            'sublink'   => 'seleraRisiko',
+            'status' => $status,
+            'data' => $seleraRisiko
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
 
     public function getPenilaianRisiko(){
 
@@ -1538,6 +2611,7 @@ class PengelolaRisiko extends BaseController
 
     }
 
+    //Lihat detail risiko
     public function detailRisiko($id){
 
         $risiko = $this->penilaianRisikoModel->getPenilaianById($id);
@@ -1644,6 +2718,171 @@ class PengelolaRisiko extends BaseController
          return view('PengelolaRisiko/form-penilaian-risiko',$data);
     }
 
+    //Menambah data penilaian risiko dengan melakukan import file excel
+    public function importPenilaianRisiko(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1,2,3 karena header excel
+                    if($idx==1 || $idx==2 || $idx==3 || $idx==4 || $idx==5 || $idx==6 || $idx==7){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                    $kolom4 = $data['D'];
+                    $kolom5 = $data['E'];
+                    $kolom6 = $data['F'];
+                    $kolom7 = $data['G'];
+                    $kolom8 = $data['H'];
+                    $kolom9 = $data['I'];
+                    $kolom10 = $data['J'];
+                   
+
+                    if (empty($kolom1) || empty($kolom2) || empty($kolom3) || empty($kolom4) ||empty($kolom5) || empty($kolom6) || empty($kolom7) || empty($kolom8) ||empty($kolom9) || empty($kolom10)) {
+                        continue;
+                    }
+                    
+                    $indikatorKinerja = $this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$kolom1)->get()->getRowArray();
+                    $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko', $kolom5)->get()->getRowArray();
+                    $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko', $kolom2)->get()->getRowArray();
+                    $dampakRisiko = $this->areaDampakRisikoModel->where('area_dampak', $kolom7)->get()->getRowArray();
+
+                    if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategoriRisiko['id'])->getKategoriRisikoTerpilih()) {
+                        continue;
+                    }
+                    if (!$this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$kolom1)->get()->getRowArray()) {
+                        continue;
+                    }
+                    if (!$this->areaDampakRisikoTerpilihModel->where('id_area_dampak', $dampakRisiko['id'])->getAreaDampakRisikoTerpilih()) {
+                        continue;
+                    }
+                    if (!$jenisRisiko) {
+                        continue;
+                    }
+                    if (!$this->levelKemungkinanModel->where('id',$kolom9)) {
+                        continue;
+                    }
+                    if (!$this->levelDampakModel->where('id',$kolom10)) {
+                        continue;
+                    }
+
+                    $matriksRisiko = $this->matriksRisikoModel->where(array('id_level_kemungkinan' => $kolom9, 'id_level_dampak' => $kolom10))->get()->getRowArray();
+
+                    $besaranRisiko = $matriksRisiko['besaran_risiko'];
+                    
+                    $levelRisiko = $this->levelRisikoModel->where(array('rentang_min <=' => $besaranRisiko, 'rentang_maks >=' => $besaranRisiko))->get()->getRowArray();
+
+                    $seleraRisiko = $this->seleraRisikoModel->where(array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr))->get()->getRowArray();
+
+                    $besaranRisikoMin = $seleraRisiko['besaran_risiko_min'];
+
+                    if ($besaranRisiko >= $besaranRisikoMin) {
+                        $id_keputusan = 2;
+                    } else{
+
+                        $id_keputusan = 1;
+                    }
+            
+                    //insert data
+                    $this->penilaianRisikoModel->insert([
+                        'id_sasaran_SPBE' => $indikatorKinerja['id'],
+                        'id_jenis_risiko' => $jenisRisiko['id'],
+                        'kejadian' => $kolom3,
+                        'penyebab' => $kolom4,
+                        'id_kategori_risiko' => $kategoriRisiko['id'],
+                        'dampak' => $kolom6,
+                        'id_area_dampak' => $dampakRisiko['id'],
+                        'sistem_pengendalian' => $kolom8,
+                        'id_level_kemungkinan' => $kolom9,
+                        'id_level_dampak' => $kolom10,
+                        'id_level_risiko' => $levelRisiko['id'],
+                        'id_keputusan' => $id_keputusan,
+                        'id_upr' => session()->id_upr,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/penilaianRisiko'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/penilaianRisiko'));
+
+        }
+        $data = [
+            'title'     => 'Penilaian Risiko SPBE (3.0)',
+            'subtitle'  => 'Import Data Penilaian Risiko SPBE (3.0)',
+            'subsubtitle'  => '',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penilaian Risiko SPBE',
+            'link'  => 'penilaianRisiko',
+            'sublink' => '',
+            'template' => 'penilaian_risiko.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    } 
+
     public function updatePenilaianRisiko($id=null){
 
         $risiko = $this->penilaianRisikoModel->find($id);
@@ -1710,6 +2949,7 @@ class PengelolaRisiko extends BaseController
             ->set('dampak' , $this->request->getPost('dampak'))
             ->set('id_area_dampak' , $areaDampak['id'])
             ->set('sistem_pengendalian' , $this->request->getPost('sistem_pengendalian'))
+            ->set('penyebab' , $this->request->getPost('penyebab'))
             ->set('id_level_kemungkinan' , $levelKemungkinan['id'])
             ->set('id_level_dampak' , $levelDampak['id'])
             ->set('id_level_risiko' , $levelRisiko['id'])
@@ -1748,6 +2988,26 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanPenilaianRisiko($id){
+
+        $penilaianRisiko = $this->penilaianRisikoModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$penilaianRisiko['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Penilaian Risiko SPBE (3.0)',
+            'subtitle'  => 'Detail Persetujuan',
+            'subsubtitle' => '',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penilaian Risiko SPBE',
+            'link'      => 'penilaianRisiko',
+            'sublink'   => '',
+            'status'    => $status,
+            'data' => $penilaianRisiko
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
     public function getPenangananRisiko(){
 
         return $this->respond($this->penangananRisikoModel->where('id_upr', session()->id_upr)->getPenanganan());
@@ -1760,7 +3020,7 @@ class PengelolaRisiko extends BaseController
 
     public function pilihRisiko(){
         $data = [
-            'title'     => 'Penanganan Risiko SPBE (4.0)',
+            'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subtitle'  => 'Memilih Risiko yang Akan Ditangani (4.0)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penanganan Risiko SPBE',
@@ -1820,7 +3080,7 @@ class PengelolaRisiko extends BaseController
         $daftarOpsiPenanganan = $this->opsiPenangananModel->where('id_jenis_risiko', $risiko['id_jenis_risiko'])->get()->getResultArray();
         
         $data = [
-            'title'     => 'Penanganan Risiko SPBE (4.0)',
+            'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subtitle'  => 'Memilih Risiko yang Akan Ditangani (4.0)',
             'subsubtitle'  => 'Tambah Rencana Penanganan Risiko (4.0)',
             'script'    => 'pengelola-risiko',
@@ -1834,6 +3094,159 @@ class PengelolaRisiko extends BaseController
         return view('PengelolaRisiko/form-penanganan-risiko' , $data);
     }
 
+    //Menambah data rencana penanganan risiko dengan melakukan import file excel
+    public function importPenangananRisiko(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1,2,3 karena header excel
+                    if($idx==1 || $idx==2 || $idx==3){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                    $kolom4 = $data['D'];
+                    $kolom5 = $data['E'];
+                    $kolom6 = $data['F'];
+                    $kolom7 = $data['G'];
+                    $kolom8 = $data['H'];
+                   
+
+                    if (empty($kolom1) || empty($kolom2) || empty($kolom3) || empty($kolom4) ||empty($kolom5) || empty($kolom6) || empty($kolom7) || empty($kolom8)) {
+                        continue;
+                    }
+
+                    $kolom1 = explode('_', $kolom1);
+                    
+                    $risiko = $this->penilaianRisikoModel->where('id' , $kolom1[1])->get()->getRowArray();
+
+                    $opsiPenanganan = $this->opsiPenangananModel->where(['opsi_penanganan'=> $kolom2, 'id_jenis_risiko' => $risiko['id_jenis_risiko']])->get()->getRowArray();
+                    
+                    $format= explode('-',$kolom5);
+                    $format1= explode('-',$kolom6);
+
+                    if (sizeof($format)==1 or sizeof($format1)==1) {
+                        $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Format tanggal salah, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                        </div>';
+
+                        $flash = session()->setFlashdata('flash', $flash);
+                        return redirect()->to(base_url('pengelolaRisiko/penangananRisiko'));
+                    }
+                    if (!$this->penilaianRisikoModel->where(['id' => $risiko['id'], 'id_upr' => session()->id_upr])->get()->getRowArray()) {
+                        continue;
+                    }
+
+                    if ($this->penangananRisikoModel->where('id_risiko', $risiko['id'])->get()->getRowArray()) {
+                        continue;
+                    }
+
+                    if ($risiko['id_keputusan'] == '1') {
+                        continue;
+                    }
+                    if (!$opsiPenanganan) {
+                        continue;
+                    }
+                    
+
+                    //insert data
+                    $this->penangananRisikoModel->insert([
+                        'id_risiko' => $risiko['id'],
+                        'id_opsi_penanganan' => $opsiPenanganan['id'],
+                        'rencana_aksi' => $kolom3,
+                        'keluaran' => $kolom4,
+                        'jadwal_mulai' => $kolom5,
+                        'jadwal_selesai' => $kolom6,
+                        'penanggungjawab' => $kolom7,
+                        'risiko_residual' => $kolom8,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/penangananRisiko'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/penangananRisiko'));
+
+        }
+        $data = [
+            'title'     => 'Penanganan Risiko SPBE (4.0)',
+            'subtitle'  => 'Import Data Rencana Penanganan Risiko SPBE (4.0)',
+            'subsubtitle'  => '',
+            'script' => 'pengelola-risiko',
+            'active' => 'Penanganan Risiko SPBE',
+            'link'  => 'penangananRisiko',
+            'sublink' => '',
+            'template' => 'penanganan_risiko.xlsx'
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    } 
+
     public function updatePenangananRisiko($id=null){
 
         $rencana_penanganan = $this->penangananRisikoModel->find($id);
@@ -1843,7 +3256,7 @@ class PengelolaRisiko extends BaseController
         $daftarOpsiPenanganan = $this->opsiPenangananModel->where('id_jenis_risiko', $risiko['id_jenis_risiko'])->get()->getResultArray();
 
         $data = [
-            'title'     => 'Penanganan Risiko SPBE (4.0)',
+            'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subtitle'  => 'Edit Penanganan Risiko SPBE (4.0)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penanganan Risiko SPBE',
@@ -1912,5 +3325,50 @@ class PengelolaRisiko extends BaseController
         
     }
 
+    //Melihat deatil persetujuan
+    public function detailPersetujuanPenangananRisiko($id){
+
+        $penangananRisiko = $this->penangananRisikoModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$penangananRisiko['id_status_persetujuan'])->get()->getRowArray();
+        $data = [
+            'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
+            'subsubtitle' => '',
+            'subtitle'  => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penanganan Risiko SPBE',
+            'link'      => 'penangananRisiko',
+            'sublink'   => '',
+            'status'    => $status,
+            'data' => $penangananRisiko
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
+    //Lihat detail risiko
+    public function detailRisikoPenanganan($id){
+
+        $risiko = $this->penilaianRisikoModel->getPenilaianById($id);
+
+        $data = [
+            'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
+            'subtitle'  => 'Detail Risiko SPBE',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Penanganan Risiko SPBE',
+            'link'      => 'penangananRisiko',
+            'risiko' => $risiko
+        ];
+
+        return view('PengelolaRisiko/detail-risiko' , $data);
+
+    }
+
+    public function downloadTemplateExcel($namaFile){
+        // $data = file_get_contents(base_url('/public/Template_Excel/' . $namaFile));
+        return $this->response->download(FCPATH.'public\Template_Excel\\'.$namaFile, null);
+        
+    }
+
+    
 
 }  

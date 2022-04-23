@@ -82,7 +82,7 @@
                         <input type="text" class="form-control" id="presentase_kemungkinan1" name="presentase_kemungkinan1" value="<?= old('presentase_kemungkinan1'); ?>" required>
                     </div>
                     <div class="col-sm-6">
-                        <label for="jumlah_frekuensi1">Jumlah Frekuensi
+                        <label for="jumlah_frekuensi1">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
                             <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi1')">&lt;</button>
@@ -111,7 +111,7 @@
                         <input type="text" class="form-control" id="presentase_kemungkinan2" name="presentase_kemungkinan2" value="<?= old('presentase_kemungkinan2'); ?>" required>
                     </div>
                     <div class="col-sm-6">
-                        <label for="jumlah_frekuensi2">Jumlah Frekuensi
+                        <label for="jumlah_frekuensi2">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
                             <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi2')">&lt;</button>
@@ -140,7 +140,7 @@
                         <input type="text" class="form-control" id="presentase_kemungkinan3" name="presentase_kemungkinan3" value="<?= old('presentase_kemungkinan3'); ?>" required>
                     </div>
                     <div class="col-sm-6">
-                        <label for="jumlah_frekuensi3">Jumlah Frekuensi
+                        <label for="jumlah_frekuensi3">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
                             <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi3')">&lt;</button>
@@ -169,7 +169,7 @@
                         <input type="text" class="form-control" id="presentase_kemungkinan4" name="presentase_kemungkinan4" value="<?= old('presentase_kemungkinan4'); ?>" required>
                     </div>
                     <div class="col-sm-6">
-                        <label for="jumlah_frekuensi4">Jumlah Frekuensi
+                        <label for="jumlah_frekuensi4">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
                             <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi4')">&lt;</button>
@@ -198,7 +198,7 @@
                         <input type="text" class="form-control" id="presentase_kemungkinan5" name="presentase_kemungkinan5" value="<?= old('presentase_kemungkinan5'); ?>" required>
                     </div>
                     <div class="col-sm-6">
-                        <label for="jumlah_frekuensi5">Jumlah Frekuensi
+                        <label for="jumlah_frekuensi5">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
                             <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi5')">&lt;</button>

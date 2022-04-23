@@ -83,6 +83,7 @@ a:hover {
                 </div>
                 <div class="col">
                     <a href="<?= base_url('pengelolaRisiko/inputPenilaianRisiko'); ?>" class="btn float-right" >Tambah</a>
+                    <a href="<?= base_url('pengelolaRisiko/importPenilaianRisiko'); ?>" class="btn float-right mr-3" >Import Excel</a>
                 </div>
             </div>
         </div>

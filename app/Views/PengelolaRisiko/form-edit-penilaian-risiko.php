@@ -83,7 +83,7 @@
                     <select class="form-control" id="kategori_risiko" name="kategori_risiko" required>
                         <option value="" ></option>
                         <?php foreach ($daftarKategoriRisiko as $r ) : ?>
-                            <option value="<?= $r['kategori_risiko']; ?>" <?= ($risiko['id_kategori_risiko']==$r['id']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
+                            <option value="<?= $r['kategori_risiko']; ?>" <?= ($risiko['id_kategori_risiko']==$r['id_kategori_risiko']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -92,7 +92,7 @@
                     <select class="form-control" id="area_dampak" name="area_dampak" required>
                         <option value="" ></option>
                         <?php foreach ($daftarAreaDampak as $r ) : ?>
-                            <option value="<?= $r['area_dampak']; ?>" <?= ($risiko['id_area_dampak']==$r['id']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
+                            <option value="<?= $r['area_dampak']; ?>" <?= ($risiko['id_area_dampak']==$r['id_area_dampak']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

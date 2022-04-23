@@ -57,12 +57,6 @@
                 </div>
                 <div class="form-group row">
                     <div class="col">
-                        <label for="kode_IKU">Kode IKU (Indikator Kinerja Utama)</label>
-                        <input  class="form-control" id="kode_IKU" name="kode_IKU" required value="<?= $sasaranSPBE['kode_IKU'] ?>">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col">
                         <label for="indikator_kinerja_SPBE">Indikator Kinerja SPBE</label>
                         <input  class="form-control" id="indikator_kinerja_SPBE" name="indikator_kinerja_SPBE" required value="<?= $sasaranSPBE['indikator_kinerja_SPBE'] ?>">
                     </div>

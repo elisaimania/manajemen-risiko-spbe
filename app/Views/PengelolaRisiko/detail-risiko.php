@@ -30,7 +30,7 @@
     			<td><?= $risiko[0]['indikator_kinerja_SPBE'] ?></td>
     		</tr>
     		<tr>
-    			<th colspan="2" class="text-center" style="background-color: #e6ffa8;">Identifikasi Risiko SPBE</th>
+    			<th colspan="2" class="text-center" style="background-color: #8CBA08; color: #fff">Identifikasi Risiko SPBE</th>
     		</tr> 
     		<tr>
     			<th>Jenis Risiko SPBE</th>
@@ -57,7 +57,7 @@
     			<td><?= $risiko[0]['area_dampak'] ?></td>
     		</tr>
     		<tr>
-    			<th colspan="2" class="text-center" style="background-color: #e6ffa8;">Analisis Risiko SPBE</th>
+    			<th colspan="2" class="text-center" style="background-color: #8CBA08; color: #fff">Analisis Risiko SPBE</th>
     		</tr>
     		<tr>
     			<th>Sistem Pengendalian</th>
@@ -88,7 +88,7 @@
     			<td><?= $risiko[0]['level_risiko'] ?></td>
     		</tr>
     		<tr>
-    			<th colspan="2" class="text-center" style="background-color: #e6ffa8;">Evaluasi Risiko SPBE</th>
+    			<th colspan="2" class="text-center" style="background-color: #8CBA08; color: #fff">Evaluasi Risiko SPBE</th>
     		</tr>
     		<tr>
     			<th>Keputusan Penanganan Risiko SPBE</th>

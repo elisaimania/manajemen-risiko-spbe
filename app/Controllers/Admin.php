@@ -133,6 +133,7 @@ class Admin extends BaseController
                 'email' => $this->request->getPost('email'),
                 'nama_pengguna' => $this->request->getPost('nama_pengguna'),
                 'password' => password_hash($this->request->getPost('password') , PASSWORD_DEFAULT),
+                'id_upr' => $this->request->getPost('upr'),
                 'id_role' => $id_role
             ];
 
@@ -154,7 +155,8 @@ class Admin extends BaseController
             'script' => 'admin',
             'active' => 'Daftar Pengguna',
             'link'      => 'daftarPengguna',
-            'role' => $this->roleModel->findAll()
+            'role' => $this->roleModel->findAll(),
+            'upr' => $this->uprSPBEModel->findAll()
         ];
 
         return view('admin/form-tambah-pengguna' , $data);
@@ -173,7 +175,8 @@ class Admin extends BaseController
             'pengguna' => $pengguna,
             'id' => $pengguna['id'],
             'link'      => 'daftarPengguna',
-            'role' => $this->roleModel->findAll()
+            'role' => $this->roleModel->findAll(),
+            'upr' => $this->uprSPBEModel->findAll()
         ];
 
         if(isset($_POST['submit'])){
@@ -186,6 +189,7 @@ class Admin extends BaseController
             ->set('username' , $this->request->getPost('username'))
             ->set('email' , $this->request->getPost('email'))
             ->set('id_role' , $id_role)
+            ->set('id_upr',$this->request->getPost('upr'))
             ->where('id' , $id)
             ->update();
 
