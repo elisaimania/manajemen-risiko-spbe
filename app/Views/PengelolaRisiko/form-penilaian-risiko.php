@@ -14,16 +14,7 @@
         border: 2px solid #d1d3e2;
         border-radius: 20px;
 }
-    .btn.btn-light{
-        background-color: #C4C4C4;
-        border-color: #C4C4C4;
-        color: black;
-}
 
-    .btn.btn-light:hover{
-        background-color: #D3D3D3;
-        border-color: #D3D3D3;
-}
 
 </style>
 
@@ -76,7 +67,7 @@
                 </div>
                 <div class="form-group m-3">
                     <label for="penyebab">Penyebab</label>
-                    <input type="text" class="form-control" id="penyebab" name="penyebab" required>
+                    <textarea type="text" class="form-control" id="penyebab" name="penyebab" required></textarea> 
                 </div>
                 <div class="form-group m-3">
                     <label for="kategori_risiko">Pilih Kategori Risiko SPBE</label>
@@ -103,7 +94,7 @@
                 <h3 class="font-weight-bold" style="font-size: 0.9rem;">ANALISIS RISIKO SPBE</h3>
                 <div class="form-group m-3">
                     <label for="sistem_pengendalian">Sistem Pengendalian</label>
-                    <input type="text" class="form-control" id="sistem_pengendalian" name="sistem_pengendalian" required>
+                    <textarea type="text" class="form-control" id="sistem_pengendalian" name="sistem_pengendalian" required></textarea> 
                 </div>
                 <div class="form-group m-3">
                     <label for="level_kemungkinan">Pilih Level Kemungkinan Risiko SPBE</label>

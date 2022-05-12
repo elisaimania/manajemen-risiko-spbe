@@ -19,6 +19,16 @@
     .form-control[readonly]{
         background-color: #fff;
 }
+    .btn.btn-light{
+        background-color: #C4C4C4;
+        border-color: #C4C4C4;
+        color: black;
+}
+
+    .btn.btn-light:hover{
+        background-color: #D3D3D3;
+        border-color: #D3D3D3;
+}
 
 </style>
 

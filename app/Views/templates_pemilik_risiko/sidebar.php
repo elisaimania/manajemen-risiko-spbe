@@ -73,7 +73,7 @@
  <ul class="navbar-nav  sidebar sidebar-dark accordion nav-pills" id="accordionSidebar" style="background-color: #8CBA08;" >
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center my-4" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center my-4" href="<?= base_url('pemilikRisiko/dashboard'); ?>">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class=" fas fa-solid fa-book"></i>
         </div>

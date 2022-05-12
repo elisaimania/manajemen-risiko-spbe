@@ -45,7 +45,7 @@
         	<form class="user" method="post" action="">
                 <div class="form-group">
                     <label for="id_area_dampak">Pilih Area Dampak Risiko</label>
-                    <select class="form-control" id="id_area_dampak" name="id_area_dampak" required>
+                    <select class="form-control selectpicker" id="id_area_dampak" name="id_area_dampak[]" multiple required>
                         <option value=""></option>
                         <?php foreach ($areaDampak as $r ) : ?>
                             <option value="<?= $r['id']; ?>"><?= $r['area_dampak']; ?></option>

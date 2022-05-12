@@ -47,14 +47,14 @@
                     <label for="nama_role">Pilih Role</label>
                     <select class="form-control" id="nama_role" name="nama_role" required>
                         <?php foreach ($role as $r ) : ?>
-                            <option value="<?= $r['nama_role']; ?>" <?= ($strukturPelaksana['id_role']==$r['id']) ? 'selected' : ''; ?>><?= $r['nama_role']; ?></option>
+                            <option value="<?= $r['nama_role']; ?>" <?= ($strukturPelaksanaId['id_role']==$r['id']) ? 'selected' : ''; ?>><?= $r['nama_role']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="pelaksana">Pelaksana</label>
-                        <input type="text" class="form-control" id="pelaksana" name="pelaksana" required value="<?= $strukturPelaksana['pelaksana']; ?>">
+                        <input type="text" class="form-control" id="pelaksana" name="pelaksana" required value="<?= $strukturPelaksanaId['pelaksana']; ?>">
                     </div>
                 </div>
                 <div class="col mt-5">

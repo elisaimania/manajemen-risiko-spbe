@@ -53,7 +53,7 @@
                     <select class="form-control" id="id_area_dampak" name="id_area_dampak" required>
                         <option value=""></option>
                         <?php foreach ($daftarAreaDampak as $r ) : ?>
-                            <option value="<?= $r['id_area_dampak']; ?>" <?= ( $kriteriaDampak[0]['id_area_dampak']==$r['id_area_dampak']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
+                            <option value="<?= $r['id_area_dampak']; ?>" <?= ( $kriteriaDampakId[0]['id_area_dampak']==$r['id_area_dampak']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan1">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan1" name="penjelasan1" required value="<?= $kriteriaDampak[0]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan1" name="penjelasan1" required value="<?= $kriteriaDampakId[0]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan2">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan2" required value="<?= $kriteriaDampak[1]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan2" required value="<?= $kriteriaDampakId[1]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan3">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan3" required value="<?= $kriteriaDampak[2]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan3" required value="<?= $kriteriaDampakId[2]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan4">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan4" required value="<?= $kriteriaDampak[3]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan4" required value="<?= $kriteriaDampakId[3]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan5">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan5" required value="<?= $kriteriaDampak[4]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan5" required value="<?= $kriteriaDampakId[4]['penjelasan']; ?>">
                     </div>
                 </div>
 
@@ -124,7 +124,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan1">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan1" name="penjelasan6" required value="<?= $kriteriaDampak[5]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan1" name="penjelasan6" required value="<?= $kriteriaDampakId[5]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan2">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan7" required value="<?= $kriteriaDampak[6]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan7" required value="<?= $kriteriaDampakId[6]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -144,7 +144,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan3">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan8" required value="<?= $kriteriaDampak[7]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan8" required value="<?= $kriteriaDampakId[7]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -154,7 +154,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan4">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan9" required value="<?= $kriteriaDampak[8]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan9" required value="<?= $kriteriaDampakId[8]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -164,7 +164,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan5">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan10" required value="<?= $kriteriaDampak[9]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan10" required value="<?= $kriteriaDampakId[9]['penjelasan']; ?>">
                     </div>
                 </div>
 

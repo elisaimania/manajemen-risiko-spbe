@@ -46,13 +46,13 @@
                 <div class="form-group row">
                     <div class="col">
                         <label for="nama_unit">Nama Unit</label>
-                        <input type="text" class="form-control" id="nama_unit" name="nama_unit" required value="<?= $pemangkuKepentingan['nama_unit']?>">
+                        <input type="text" class="form-control" id="nama_unit" name="nama_unit" required value="<?= $pemangkuKepentinganId['nama_unit']?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="hubungan">Hubungan</label>
-                        <textarea  class="form-control" id="hubungan" name="hubungan" required><?= $pemangkuKepentingan['hubungan']?></textarea> 
+                        <textarea  class="form-control" id="hubungan" name="hubungan" required><?= $pemangkuKepentinganId['hubungan']?></textarea> 
                     </div>
                 </div>
                 <div class="col mt-5">

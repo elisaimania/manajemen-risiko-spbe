@@ -155,48 +155,10 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/informasi-umum',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanInformasiUmum($id){
-
-        $informasiUmum = $this->informasiUmumModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'informasiUmum',
-            'status'    => $status,
-            'data' => $informasiUmum
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->informasiUmumModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id' , $id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/informasiUmum'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     // Get data informasi umum
     public function getInformasiUmum(){
 
-        return $this->respond($this->informasiUmumModel->where('id_upr', session()->id_upr)->getInfoUmum());
+        return $this->respond($this->informasiUmumModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getInfoUmum());
 
     }
 
@@ -214,48 +176,10 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/sasaran-SPBE',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanSasaranSpbe($id){
-
-        $sasaranSpbe = $this->sasaranSPBEModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Identifikasi Sasaran SPBE (2.2)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'sasaranSPBE',
-            'status'    => $status,
-            'data' => $sasaranSpbe
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->sasaranSPBEModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id' , $id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/sasaranSPBE'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     // Get daftar sasaran SPBE
     public function getDaftarSasaranSPBE(){
 
-        return $this->respond($this->sasaranSPBEModel->where('id_upr',session()->id_upr)->getSasaranSPBE());
+        return $this->respond($this->sasaranSPBEModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getSasaranSPBE());
 
     }
 
@@ -273,48 +197,10 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/struktur-pelaksana',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanStrukturPelaksana($id){
-
-        $strukturPelaksana = $this->strukturPelaksanaModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'strukturPelaksana',
-            'status'    => $status,
-            'data' => $strukturPelaksana
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->strukturPelaksanaModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id' , $id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/strukturPelaksana'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     // Get daftar struktur pelaksana
     public function getDaftarStrukturPelaksana(){
 
-        return $this->respond($this->strukturPelaksanaModel->where('id_upr', session()->id_upr)->getStrukturPelaksana());
+        return $this->respond($this->strukturPelaksanaModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getStrukturPelaksana());
 
     }
 
@@ -332,48 +218,10 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/pemangku-kepentingan',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanPemangkuKepentingan($id){
-
-        $pemangkuKepentingan = $this->pemangkuKepentinganModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'pemangkuKepentingan',
-            'status'    => $status,
-            'data' => $pemangkuKepentingan
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->pemangkuKepentinganModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id' , $id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/pemangkuKepentingan'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     //Get daftar pemangku kepentingan
     public function getDaftarPemangkuKepentingan(){
 
-        return $this->respond($this->pemangkuKepentinganModel->where('id_upr', session()->id_upr)->getPemangkuKepentingan());
+        return $this->respond($this->pemangkuKepentinganModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getPemangkuKepentingan());
 
     }
 
@@ -391,48 +239,10 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/peraturan-perundangan',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanPeraturanPerundangan($id){
-
-        $peraturanPerundangan = $this->peraturanPerundanganModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'peraturanPerundangan',
-            'status'    => $status,
-            'data' => $peraturanPerundangan
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->peraturanPerundanganModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id' , $id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/peraturanPerundangan'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     //Get daftar peraturan perundangan
     public function getDaftarPeraturanPerundangan(){
 
-        return $this->respond($this->peraturanPerundanganModel->where('id_upr', session()->id_upr)->getPeraturanPerundangan());
+        return $this->respond($this->peraturanPerundanganModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getPeraturanPerundangan());
 
     }
 
@@ -450,48 +260,10 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/penetapan-kategori',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanKategoriRisikoTerpilih($id){
-
-        $kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'kategoriRisikoTerpilih',
-            'status'    => $status,
-            'data' => $kategoriRisikoTerpilih
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->kategoriRisikoTerpilihModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id' , $id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/kategoriRisikoTerpilih'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     //Get daftar kategori risiko terpilih
     public function getDaftarKategoriRisikoTerpilih(){
 
-        return $this->respond($this->kategoriRisikoTerpilihModel->where('id_upr',session()->id_upr)->getKategoriRisikoTerpilih());
+        return $this->respond($this->kategoriRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getKategoriRisikoTerpilih());
 
     }
 
@@ -508,48 +280,10 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/penetapan-area-dampak',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanareaDampakTerpilih($id){
-
-        $areaDampakRisikoTerpilih = $this->areaDampakRisikoTerpilihModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'areaDampakRisikoTerpilih',
-            'status'    => $status,
-            'data' => $areaDampakRisikoTerpilih
-        ];
-
-        if(isset($_POST['submit'])){ 
-            $this->areaDampakRisikoTerpilihModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id' , $id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/areaDampakRisikoTerpilih'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     //Get daftar area dampak risiko terpilih
     public function getDaftarAreaDampakRisikoTerpilih(){
 
-        return $this->respond($this->areaDampakRisikoTerpilihModel->where('id_upr', session()->id_upr)->getAreaDampakRisikoTerpilih());
+        return $this->respond($this->areaDampakRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getAreaDampakRisikoTerpilih());
 
     }
 
@@ -569,93 +303,17 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/penetapan-kriteria',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanKriteriaKemungkinan($id){
-
-        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'kriteriaRisiko',
-            'status'    => $status,
-            'data' => $kriteriaKemungkinan
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->kriteriaKemungkinanModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id',$id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/kriteriaRisiko'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
-    //Beri persetujuan
-    public function beriPersetujuanKriteriaDampak($id){
-
-        $kriteriaDampak = $this->kriteriaDampakModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'kriteriaRisiko',
-            'status'    => $status,
-            'data' => $kriteriaDampak
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->kriteriaDampakModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id',$id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/kriteriaRisiko'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     //Get daftar kriteria kemungkinan
     public function getDaftarKriteriaKemungkinan(){
 
-        return $this->respond($this->kriteriaKemungkinanModel->where('id_upr', session()->id_upr)->getKriteriaKemungkinan());
+        return $this->respond($this->kriteriaKemungkinanModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getKriteriaKemungkinan());
 
     }
 
     //Get daftar kriteria Dampak
     public function getDaftarKriteriaDampak(){
 
-        return $this->respond($this->kriteriaDampakModel->where('id_upr', session()->id_upr)->getKriteriaDampak());
+        return $this->respond($this->kriteriaDampakModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getKriteriaDampak());
 
     }
 
@@ -696,92 +354,16 @@ class PemilikRisiko extends BaseController
         return view('PemilikRisiko/selera-risiko',$data);
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanSeleraRisiko($id){
-
-        $seleraRisiko = $this->seleraRisikoModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
-            'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
-            'subsubtitle' => 'Beri Persetujuan',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks',
-            'sublink'   => 'seleraRisiko',
-            'status'    => $status,
-            'data' => $seleraRisiko
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->seleraRisikoModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id',$id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/seleraRisiko'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     //Get selera risiko
     public function getSeleraRisiko(){
 
-        return $this->respond($this->seleraRisikoModel->orderBy('id','ASC')->where('id_upr',session()->id_upr)->getSelera());
-    }
-
-    //Beri persetujuan
-    public function beriPersetujuanPenilaianRisiko($id){
-
-        $penilaianRisiko = $this->penilaianRisikoModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Penilaian Risiko SPBE (3.0)',
-            'subtitle'  => 'Beri Persetujuan',
-            'subsubtitle' => '',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penilaian Risiko SPBE',
-            'link'      => 'penilaianRisiko',
-            'sublink'   => '',
-            'status'    => $status,
-            'data' => $penilaianRisiko
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->penilaianRisikoModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id',$id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/penilaianRisiko'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
+        return $this->respond($this->seleraRisikoModel->orderBy('id','ASC')->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->getSelera());
     }
 
     //Get daftar penilaian risiko
     public function getPenilaianRisiko(){
 
-        return $this->respond($this->penilaianRisikoModel->getPenilaian());
+        return $this->respond($this->penilaianRisikoModel->getPenilaianByStatusPersetujuan());
 
     }
 
@@ -803,48 +385,10 @@ class PemilikRisiko extends BaseController
 
     }
 
-    //Beri persetujuan
-    public function beriPersetujuanPenangananRisiko($id){
-
-        $penangananRisiko = $this->penangananRisikoModel->find($id);
-        $status = $this->statusPersetujuanModel->findAll();
-        $data = [
-            'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
-            'subtitle'  => 'Beri Persetujuan',
-            'subsubtitle' => '',
-            'script'    => 'pemilik-risiko',
-            'active'    => 'Penanganan Risiko SPBE',
-            'link'      => 'penangananRisiko',
-            'sublink'   => '',
-            'status'    => $status,
-            'data' => $penangananRisiko
-        ];
-
-        if(isset($_POST['submit'])){
-            $this->penangananRisikoModel
-            ->set('id_status_persetujuan' , $this->request->getPost('id_status_persetujuan'))
-            ->set('komentar' , $this->request->getPost('komentar'))
-            ->where('id',$id)
-            ->update();
-
-            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Persetujuan berhasil diubah
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>';
-            $flash = session()->setFlashdata('flash', $flash);
-
-            return redirect()->to(base_url('pemilikRisiko/penangananRisiko'));
-        }
-        return view('PemilikRisiko/beri-persetujuan' , $data);
-
-    }
-
     //Get daftar rencanan penanganan risiko
     public function getPenangananRisiko(){
 
-        return $this->respond($this->penangananRisikoModel->where('id_upr', session()->id_upr)->getPenanganan());
+        return $this->respond($this->penangananRisikoModel->where(['id_upr'=>session()->id_upr, 'rencana_penanganan_risiko_spbe.id_status_persetujuan' => 2])->getPenanganan());
 
     }
 

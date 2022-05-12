@@ -26,4 +26,5 @@ class KategoriRisikoTerpilihModel extends Model
     }
 
 
+
 }

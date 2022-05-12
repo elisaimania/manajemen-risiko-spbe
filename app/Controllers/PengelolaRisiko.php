@@ -83,6 +83,18 @@ class PengelolaRisiko extends BaseController
         $this->opsiPenangananModel = new OpsiPenangananModel();
         $this->uprSPBEModel = new UPRSPBEModel();
 
+        $this->informasiUmum = $this->informasiUmumModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->sasaranSPBE = $this->sasaranSPBEModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->strukturPelaksana = $this->strukturPelaksanaModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->pemangkuKepentingan = $this->pemangkuKepentinganModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->peraturanPerundangan = $this->peraturanPerundanganModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->areaDampakTerpilih = $this->areaDampakRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->kriteriaDampak = $this->kriteriaDampakModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->seleraRisiko = $this->seleraRisikoModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->penilaianRisiko = $this->penilaianRisikoModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
 
     }
 
@@ -93,7 +105,18 @@ class PengelolaRisiko extends BaseController
             'title'     => 'Dashboard',
             'script'    => 'dashboard',
             'active'    => 'Dashboard',
-            'link'      => 'dashboard'
+            'link'      => 'dashboard',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
     	return view('PengelolaRisiko/dashboard',$data);
@@ -102,28 +125,49 @@ class PengelolaRisiko extends BaseController
 
 //Menampilkan halaman penentapan konteks
     public function penetapanKonteks(){
-
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  =>  '',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
-
+        
+        var_dump( sizeof(array_unique(array_column($this->kriteriaDampak, 'id_area_dampak')))!=sizeof($this->areaDampakTerpilih) );
         return view('PengelolaRisiko/penetapan-konteks',$data);
     }
 
 //Menampilkan halaman penilaian risiko yang berisi tabel hasil penilaian risiko
     public function penilaianRisiko(){
 
-
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  =>  '',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penilaian Risiko SPBE',
-            'link'      => 'penilaianRisiko'
+            'link'      => 'penilaianRisiko',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/penilaian-risiko',$data);
@@ -137,7 +181,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  =>  '',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penanganan Risiko SPBE',
-            'link'      => 'penangananRisiko'
+            'link'      => 'penangananRisiko',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/penanganan-risiko', $data);
@@ -154,7 +209,18 @@ class PengelolaRisiko extends BaseController
             'script'    => 'dashboard',
             'active'    => 'Dashboard',
             'link'      => 'dashboard',
-            'risiko' => $risiko
+            'risiko' => $risiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-risiko' , $data);
@@ -168,7 +234,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/informasi-umum',$data);
@@ -217,8 +294,7 @@ class PengelolaRisiko extends BaseController
 
             $flash = session()->setFlashdata('flash', $flash);
         }
-        
-        
+
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
@@ -227,7 +303,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'namaUpr' => $namaUpr,
-            'sublink' => 'informasiUmum'
+            'sublink' => 'informasiUmum',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-informasi-umum' , $data);
@@ -316,7 +403,8 @@ class PengelolaRisiko extends BaseController
                     
                     $date_mulai = Time::createFromFormat('Y-m-d', $kolom4);
                     $date_selesai = Time::createFromFormat('Y-m-d', $kolom5);
-                    if($date_mulai->isBefore($date_selesai)){
+                    if(!($date_mulai->isBefore($date_selesai))){
+                        var_dump($date_selesai);
         	            continue;
                     }
 
@@ -361,9 +449,11 @@ class PengelolaRisiko extends BaseController
             </div>';
 
             $flash = session()->setFlashdata('flash', $flash);
+            var_dump($date_selesai);
             return redirect()->to(base_url('pengelolaRisiko/informasiUmum'));
 
         }
+
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
@@ -372,7 +462,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'informasiUmum',
-            'template' => 'informasi_umum.xlsx'
+            'template' => 'informasi_umum.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -381,7 +482,7 @@ class PengelolaRisiko extends BaseController
 
     public function updateInformasiUmum($id=null){
 
-        $informasiUmum = $this->informasiUmumModel->find($id);
+        $infoUmum = $this->informasiUmumModel->find($id);
 
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -390,8 +491,19 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'informasiUmum' => $informasiUmum,
-            'sublink' => 'informasiUmum'
+            'infoUmum' => $infoUmum,
+            'sublink' => 'informasiUmum',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -450,8 +562,9 @@ class PengelolaRisiko extends BaseController
     //Lihat detail persetujuan
     public function detailPersetujuanInformasiUmum($id){
 
-        $informasiUmum = $this->informasiUmumModel->find($id);
+        $infoUmum = $this->informasiUmumModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$informasiUmum['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
@@ -461,7 +574,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'informasiUmum',
             'status' => $status,
-            'data' => $informasiUmum
+            'data' => $infoUmum,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
         return view('PengelolaRisiko/detail-persetujuan' , $data);
     }
@@ -473,7 +597,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Identifikasi Sasaran SPBE (2.2)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/sasaran-SPBE',$data);
@@ -481,7 +616,7 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarSasaranSPBE(){
 
-        return $this->respond($this->sasaranSPBEModel->where('id_upr',session()->id_upr)->getSasaranSPBE());
+        return $this->respond($this->sasaranSPBEModel->orderBy('id','desc')->where('id_upr',session()->id_upr)->getSasaranSPBE());
 
     }
 
@@ -517,7 +652,18 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'sublink' => 'sasaranSPBE'
+            'sublink' => 'sasaranSPBE',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-sasaran-SPBE' , $data);
@@ -628,6 +774,8 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/sasaranSPBE'));
 
         }
+
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Sasaran SPBE (2.2)',
@@ -636,7 +784,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'sasaranSPBE',
-            'template' => 'sasaran_spbe.xlsx'
+            'template' => 'sasaran_spbe.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -645,7 +804,7 @@ class PengelolaRisiko extends BaseController
 
     public function updateSasaranSPBE($id=null){
 
-        $sasaranSPBE = $this->sasaranSPBEModel->find($id);
+        $sasaranSPBEId = $this->sasaranSPBEModel->find($id);
 
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -654,8 +813,19 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'sasaranSPBE' => $sasaranSPBE,
-            'sublink' => 'sasaranSPBE'
+            'sasaranSPBEId' => $sasaranSPBEId,
+            'sublink' => 'sasaranSPBE',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -702,8 +872,9 @@ class PengelolaRisiko extends BaseController
     //Melihat deatil persetujuan
     public function detailPersetujuanSasaranSPBE($id){
 
-        $sasaranSpbe = $this->sasaranSPBEModel->find($id);
+        $sasaranSpbeId = $this->sasaranSPBEModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$sasaranSpbe['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Sasaran SPBE (2.2)',
@@ -713,7 +884,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'status' => $status,
             'sublink'   => 'sasaranSPBE',
-            'data' => $sasaranSpbe
+            'data' => $sasaranSpbeId,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -726,7 +908,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/struktur-pelaksana',$data);
@@ -763,6 +956,7 @@ class PengelolaRisiko extends BaseController
         }
 
         $role = $this->roleModel->findAll();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
@@ -771,7 +965,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'strukturPelaksana',
-            'role' => $role
+            'role' => $role,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-struktur-pelaksana' , $data);
@@ -890,6 +1095,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/strukturPelaksana'));
 
         }
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
@@ -898,7 +1104,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'strukturPelaksana',
-            'template' => 'struktur_pelaksana.xlsx'
+            'template' => 'struktur_pelaksana.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -906,7 +1123,7 @@ class PengelolaRisiko extends BaseController
 
     public function updateStrukturPelaksana($id=null){
 
-        $strukturPelaksana = $this->strukturPelaksanaModel->find($id);
+        $strukturPelaksanaId = $this->strukturPelaksanaModel->find($id);
 
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -915,9 +1132,20 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'strukturPelaksana' => $strukturPelaksana,
+            'strukturPelaksanaId' => $strukturPelaksanaId,
             'role' => $this->roleModel->findAll(),
-            'sublink' => 'strukturPelaksana'
+            'sublink' => 'strukturPelaksana',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -964,8 +1192,9 @@ class PengelolaRisiko extends BaseController
     //Melihat deatil persetujuan
     public function detailPersetujuanStrukturPelaksana($id){
 
-        $strukturPelaksana = $this->strukturPelaksanaModel->find($id);
+        $strukturPelaksanaId = $this->strukturPelaksanaModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$strukturPelaksana['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
@@ -975,20 +1204,42 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'strukturPelaksana',
             'status' => $status,
-            'data' => $strukturPelaksana
+            'data' => $strukturPelaksanaId,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
     }
 
     public function pemangkuKepentingan(){
-
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/pemangku-kepentingan',$data);
@@ -1030,7 +1281,18 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'sublink' => 'pemangkuKepentingan'
+            'sublink' => 'pemangkuKepentingan',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-pemangku-kepentingan' , $data);
@@ -1129,6 +1391,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/pemangkuKepentingan'));
 
         }
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
@@ -1137,7 +1400,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'pemangkuKepentingan',
-            'template' => 'pemangku_kepentingan.xlsx'
+            'template' => 'pemangku_kepentingan.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -1146,7 +1420,7 @@ class PengelolaRisiko extends BaseController
 
     public function updatePemangkuKepentingan($id=null){
 
-        $pemangkuKepentingan = $this->pemangkuKepentinganModel->find($id);
+        $pemangkuKepentinganId = $this->pemangkuKepentinganModel->find($id);
 
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -1155,8 +1429,19 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'pemangkuKepentingan' => $pemangkuKepentingan,
-            'sublink' => 'pemangkuKepentingan'
+            'pemangkuKepentinganId' => $pemangkuKepentinganId,
+            'sublink' => 'pemangkuKepentingan',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -1201,8 +1486,9 @@ class PengelolaRisiko extends BaseController
     //Melihat deatil persetujuan
     public function detailPersetujuanPemangkuKepentingan($id){
 
-        $pemangkuKepentingan = $this->pemangkuKepentinganModel->find($id);
+        $pemangkuKepentinganId = $this->pemangkuKepentinganModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$pemangkuKepentingan['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
@@ -1212,7 +1498,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'pemangkuKepentingan',
             'status' => $status,
-            'data' => $pemangkuKepentingan
+            'data' => $pemangkuKepentinganId,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1225,7 +1522,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/peraturan-perundangan',$data);
@@ -1261,6 +1569,7 @@ class PengelolaRisiko extends BaseController
         }
 
         $role = $this->roleModel->findAll();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
@@ -1268,7 +1577,18 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'sublink' => 'peraturanPerundangan'
+            'sublink' => 'peraturanPerundangan',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-peraturan-perundangan' , $data);
@@ -1367,6 +1687,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/peraturanPerundangan'));
 
         }
+
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
@@ -1375,7 +1696,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'peraturanPerundangan',
-            'template' => 'peraturan_perundangan.xlsx'
+            'template' => 'peraturan_perundangan.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -1384,7 +1716,7 @@ class PengelolaRisiko extends BaseController
 
     public function updatePeraturanPerundangan($id=null){
 
-        $peraturanPerundangan = $this->peraturanPerundanganModel->find($id);
+        $peraturanPerundanganId = $this->peraturanPerundanganModel->find($id);
 
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -1393,8 +1725,19 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
-            'peraturanPerundangan' => $peraturanPerundangan,
-            'sublink' => 'peraturanPerundangan'
+            'peraturanPerundanganId' => $peraturanPerundanganId,
+            'sublink' => 'peraturanPerundangan',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -1439,8 +1782,9 @@ class PengelolaRisiko extends BaseController
     //Melihat deatil persetujuan
     public function detailPersetujuanPeraturanPerundangan($id){
 
-        $peraturanPerundangan = $this->peraturanPerundanganModel->find($id);
+        $peraturanPerundanganId = $this->peraturanPerundanganModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$peraturanPerundangan['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
@@ -1450,7 +1794,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'peraturanPerundangan',
             'status' => $status,
-            'data' => $peraturanPerundangan
+            'data' => $peraturanPerundanganId,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1463,7 +1818,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/penetapan-kategori',$data);
@@ -1479,14 +1845,15 @@ class PengelolaRisiko extends BaseController
     {
         if(isset($_POST['tambah'])){
 
-            
-            $inputData = [
-                'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ];
+            $data = $this->request->getPost('id_kategori_risiko');
 
-            $this->kategoriRisikoTerpilihModel->insert($inputData);
+            for ($i=0; $i < sizeof($data); $i++) { 
+                $this->kategoriRisikoTerpilihModel->insert([
+                    'id_kategori_risiko' => $data[$i],
+                    'id_upr' => session()->id_upr,
+                    'id_status_persetujuan' => 1
+                ]);
+            }
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Kategori risiko berhasil ditambahkan
@@ -1499,6 +1866,7 @@ class PengelolaRisiko extends BaseController
         }
 
         $kategoriRisiko = $this->kategoriRisikoModel->getKategori();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
@@ -1507,7 +1875,18 @@ class PengelolaRisiko extends BaseController
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'sublink'   => 'kategoriRisikoTerpilih',
-            'kategoriRisiko' => $kategoriRisiko
+            'kategoriRisiko' => $kategoriRisiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
          return view('PengelolaRisiko/form-penetapan-kategori',$data);
@@ -1536,6 +1915,7 @@ class PengelolaRisiko extends BaseController
 
         $kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$kategoriRisikoTerpilih['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
@@ -1545,7 +1925,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'kategoriRisikoTerpilih',
             'status' => $status,
-            'data' => $kategoriRisikoTerpilih
+            'data' => $kategoriRisikoTerpilih,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1558,7 +1949,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/penetapan-area-dampak',$data);
@@ -1574,16 +1976,26 @@ class PengelolaRisiko extends BaseController
     {
         if(isset($_POST['tambah'])){
 
-            $areaDampakTerpilih = $this->areaDampakRisikoModel->where('id',$this->request->getPost('id_area_dampak'))->get()->getRowArray();
+            $data = $this->request->getPost('id_area_dampak');
+
+            for ($i=0; $i < sizeof($data); $i++) { 
+                $this->areaDampakRisikoTerpilihModel->insert([
+                    'id_area_dampak' => $data[$i],
+                    'id_upr' => session()->id_upr,
+                    'id_status_persetujuan' => 1
+                ]);
+            }
+
+            // $areaDampakTerpilih = $this->areaDampakRisikoModel->where('id',$this->request->getPost('id_area_dampak'))->get()->getRowArray();
 
 
-            $inputData = [
-                'id_area_dampak' => $areaDampakTerpilih['id'],
-                'id_upr' => session()->id_upr,
-                'id_status_persetujuan' => 1
-            ];
+            // $inputData = [
+            //     'id_area_dampak' => $areaDampakTerpilih['id'],
+            //     'id_upr' => session()->id_upr,
+            //     'id_status_persetujuan' => 1
+            // ];
 
-            $this->areaDampakRisikoTerpilihModel->insert($inputData);
+            // $this->areaDampakRisikoTerpilihModel->insert($inputData);
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Area dampak risiko berhasil ditambahkan
@@ -1596,6 +2008,7 @@ class PengelolaRisiko extends BaseController
         }
 
         $areaDampak = $this->areaDampakRisikoModel->getAreaDampak();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
@@ -1604,7 +2017,18 @@ class PengelolaRisiko extends BaseController
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'sublink'   => 'areaDampakRisikoTerpilih',
-            'areaDampak' => $areaDampak
+            'areaDampak' => $areaDampak,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
          return view('PengelolaRisiko/form-penetapan-area-dampak',$data);
@@ -1633,6 +2057,7 @@ class PengelolaRisiko extends BaseController
 
         $areaDampakTerpilih = $this->areaDampakRisikoTerpilihModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$areaDampakTerpilih['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
@@ -1642,7 +2067,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'areaDampakRisikoTerpilih',
             'status' => $status,
-            'data' => $areaDampakTerpilih
+            'data' => $areaDampakTerpilih,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1650,15 +2086,24 @@ class PengelolaRisiko extends BaseController
 
     public function kriteriaRisiko(){
 
-
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
-
 
         return view('PengelolaRisiko/penetapan-kriteria',$data);
     }
@@ -1680,7 +2125,7 @@ class PengelolaRisiko extends BaseController
         if(isset($_POST['tambah'])){
 
 
-            if ($this->kriteriaKemungkinanModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko')) && $this->kriteriaKemungkinanModel->where('id_upr',session()->id_upr)) {
+            if ($this->kriteriaKemungkinanModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko'))->get()->getRowArray() && $this->kriteriaKemungkinanModel->where('id_upr',session()->id_upr)->get()->getRowArray()) {
                 $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Kriteria kemungkinan risiko untuk kategori risiko ini telah lengkap. Pilih kategori risiko yang lain
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -1722,9 +2167,9 @@ class PengelolaRisiko extends BaseController
         }
 
 
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where(['id_upr'=>session()->id_upr,'id_status_persetujuan'=> 2])->getKategoriRisikoTerpilih();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
+
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -1734,7 +2179,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'kriteriaRisiko',
             'daftarKategoriRisiko' => $daftarKategoriRisiko,
-            'daftarLevelKemungkinan' => $daftarLevelKemungkinan
+            'daftarLevelKemungkinan' => $daftarLevelKemungkinan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
          return view('PengelolaRisiko/form-kriteria-kemungkinan',$data);
@@ -1867,6 +2323,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/kriteriaRisiko'));
 
         }
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -1875,7 +2332,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'kriteriaRisiko',
-            'template' => 'kriteria_kemungkinan.xlsx'
+            'template' => 'kriteria_kemungkinan.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -1884,8 +2352,9 @@ class PengelolaRisiko extends BaseController
     public function updateKriteriaKemungkinan($id=null){
 
         $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])->get()->getResultArray();
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -1894,14 +2363,25 @@ class PengelolaRisiko extends BaseController
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'sublink'   => 'kriteriaRisiko',
-            'kriteriaKemungkinan' => $kriteriaKemungkinan,
+            'kriteriaKemungkinanId' => $kriteriaKemungkinan,
             'daftarKategoriRisiko' => $daftarKategoriRisiko,
-            'daftarLevelKemungkinan' => $daftarLevelKemungkinan
+            'daftarLevelKemungkinan' => $daftarLevelKemungkinan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
 
-            $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko',$this->request->getPost('kategori_risiko'))->get()->getRowArray();
+            // $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko',$this->request->getPost('kategori_risiko'))->get()->getRowArray();
 
             $levelKemungkinan = $this->levelKemungkinanModel->findAll();
             
@@ -1957,6 +2437,7 @@ class PengelolaRisiko extends BaseController
 
         $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])->get()->getRowArray();
         $status = $this->statusPersetujuanModel->where('id',$kriteriaKemungkinan['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -1966,7 +2447,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'kriteriaRisiko',
             'status' => $status,
-            'data' => $kriteriaKemungkinan
+            'data' => $kriteriaKemungkinan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
         
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1977,7 +2469,7 @@ class PengelolaRisiko extends BaseController
         if(isset($_POST['tambah'])){
 
 
-            if ($this->kriteriaDampakModel->where('id_area_dampak',$this->request->getPost('id_area_dampak')) && $this->kriteriaDampakModel->where('id_upr',session()->id_upr)) {
+            if ($this->kriteriaDampakModel->where('id_area_dampak',$this->request->getPost('id_area_dampak'))->get()->getRowArray() && $this->kriteriaDampakModel->where('id_upr',session()->id_upr)->get()->getRowArray()) {
                 $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Kriteria Dampak risiko untuk area dampak ini telah lengkap. Pilih area dampak yang lain
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -2021,9 +2513,10 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_status_persetujuan', 2)->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -2034,7 +2527,18 @@ class PengelolaRisiko extends BaseController
             'sublink'   => 'kriteriaRisiko',
             'daftarJenisRisiko' => $daftarJenisRisiko,
             'daftarAreaDampak' => $daftarAreaDampak,
-            'daftarLevelDampak' => $daftarLevelDampak
+            'daftarLevelDampak' => $daftarLevelDampak,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
          return view('PengelolaRisiko/form-kriteria-dampak',$data);
@@ -2104,9 +2608,12 @@ class PengelolaRisiko extends BaseController
 
                     $dampak = $this->areaDampakRisikoModel->where('area_dampak', $kolom1)->get()->getRowArray();
                     $level = $this->levelDampakModel->where('id', $kolom3)->get()->getRowArray();
-                    $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko', $kolom2)->get()->getRowArray();
+                    $jenisRisiko = $this->jenisRisikoModel->where('id', $kolom2)->get()->getRowArray();
 
                     if (!$this->areaDampakRisikoTerpilihModel->where('id_area_dampak', $dampak['id'])->getAreaDampakRisikoTerpilih()) {
+                        continue;
+                    }
+                    if (!$this->areaDampakRisikoTerpilihModel->where('id_status_persetujuan', 2)->getAreaDampakRisikoTerpilih()) {
                         continue;
                     }
                     if (!$level) {
@@ -2163,6 +2670,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/kriteriaRisiko'));
 
         }
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -2171,7 +2679,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'kriteriaRisiko',
-            'template' => 'kriteria_dampak.xlsx'
+            'template' => 'kriteria_dampak.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -2180,9 +2699,10 @@ class PengelolaRisiko extends BaseController
     public function updateKriteriaDampak($id=null){
 
         $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])->get()->getResultArray();
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_status_persetujuan', 2)->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -2191,10 +2711,21 @@ class PengelolaRisiko extends BaseController
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'sublink'   => 'kriteriaRisiko',
-            'kriteriaDampak' => $kriteriaDampak,
+            'kriteriaDampakId' => $kriteriaDampak,
             'daftarJenisRisiko' => $daftarJenisRisiko,
             'daftarAreaDampak' => $daftarAreaDampak,
-            'daftarLevelDampak' => $daftarLevelDampak
+            'daftarLevelDampak' => $daftarLevelDampak,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -2258,6 +2789,7 @@ class PengelolaRisiko extends BaseController
 
         $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])->get()->getRowArray();
         $status = $this->statusPersetujuanModel->where('id',$kriteriaDampak['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
@@ -2267,7 +2799,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'kriteriaRisiko',
             'status' => $status,
-            'data' => $kriteriaDampak
+            'data' => $kriteriaDampak,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -2280,7 +2823,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Matriks Analisis dan Level Risiko SPBE (2.9)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/matriks-level',$data);
@@ -2303,7 +2857,18 @@ class PengelolaRisiko extends BaseController
             'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
-            'link'      => 'penetapanKonteks'
+            'link'      => 'penetapanKonteks',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/selera-risiko',$data);
@@ -2323,7 +2888,7 @@ class PengelolaRisiko extends BaseController
             $jenisRisiko2 = $this->jenisRisikoModel->where('jenis_risiko',$this->request->getPost('jenis_risiko2'))->get()->getRowArray();
 
 
-            if ($this->seleraRisikoModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko')) && $this->seleraRisikoModel->where('id_upr',session()->id_upr)) {
+            if ($this->seleraRisikoModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko'))->get()->getRowArray() && $this->seleraRisikoModel->where('id_upr',session()->id_upr)->get()->getRowArray()) {
                 $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Selera risiko untuk kategori risiko ini telah lengkap. Pilih kategori risiko yang lain
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -2365,9 +2930,10 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $besaranRisiko = $this->matriksRisikoModel->orderBy('besaran_risiko', 'ASC')->findAll();
+    
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
@@ -2378,7 +2944,18 @@ class PengelolaRisiko extends BaseController
             'sublink'   => 'seleraRisiko',
             'daftarKategoriRisiko' => $daftarKategoriRisiko,
             'daftarJenisRisiko' => $daftarJenisRisiko,
-            'besaranRisiko' => $besaranRisiko
+            'besaranRisiko' => $besaranRisiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
          return view('PengelolaRisiko/form-selera-risiko',$data);
@@ -2450,6 +3027,9 @@ class PengelolaRisiko extends BaseController
                     if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategori['id'])->getKategoriRisikoTerpilih()) {
                         continue;
                     }
+                    if (!$this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih()) {
+                        continue;
+                    }
                     if ($this->seleraRisikoModel->where(['id_kategori_risiko' => $kategori['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr])->get()->getRowArray() ) {
                         continue;
                     }
@@ -2502,6 +3082,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/seleraRisiko'));
 
         }
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
@@ -2510,7 +3091,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penetapan Konteks Risiko SPBE',
             'link'  => 'penetapanKonteks',
             'sublink' => 'seleraRisiko',
-            'template' => 'selera_risiko.xlsx'
+            'template' => 'selera_risiko.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -2519,9 +3111,10 @@ class PengelolaRisiko extends BaseController
     public function updateSeleraRisiko($id=null){
 
         $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])->get()->getResultArray();
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $besaranRisiko = $this->matriksRisikoModel->orderBy('besaran_risiko', 'ASC')->findAll();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
@@ -2530,10 +3123,21 @@ class PengelolaRisiko extends BaseController
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'sublink'   => 'seleraRisiko',
-            'seleraRisiko' => $seleraRisiko,
+            'seleraRisikoId' => $seleraRisiko,
             'daftarKategoriRisiko' => $daftarKategoriRisiko,
             'daftarJenisRisiko' => $daftarJenisRisiko,
-            'besaranRisiko' => $besaranRisiko
+            'besaranRisiko' => $besaranRisiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -2592,6 +3196,7 @@ class PengelolaRisiko extends BaseController
 
         $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])->get()->getRowArray();
         $status = $this->statusPersetujuanModel->where('id',$seleraRisiko['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
@@ -2601,7 +3206,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penetapanKonteks',
             'sublink'   => 'seleraRisiko',
             'status' => $status,
-            'data' => $seleraRisiko
+            'data' => $seleraRisiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -2624,7 +3240,18 @@ class PengelolaRisiko extends BaseController
             'script'    => 'pengelola-risiko',
             'active'    => 'Penilaian Risiko SPBE',
             'link'      => 'penilaianRisiko',
-            'risiko' => $risiko
+            'risiko' => $risiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-risiko' , $data);
@@ -2697,12 +3324,13 @@ class PengelolaRisiko extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
         }
 
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_status_persetujuan', 2)->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
         $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
+        
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  => 'Tambah Penilaian Risiko SPBE (3.0)',
@@ -2714,7 +3342,18 @@ class PengelolaRisiko extends BaseController
             'daftarLevelDampak' => $daftarLevelDampak,
             'daftarLevelKemungkinan' => $daftarLevelKemungkinan,
             'daftarKategoriRisiko' => $daftarKategoriRisiko,
-            'daftarIndikatorKinerja' => $daftarIndikatorKinerja
+            'daftarIndikatorKinerja' => $daftarIndikatorKinerja,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
          return view('PengelolaRisiko/form-penilaian-risiko',$data);
@@ -2787,6 +3426,9 @@ class PengelolaRisiko extends BaseController
                     if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategoriRisiko['id'])->getKategoriRisikoTerpilih()) {
                         continue;
                     }
+                    if (!$this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih()) {
+                        continue;
+                    }
                     if (!$this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$kolom1)->get()->getRowArray()) {
                         continue;
                     }
@@ -2796,10 +3438,10 @@ class PengelolaRisiko extends BaseController
                     if (!$jenisRisiko) {
                         continue;
                     }
-                    if (!$this->levelKemungkinanModel->where('id',$kolom9)) {
+                    if (!$this->levelKemungkinanModel->where('id',$kolom9)->get()->getRowArray()) {
                         continue;
                     }
-                    if (!$this->levelDampakModel->where('id',$kolom10)) {
+                    if (!$this->levelDampakModel->where('id',$kolom10)->get()->getRowArray()) {
                         continue;
                     }
 
@@ -2871,6 +3513,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/penilaianRisiko'));
 
         }
+        
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  => 'Import Data Penilaian Risiko SPBE (3.0)',
@@ -2879,7 +3522,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penilaian Risiko SPBE',
             'link'  => 'penilaianRisiko',
             'sublink' => '',
-            'template' => 'penilaian_risiko.xlsx'
+            'template' => 'penilaian_risiko.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -2888,12 +3542,13 @@ class PengelolaRisiko extends BaseController
     public function updatePenilaianRisiko($id=null){
 
         $risiko = $this->penilaianRisikoModel->find($id);
-        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->getAreaDampakRisikoTerpilih();
+        $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_status_persetujuan', 2)->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
-        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->getKategoriRisikoTerpilih();
+        $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
         $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
+        
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  => 'Edit Penilaian Risiko SPBE (3.0)',
@@ -2906,7 +3561,18 @@ class PengelolaRisiko extends BaseController
             'daftarLevelDampak' => $daftarLevelDampak,
             'daftarLevelKemungkinan' => $daftarLevelKemungkinan,
             'daftarKategoriRisiko' => $daftarKategoriRisiko,
-            'daftarIndikatorKinerja' => $daftarIndikatorKinerja
+            'daftarIndikatorKinerja' => $daftarIndikatorKinerja,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -2993,8 +3659,9 @@ class PengelolaRisiko extends BaseController
     //Melihat deatil persetujuan
     public function detailPersetujuanPenilaianRisiko($id){
 
-        $penilaianRisiko = $this->penilaianRisikoModel->find($id);
+        $penilaianRisiko = $this->penilaianRisikoModel->where('id',$id)->get()->getRowArray();
         $status = $this->statusPersetujuanModel->where('id',$penilaianRisiko['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  => 'Detail Persetujuan',
@@ -3004,7 +3671,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penilaianRisiko',
             'sublink'   => '',
             'status'    => $status,
-            'data' => $penilaianRisiko
+            'data' => $penilaianRisiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -3021,12 +3699,24 @@ class PengelolaRisiko extends BaseController
     }
 
     public function pilihRisiko(){
+
         $data = [
             'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subtitle'  => 'Memilih Risiko yang Akan Ditangani (4.0)',
             'script'    => 'pengelola-risiko',
             'active'    => 'Penanganan Risiko SPBE',
-            'link'      => 'penangananRisiko'
+            'link'      => 'penangananRisiko',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
          return view('PengelolaRisiko/pilih-risiko',$data);
@@ -3090,7 +3780,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penangananRisiko',
             'sublink'      => 'pilihRisiko',
             'id'        => $id,
-            'daftarOpsiPenanganan' => $daftarOpsiPenanganan
+            'daftarOpsiPenanganan' => $daftarOpsiPenanganan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-penanganan-risiko' , $data);
@@ -3235,6 +3936,7 @@ class PengelolaRisiko extends BaseController
             return redirect()->to(base_url('pengelolaRisiko/penangananRisiko'));
 
         }
+
         $data = [
             'title'     => 'Penanganan Risiko SPBE (4.0)',
             'subtitle'  => 'Import Data Rencana Penanganan Risiko SPBE (4.0)',
@@ -3243,7 +3945,18 @@ class PengelolaRisiko extends BaseController
             'active' => 'Penanganan Risiko SPBE',
             'link'  => 'penangananRisiko',
             'sublink' => '',
-            'template' => 'penanganan_risiko.xlsx'
+            'template' => 'penanganan_risiko.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -3264,7 +3977,18 @@ class PengelolaRisiko extends BaseController
             'active'    => 'Penanganan Risiko SPBE',
             'link'      => 'penangananRisiko',
             'rencana_penanganan' => $rencana_penanganan,
-            'daftarOpsiPenanganan' => $daftarOpsiPenanganan
+            'daftarOpsiPenanganan' => $daftarOpsiPenanganan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         if(isset($_POST['submit'])){
@@ -3332,6 +4056,7 @@ class PengelolaRisiko extends BaseController
 
         $penangananRisiko = $this->penangananRisikoModel->find($id);
         $status = $this->statusPersetujuanModel->where('id',$penangananRisiko['id_status_persetujuan'])->get()->getRowArray();
+        
         $data = [
             'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subsubtitle' => '',
@@ -3341,7 +4066,18 @@ class PengelolaRisiko extends BaseController
             'link'      => 'penangananRisiko',
             'sublink'   => '',
             'status'    => $status,
-            'data' => $penangananRisiko
+            'data' => $penangananRisiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -3358,7 +4094,18 @@ class PengelolaRisiko extends BaseController
             'script'    => 'pengelola-risiko',
             'active'    => 'Penanganan Risiko SPBE',
             'link'      => 'penangananRisiko',
-            'risiko' => $risiko
+            'risiko' => $risiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
         ];
 
         return view('PengelolaRisiko/detail-risiko' , $data);

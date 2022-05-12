@@ -5,6 +5,7 @@ function loadRisikoDitangani() {
         th+= `
                 <th>ID</th>
                 <th >Kategori Risiko</th>
+                <th >Besaran Risiko</th>
                 <th >Level Risiko</th>
                 <th >Prioritas</th>
         `
@@ -34,6 +35,9 @@ function loadRisikoDitangani() {
                     <td>
                         ${d.kategori_risiko}
                     </td>
+                    <td>
+                        ${d.besaran_risiko}
+                    </td>
                     <td style= ${style}>
                         ${d.level_risiko}
                     </td>
@@ -52,7 +56,7 @@ function loadRisikoDitangani() {
         $('#tabel-risikoDashboard').html(table)
         $("#table19").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "pageLength" : 3
+            "pageLength" : 3, "order": [[ 2, "desc" ]]
         }).buttons().container().appendTo('#table19_wrapper .col-md-6:eq(0)');
     })
 }
@@ -149,6 +153,7 @@ var barChartData2 = {
 var barChartOptions = {
   maintainAspectRatio : false,
   responsive : true,
+   indexAxis: 'y',
   legend: {
     display: false
   },
@@ -158,7 +163,7 @@ var barChartOptions = {
         display : false,
       },
       ticks: {
-          maxTicksLimit: 6
+          min: 0,
         }
     }],
     yAxes: [{
@@ -171,8 +176,7 @@ var barChartOptions = {
       },
       ticks: {
           min: 0,
-          maxTicksLimit: 5,
-          padding: 10
+          maxTicksLimit: 5
       }
     }]
   },
@@ -195,6 +199,7 @@ var barChartOptions = {
 var barChartOptions1 = {
   maintainAspectRatio : false,
   responsive : true,
+  indexAxis: 'yAxes',
   scales: {
     xAxes: [{
       gridLines : {
@@ -232,7 +237,7 @@ var barChartOptions1 = {
     xPadding: 15,
     yPadding: 15,
     displayColors: false,
-    caretPadding: 10,
+    caretPadding: 10
     
     }
 }
@@ -301,6 +306,7 @@ function loadBarChartKategoriRisiko() {
         })
         kategori_risiko = kategori_risiko.filter(onlyUnique)
         level_risiko = level_risiko.filter(onlyUnique)
+        kategori_risiko = kategori_risiko.sort((a,b) => a.length - b.length);
         perKategori = []
         level_risiko.forEach( l => {
           perLevel = []
@@ -359,6 +365,7 @@ function loadBarChartDampakRisiko() {
         })
         area_dampak = area_dampak.filter(onlyUnique)
         level_risiko = level_risiko.filter(onlyUnique)
+        area_dampak = area_dampak.sort((a,b) => a.length - b.length);
         perAreaDampak = []
         level_risiko.forEach( l => {
           perLevel = []
@@ -370,13 +377,14 @@ function loadBarChartDampakRisiko() {
               }
             })
             perLevel.push(jmlh)
+            console.log(k)
           })
           perAreaDampak.push(perLevel)
         })
         if (globalThis.stackedBarChart1.data.datasets.length != level_risiko.length) {
           selisih = globalThis.stackedBarChart1.data.datasets.length - level_risiko.length
           globalThis.stackedBarChart1.data.datasets = globalThis.stackedBarChart1.data.datasets.slice(selisih)
-        } 
+        }
         globalThis.stackedBarChart1.data.labels = area_dampak
         for (var i = 0; i < level_risiko.length; i++) {
           

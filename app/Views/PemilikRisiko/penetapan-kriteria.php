@@ -56,11 +56,11 @@ a {
 
 <div class="mb-2">
     <h1 class="h3  text-gray-800 font-weight-bold" style="text-transform: uppercase;">
-        <a href="<?= base_url('PemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
+        <a href="<?= base_url('pemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
     </h1>
     <ol class="breadcrumb px-3 py-2 rounded mb-0">
         <li class="breadcrumb-item active">
-            <a href="<?= base_url('PemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
+            <a href="<?= base_url('pemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
         </li>
         <li class="breadcrumb-item">
             <?= $subtitle ?>
@@ -77,16 +77,6 @@ a {
         <h6 class="m-0 font-weight-bold ">Kriteria Kemungkinan Risiko SPBE (2.8A)</h6>                  
     </div>
     <div class="card-body">
-        <div class="form-group">
-             <div class="row">
-                <div class="col">
-                </div>
-                <div class="col">
-                    <a href="<?= base_url('PemilikRisiko/inputKriteriaKemungkinan'); ?>" class="btn float-right" >Tambah Kriteria</a>
-                    <a href="<?= base_url('PemilikRisiko/importKriteriaKemungkinan'); ?>" class="btn float-right mr-3" >Import Excel</a>
-                </div>
-            </div>
-        </div>
         <div class="table-responsive" id="tabel-kriteriaKemungkinan">
         </div>
     </div>
@@ -98,16 +88,6 @@ a {
         <h6 class="m-0 font-weight-bold">Kriteria Dampak Risiko SPBE (2.8B)</h6>                  
     </div>
     <div class="card-body">
-        <div class="form-group">
-             <div class="row">
-                <div class="col">
-                </div>
-                <div class="col">
-                    <a href="<?= base_url('PemilikRisiko/inputKriteriaDampak'); ?>" class="btn float-right" >Tambah Kriteria</a>
-                    <a href="<?= base_url('PemilikRisiko/importKriteriaDampak'); ?>" class="btn float-right mr-3" >Import Excel</a>
-                </div>
-            </div>
-        </div>
         <div class="table-responsive" id="tabel-kriteriaDampak">
         </div>
     </div>

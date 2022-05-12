@@ -8,8 +8,6 @@ function loadDataInformasiUmum() {
         <th>Tugas UPR SPBE</th>
         <th>Fungsi UPR SPBE</th>
         <th>Periode Waktu</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -37,12 +35,6 @@ function loadDataInformasiUmum() {
                         + ' ' + new Date(d.tanggal_mulai).getFullYear().toString() + ' - ' + new Date(d.tanggal_selesai).getDate().toString() + ' '
                         + new Date(d.tanggal_selesai).toLocaleString('id-ID', { month: 'long' }) + ' ' + new Date(d.tanggal_selesai).getFullYear().toString()}
                     </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanInformasiUmum/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
-                    </td>
                 </tr>
             `
         });
@@ -60,16 +52,16 @@ function loadDataInformasiUmum() {
     })
 }
 
-function insertInto(specialChar,id) {
-    const textarea = document.getElementById(id);
-    const insertStartPoint = textarea.selectionStart;
-    const insertEndPoint = textarea.selectionEnd;
-    let value = textarea.value;
+// function insertInto(specialChar,id) {
+//     const textarea = document.getElementById(id);
+//     const insertStartPoint = textarea.selectionStart;
+//     const insertEndPoint = textarea.selectionEnd;
+//     let value = textarea.value;
  
-    // text before cursor/highlighted text + special character + text after cursor/highlighted text
-    value = value.slice(0, insertStartPoint) + specialChar + value.slice(insertEndPoint);
-    textarea.value = value;
-}
+//     // text before cursor/highlighted text + special character + text after cursor/highlighted text
+//     value = value.slice(0, insertStartPoint) + specialChar + value.slice(insertEndPoint);
+//     textarea.value = value;
+// }
 
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
@@ -231,8 +223,6 @@ function loadDataPemangkuKepentingan() {
         <th>No</th>
         <th>Nama Unit</th>
         <th>Hubungan</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -251,12 +241,6 @@ function loadDataPemangkuKepentingan() {
                     </td>
                     <td>
                         ${d.hubungan.replace(/\n/g, "<br>")}
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanPemangkuKepentingan/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -282,8 +266,6 @@ function loadDataPenetapanAreaDampak() {
         th+= `
         <th>No</th>
         <th>Area Dampak Risiko SPBE</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -299,12 +281,6 @@ function loadDataPenetapanAreaDampak() {
                     </td>
                     <td>
                         ${d.area_dampak}
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanareaDampakTerpilih/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -330,8 +306,6 @@ function loadDataPenetapanKategori() {
         th+= `
         <th>No</th>
         <th>Kategori Risiko SPBE</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -347,12 +321,6 @@ function loadDataPenetapanKategori() {
                     </td>
                     <td>
                         ${d.kategori_risiko}
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanKategoriRisikoTerpilih/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -380,8 +348,6 @@ function loadDataKriteriaKemungkinan() {
         <th>Level Kemungkinan</th>
         <th>Presentase Kemungkinan</th>
         <th>Jumlah Frekuensi Kemungkinan Terjadinya dalam Satu Tahun</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -404,12 +370,6 @@ function loadDataKriteriaKemungkinan() {
                     <td>
                         ${d.jumlah_frekuensi}
                     </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                     <td>
-                        <a href="beriPersetujuanKriteriaKemungkinan/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
-                    </td>
                     
                 </tr>
             `
@@ -424,7 +384,7 @@ function loadDataKriteriaKemungkinan() {
         $("#table7").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["csv", "excel", "pdf", "print", "colvis"],
-            "rowsGroup": [0,1]
+            "rowsGroup": [0]
         }).buttons().container().appendTo('#table7_wrapper .col-md-6:eq(0)');
     })
 }
@@ -438,8 +398,6 @@ function loadDataKriteriaDampak() {
         <th>Jenis Risiko</th>
         <th>Level Dampak</th>
         <th>Penjelasan</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -460,12 +418,6 @@ function loadDataKriteriaDampak() {
                     </td>
                     <td>
                         ${d.penjelasan}
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanKriteriaDampak/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -493,8 +445,6 @@ function loadDataPerundangan() {
         <th>No</th>
         <th>Nama Peraturan</th>
         <th>Amanat</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -513,12 +463,6 @@ function loadDataPerundangan() {
                     </td>
                     <td>
                         ${d.amanat.replace(/\n/g, "<br>")}
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanPeraturanPerundangan/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -546,8 +490,6 @@ function loadDataSasaranSPBE() {
         <th>Sasaran SPBE</th>
         <th>Indikator Kinerja SPBE</th>
         <th>Target Kinerja SPBE</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -569,12 +511,6 @@ function loadDataSasaranSPBE() {
                     </td>
                     <td>
                         ${d.target_kinerja}
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanSasaranSpbe/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -602,8 +538,6 @@ function loadDataSeleraRisiko() {
         <th>Kategori Risiko SPBE</th>
         <th>Jenis Risiko</th>
         <th>Besaran Risiko Minimun yang Ditangani</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -622,13 +556,6 @@ function loadDataSeleraRisiko() {
                     <td>
                         ${d.besaran_risiko_min}
                     </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanSeleraRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
-                    </td>
-
                 </tr>
             `
         })
@@ -656,8 +583,6 @@ function loadDataStrukturPelaksana() {
         <th>No</th>
         <th>Role</th>
         <th>Pelaksana</th>
-        <th>Status Persetujuan</th>
-        <th>Aksi</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -676,12 +601,6 @@ function loadDataStrukturPelaksana() {
                     </td>
                     <td>
                         ${d.pelaksana}
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanStrukturPelaksana/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                 </tr>
             `
@@ -723,8 +642,6 @@ function loadDataIdentifikasiRisiko() {
         
         th = ``
         th+= `
-                <th>Aksi</th>
-                <th>Status Persetujuan</th>
                 <th>ID</th>
                 <th>Sasaran SPBE</th>
                 <th>Indikator Kinerja</th>
@@ -745,12 +662,6 @@ function loadDataIdentifikasiRisiko() {
             cell+=`
                 <tr>
                     <td>
-                        <a href="beriPersetujuanPenilaianRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
-                    </td>
-                    <td>
-                        ${d.status}
-                    </td>
-                    <td>
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
                     </td>
                     <td>
@@ -766,7 +677,7 @@ function loadDataIdentifikasiRisiko() {
                         ${d.kejadian}
                     </td>
                     <td>
-                        ${d.penyebab}
+                        ${d.penyebab.replace(/\n/g, "<br>")}
                     </td>
                     <td>
                         ${d.kategori_risiko}
@@ -790,7 +701,7 @@ function loadDataIdentifikasiRisiko() {
         $("#table13").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["csv", "excel", "pdf"],
-            "rowsGroup": [2,3]
+            "rowsGroup": [2,3], "order" :[[0,'DESC']]
         }).buttons().container().appendTo('#table13_wrapper .col-md-6:eq(0)');
     })
 }
@@ -801,7 +712,6 @@ function loadDataAnalisisRisiko() {
         
         th = ``
         th+= `
-                <th >No</th>
                 <th >ID</th>
                 <th >Sistem Pengendalian</th>
                 <th >Level Kemungkinan Risiko</th>
@@ -845,13 +755,10 @@ function loadDataAnalisisRisiko() {
             cell+=`
                 <tr>
                     <td>
-                        ${no++}
-                    </td>
-                    <td>
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
                     </td>
                      <td>
-                        ${d.sistem_pengendalian}
+                        ${d.sistem_pengendalian.replace(/\n/g, "<br>")}
                     </td>
                     <td>
                         ${d.id_level_kemungkinan }
@@ -883,7 +790,7 @@ function loadDataAnalisisRisiko() {
         $('#tabel-analisisRisiko').html(table)
         $("#table15").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf"]
+            "buttons": ["csv", "excel", "pdf"], "order" :[[0,'DESC']]
         }).buttons().container().appendTo('#table15_wrapper .col-md-6:eq(0)');
     })
 }
@@ -894,7 +801,6 @@ function loadDataEvaluasiRisiko() {
         
         th = ``
         th+= `
-                <th >No</th>
                 <th >ID</th>
                 <th >Keputusan Penanganan Risiko SPBE (Ya/Tidak)</th>
                 <th >Prioritas Risiko</th>
@@ -910,9 +816,6 @@ function loadDataEvaluasiRisiko() {
 
             cell+=`
                 <tr class="text-wrap">
-                    <td>
-                        ${no++}
-                    </td>
                     <td>
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
                     </td>
@@ -934,7 +837,7 @@ function loadDataEvaluasiRisiko() {
         $('#tabel-evaluasiRisiko').html(table)
         $("#table16").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf"]
+            "buttons": ["csv", "excel", "pdf"], "order" :[[0,'DESC']]
         }).buttons().container().appendTo('#table16_wrapper .col-md-6:eq(0)');
     })
 }
@@ -946,7 +849,6 @@ function loadDataPenangananRisiko() {
         th = ``
         th+= `
         <th>No</th>
-        <th>Aksi</th>
         <th>ID Risiko</th>
         <th>Opsi Penanganan Risiko SPBE</th>
         <th>Rencana Aksi Penanganan Risiko SPBE</th>
@@ -954,7 +856,6 @@ function loadDataPenangananRisiko() {
         <th>Jadwal Implementasi</th>
         <th>Penanggungjawab</th>
         <th>Apakah Terdapat Risiko Residual? (Ya/Tidak)</th>
-        <th>Status Persetujuan</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -967,9 +868,6 @@ function loadDataPenangananRisiko() {
                 <tr>
                     <td>
                         ${no++}
-                    </td>
-                    <td>
-                        <a href="beriPersetujuanPenangananRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Beri Persetujuan</a>
                     </td>
                     <td>
                         <a href="detailRisikoPenanganan/${d.id_risiko}" class="font-weight-bold" id="id_risiko">${'ID_'+d.id_risiko}</a>
@@ -993,9 +891,6 @@ function loadDataPenangananRisiko() {
                     </td>
                     <td>
                         ${d.risiko_residual}
-                    </td>
-                    <td>
-                        ${d.status}
                     </td>
                 </tr>
             `

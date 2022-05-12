@@ -385,11 +385,11 @@ function loadDataKriteriaKemungkinan() {
         th = ``
         th+= `
         <th>Aksi</th>
+        <th>Status Persetujuan</th>
         <th>Kategori Risiko SPBE</th>
         <th>Level Kemungkinan</th>
         <th>Presentase Kemungkinan</th>
         <th>Jumlah Frekuensi Kemungkinan Terjadinya dalam Satu Tahun</th>
-        <th>Status Persetujuan</th>
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -406,6 +406,9 @@ function loadDataKriteriaKemungkinan() {
                         <a href="detailPersetujuanKriteriaKemungkinan/${d.id_kategori_risiko}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
+                        ${d.status}
+                    </td>
+                    <td>
                         ${d.kategori_risiko}
                     </td>
                     <td>
@@ -417,9 +420,7 @@ function loadDataKriteriaKemungkinan() {
                     <td>
                         ${d.jumlah_frekuensi}
                     </td>
-                    <td>
-                        ${d.status}
-                    </td>
+                    
                     
                 </tr>
             `
@@ -434,7 +435,7 @@ function loadDataKriteriaKemungkinan() {
         $("#table7").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["csv", "excel", "pdf", "print", "colvis"],
-            "rowsGroup": [0,1]
+            "rowsGroup": [0,1,2]
         }).buttons().container().appendTo('#table7_wrapper .col-md-6:eq(0)');
     })
 }
@@ -445,11 +446,12 @@ function loadDataKriteriaDampak() {
         th = ``
         th+= `
         <th>Aksi</th>
+        <th>Status Persetujuan</th>
         <th>Area Dampak Risiko SPBE</th>
         <th>Jenis Risiko</th>
         <th>Level Dampak</th>
         <th>Penjelasan</th>
-        <th>Status Persetujuan</th>
+        
         `
         thead = `<thead>
         <tr>${th}</tr>
@@ -465,6 +467,9 @@ function loadDataKriteriaDampak() {
                         <a href="detailPersetujuanKriteriaDampak/${d.id_area_dampak}" type="button" class="badge badge-primary">Detail Persetujuan</a>
                     </td>
                     <td>
+                        ${d.status}
+                    </td>
+                    <td>
                         ${d.area_dampak}
                     </td>
                     <td>
@@ -476,9 +481,7 @@ function loadDataKriteriaDampak() {
                     <td>
                         ${d.penjelasan}
                     </td>
-                    <td>
-                        ${d.status}
-                    </td>
+                    
                 </tr>
             `
         });
@@ -492,7 +495,7 @@ function loadDataKriteriaDampak() {
         $("#table8").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["csv", "excel", "pdf", "print", "colvis"],
-            "rowsGroup": [0,1,2]
+            "rowsGroup": [0,1,2,3]
         }).buttons().container().appendTo('#table8_wrapper .col-md-6:eq(0)');
     })
 }
@@ -661,7 +664,7 @@ function loadDataSeleraRisiko() {
         $("#table11").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["csv", "excel", "pdf", "print", "colvis"],
-            "rowsGroup": [0,1]
+            "rowsGroup": [0,1,4]
         }).buttons().container().appendTo('#table11_wrapper .col-md-6:eq(0)');
     })
 }
@@ -788,7 +791,7 @@ function loadDataIdentifikasiRisiko() {
                         ${d.kejadian}
                     </td>
                     <td>
-                        ${d.penyebab}
+                        ${d.penyebab.replace(/\n/g, "<br>")}
                     </td>
                     <td>
                         ${d.kategori_risiko}
@@ -812,7 +815,7 @@ function loadDataIdentifikasiRisiko() {
         $("#table13").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["csv", "excel", "pdf"],
-            "rowsGroup": [2,3]
+            "rowsGroup": [2,3], "order" :[[2,'DESC']]
         }).buttons().container().appendTo('#table13_wrapper .col-md-6:eq(0)');
     })
 }
@@ -823,7 +826,6 @@ function loadDataAnalisisRisiko() {
         
         th = ``
         th+= `
-                <th >No</th>
                 <th >Aksi</th>
                 <th >ID</th>
                 <th >Sistem Pengendalian</th>
@@ -868,9 +870,6 @@ function loadDataAnalisisRisiko() {
             cell+=`
                 <tr>
                     <td>
-                        ${no++}
-                    </td>
-                    <td>
                         <a href="updatePenilaianRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPenilaianRisiko/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
                         <a href="detailPersetujuanPenilaianRisiko/${d.id}" type="button" class="badge badge-primary">Detail Persetujuan</a>
@@ -879,7 +878,7 @@ function loadDataAnalisisRisiko() {
                         <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
                     </td>
                      <td>
-                        ${d.sistem_pengendalian}
+                        ${d.sistem_pengendalian.replace(/\n/g, "<br>")}
                     </td>
                     <td>
                         ${d.id_level_kemungkinan }
@@ -911,7 +910,7 @@ function loadDataAnalisisRisiko() {
         $('#tabel-analisisRisiko').html(table)
         $("#table15").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf"]
+            "buttons": ["csv", "excel", "pdf"] , "order" :[[1,'DESC']]
         }).buttons().container().appendTo('#table15_wrapper .col-md-6:eq(0)');
     })
 }
@@ -922,7 +921,6 @@ function loadDataEvaluasiRisiko() {
         
         th = ``
         th+= `
-                <th >No</th>
                 <th >Aksi</th>
                 <th >ID</th>
                 <th >Keputusan Penanganan Risiko SPBE (Ya/Tidak)</th>
@@ -939,9 +937,6 @@ function loadDataEvaluasiRisiko() {
 
             cell+=`
                 <tr class="text-wrap">
-                    <td>
-                        ${no++}
-                    </td>
                     <td>
                         <a href="updatePenilaianRisiko/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusPenilaianRisiko/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
@@ -968,7 +963,7 @@ function loadDataEvaluasiRisiko() {
         $('#tabel-evaluasiRisiko').html(table)
         $("#table16").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf"]
+            "buttons": ["csv", "excel", "pdf"], "order" :[[1,'DESC']]
         }).buttons().container().appendTo('#table16_wrapper .col-md-6:eq(0)');
     })
 }

@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/css/sb-admin-2.min.css'); ?> " rel="stylesheet">
+    <link href="<?= base_url('assets/css/bootstrap-select.min.css'); ?> " rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">

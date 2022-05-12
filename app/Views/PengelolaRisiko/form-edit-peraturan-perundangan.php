@@ -46,13 +46,13 @@
                 <div class="form-group row">
                     <div class="col">
                         <label for="nama_peraturan">Nama Peraturan</label>
-                        <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan" required value="<?= $peraturanPerundangan['nama_peraturan']?>">
+                        <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan" required value="<?= $peraturanPerundanganId['nama_peraturan']?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="amanat">Amanat</label>
-                        <textarea  class="form-control" id="amanat" name="amanat" required><?= $peraturanPerundangan['amanat']?></textarea> 
+                        <textarea  class="form-control" id="amanat" name="amanat" required><?= $peraturanPerundanganId['amanat']?></textarea> 
                     </div>
                 </div>
                 <div class="col mt-5">

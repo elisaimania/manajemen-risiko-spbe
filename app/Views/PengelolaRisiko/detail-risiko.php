@@ -29,6 +29,10 @@
     			<th>Indikator Kinerja SPBE</th>
     			<td><?= $risiko[0]['indikator_kinerja_SPBE'] ?></td>
     		</tr>
+            <tr>
+                <th>Status Persetujuan</th>
+                <td><?= $risiko[0]['status'] ?></td>
+            </tr>
     		<tr>
     			<th colspan="2" class="text-center" style="background-color: #8CBA08; color: #fff">Identifikasi Risiko SPBE</th>
     		</tr> 
@@ -42,7 +46,7 @@
     		</tr>
     		<tr>
     			<th>Penyebab</th>
-    			<td><?= $risiko[0]['penyebab'] ?></td>
+    			<td><?= preg_replace('/\r\n|\r|\n/', "<br>", $risiko[0]['penyebab']) ?></td>
     		</tr>
     		<tr>
     			<th>Kategori Risiko SPBE</th>
@@ -61,7 +65,7 @@
     		</tr>
     		<tr>
     			<th>Sistem Pengendalian</th>
-    			<td><?= $risiko[0]['sistem_pengendalian'] ?></td>
+    			<td><?= preg_replace('/\r\n|\r|\n/', "<br>", $risiko[0]['sistem_pengendalian']) ?></td>
     		</tr>
     		<tr>
     			<th>Level Kemungkinan Risiko SPBE</th>

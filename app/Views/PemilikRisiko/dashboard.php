@@ -61,7 +61,7 @@ a:hover {
 
 <div class="mb-2">
     <h1 class="h3  text-gray-800 font-weight-bold" style="text-transform: uppercase;">
-        <a href="<?= base_url('PemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
+        <a href="<?= base_url('pemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
     </h1>
     <ol class="breadcrumb px-3 py-2 rounded mb-0">
         <li class="breadcrumb-item active">

@@ -14,13 +14,13 @@
         border: 2px solid #d1d3e2;
         border-radius: 20px;
 }
-    .btn.btn-light{
+    .btn.btn-dark{
         background-color: #C4C4C4;
         border-color: #C4C4C4;
         color: black;
 }
 
-    .btn.btn-light:hover{
+    .btn.btn-dark:hover{
         background-color: #D3D3D3;
         border-color: #D3D3D3;
 }
@@ -57,7 +57,7 @@
                     <label for="id_kategori_risiko" class=" font-weight-bold">Pilih Kategori Risiko SPBE</label>
                     <select class="form-control" id="id_kategori_risiko" name="id_kategori_risiko" required>
                         <?php foreach ($daftarKategoriRisiko as $r ) : ?>
-                            <option value="<?= $r['id_kategori_risiko']; ?>" <?= ( $kriteriaKemungkinan[0]['id_kategori_risiko']==$r['id_kategori_risiko']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
+                            <option value="<?= $r['id_kategori_risiko']; ?>" <?= ( $kriteriaKemungkinanId[0]['id_kategori_risiko']==$r['id_kategori_risiko']) ? 'selected' : ''; ?> ><?= $r['kategori_risiko']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -71,23 +71,23 @@
                         <label for="presentase_kemungkinan1">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan1')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan1')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan1')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan1')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan1')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan1')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan1')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan1')">&ge;</button>
                         </div> 
-                        <input type="text" class="form-control" id="presentase_kemungkinan1" name="presentase_kemungkinan1" value="<?= $kriteriaKemungkinan[0]['presentase_kemungkinan']; ?>" required>
+                        <input type="text" class="form-control" id="presentase_kemungkinan1" name="presentase_kemungkinan1" value="<?= $kriteriaKemungkinanId[0]['presentase_kemungkinan']; ?>" required>
                     </div>
                     <div class="col-sm-6">
                         <label for="jumlah_frekuensi1">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi1')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi1')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi1')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi1')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi1')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi1')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi1')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi1')">&ge;</button>
                         </div>
-                        <input type="text" class="form-control" id="jumlah_frekuensi1" name="jumlah_frekuensi1" value="<?= $kriteriaKemungkinan[0]['jumlah_frekuensi']; ?>" required>
+                        <input type="text" class="form-control" id="jumlah_frekuensi1" name="jumlah_frekuensi1" value="<?= $kriteriaKemungkinanId[0]['jumlah_frekuensi']; ?>" required>
                     </div>
                 </div>
 
@@ -100,23 +100,23 @@
                         <label for="presentase_kemungkinan2">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan2')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan2')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan2')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan2')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan2')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan2')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan2')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan2')">&ge;</button>
                         </div> 
-                        <input type="text" class="form-control" id="presentase_kemungkinan2" name="presentase_kemungkinan2" value="<?= $kriteriaKemungkinan[1]['presentase_kemungkinan']; ?>" required>
+                        <input type="text" class="form-control" id="presentase_kemungkinan2" name="presentase_kemungkinan2" value="<?= $kriteriaKemungkinanId[1]['presentase_kemungkinan']; ?>" required>
                     </div>
                     <div class="col-sm-6">
                         <label for="jumlah_frekuensi2">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi2')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi2')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi2')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi2')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi2')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi2')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi2')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi2')">&ge;</button>
                         </div>
-                        <input type="text" class="form-control" id="jumlah_frekuensi2" name="jumlah_frekuensi2" value="<?= $kriteriaKemungkinan[1]['jumlah_frekuensi']; ?>" required>
+                        <input type="text" class="form-control" id="jumlah_frekuensi2" name="jumlah_frekuensi2" value="<?= $kriteriaKemungkinanId[1]['jumlah_frekuensi']; ?>" required>
                     </div>
                 </div>
 
@@ -129,23 +129,23 @@
                         <label for="presentase_kemungkinan3">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan3')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan3')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan3')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan3')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan3')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan3')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan3')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan3')">&ge;</button>
                         </div> 
-                        <input type="text" class="form-control" id="presentase_kemungkinan3" name="presentase_kemungkinan3" value="<?= $kriteriaKemungkinan[2]['presentase_kemungkinan']; ?>" required>
+                        <input type="text" class="form-control" id="presentase_kemungkinan3" name="presentase_kemungkinan3" value="<?= $kriteriaKemungkinanId[2]['presentase_kemungkinan']; ?>" required>
                     </div>
                     <div class="col-sm-6">
                         <label for="jumlah_frekuensi3">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi3')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi3')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi3')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi3')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi3')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi3')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi3')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi3')">&ge;</button>
                         </div>
-                        <input type="text" class="form-control" id="jumlah_frekuensi3" name="jumlah_frekuensi3" value="<?= $kriteriaKemungkinan[2]['jumlah_frekuensi']; ?>" required>
+                        <input type="text" class="form-control" id="jumlah_frekuensi3" name="jumlah_frekuensi3" value="<?= $kriteriaKemungkinanId[2]['jumlah_frekuensi']; ?>" required>
                     </div>
                 </div>
 
@@ -158,23 +158,23 @@
                         <label for="presentase_kemungkinan4">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan4')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan4')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan4')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan4')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan4')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan4')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan4')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan4')">&ge;</button>
                         </div> 
-                        <input type="text" class="form-control" id="presentase_kemungkinan4" name="presentase_kemungkinan4" value="<?= $kriteriaKemungkinan[3]['presentase_kemungkinan']; ?>" required>
+                        <input type="text" class="form-control" id="presentase_kemungkinan4" name="presentase_kemungkinan4" value="<?= $kriteriaKemungkinanId[3]['presentase_kemungkinan']; ?>" required>
                     </div>
                     <div class="col-sm-6">
                         <label for="jumlah_frekuensi4">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi4')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi4')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi4')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi4')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi4')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi4')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi4')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi4')">&ge;</button>
                         </div>
-                        <input type="text" class="form-control" id="jumlah_frekuensi4" name="jumlah_frekuensi4" value="<?= $kriteriaKemungkinan[3]['jumlah_frekuensi']; ?>" required>
+                        <input type="text" class="form-control" id="jumlah_frekuensi4" name="jumlah_frekuensi4" value="<?= $kriteriaKemungkinanId[3]['jumlah_frekuensi']; ?>" required>
                     </div>
                 </div>
 
@@ -187,23 +187,23 @@
                         <label for="presentase_kemungkinan5">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan5')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan5')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan5')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan5')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan5')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan5')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan5')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan5')">&ge;</button>
                         </div> 
-                        <input type="text" class="form-control" id="presentase_kemungkinan5" name="presentase_kemungkinan5" value="<?= $kriteriaKemungkinan[4]['presentase_kemungkinan']; ?>" required>
+                        <input type="text" class="form-control" id="presentase_kemungkinan5" name="presentase_kemungkinan5" value="<?= $kriteriaKemungkinanId[4]['presentase_kemungkinan']; ?>" required>
                     </div>
                     <div class="col-sm-6">
                         <label for="jumlah_frekuensi5">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi5')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi5')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi5')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi5')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi5')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi5')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi5')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi5')">&ge;</button>
                         </div>
-                        <input type="text" class="form-control" id="jumlah_frekuensi5" name="jumlah_frekuensi5" value="<?= $kriteriaKemungkinan[4]['jumlah_frekuensi']; ?>" required>
+                        <input type="text" class="form-control" id="jumlah_frekuensi5" name="jumlah_frekuensi5" value="<?= $kriteriaKemungkinanId[4]['jumlah_frekuensi']; ?>" required>
                     </div>
                 </div>
                 <div class="col mt-5">

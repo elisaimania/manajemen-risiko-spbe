@@ -15,13 +15,13 @@
         border: 2px solid #d1d3e2;
         border-radius: 20px;
 }
-    .btn.btn-light{
+    .btn.btn-dark{
         background-color: #C4C4C4;
         border-color: #C4C4C4;
         color: black;
 }
 
-    .btn.btn-light:hover{
+    .btn.btn-dark:hover{
         background-color: #D3D3D3;
         border-color: #D3D3D3;
 }
@@ -74,10 +74,10 @@
                         <label for="presentase_kemungkinan1">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan1')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan1')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan1')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan1')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan1')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan1')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan1')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan1')">&ge;</button>
                         </div> 
                         <input type="text" class="form-control" id="presentase_kemungkinan1" name="presentase_kemungkinan1" value="<?= old('presentase_kemungkinan1'); ?>" required>
                     </div>
@@ -85,10 +85,10 @@
                         <label for="jumlah_frekuensi1">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi1')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi1')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi1')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi1')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi1')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi1')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi1')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi1')">&ge;</button>
                         </div>
                         <input type="text" class="form-control" id="jumlah_frekuensi1" name="jumlah_frekuensi1" value="<?= old('jumlah_frekuensi1'); ?>" required>
                     </div>
@@ -103,10 +103,10 @@
                         <label for="presentase_kemungkinan2">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan2')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan2')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan2')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan2')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan2')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan2')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan2')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan2')">&ge;</button>
                         </div> 
                         <input type="text" class="form-control" id="presentase_kemungkinan2" name="presentase_kemungkinan2" value="<?= old('presentase_kemungkinan2'); ?>" required>
                     </div>
@@ -114,10 +114,10 @@
                         <label for="jumlah_frekuensi2">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi2')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi2')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi2')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi2')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi2')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi2')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi2')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi2')">&ge;</button>
                         </div>
                         <input type="text" class="form-control" id="jumlah_frekuensi2" name="jumlah_frekuensi2" value="<?= old('jumlah_frekuensi2'); ?>" required>
                     </div>
@@ -132,10 +132,10 @@
                         <label for="presentase_kemungkinan3">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan3')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan3')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan3')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan3')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan3')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan3')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan3')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan3')">&ge;</button>
                         </div> 
                         <input type="text" class="form-control" id="presentase_kemungkinan3" name="presentase_kemungkinan3" value="<?= old('presentase_kemungkinan3'); ?>" required>
                     </div>
@@ -143,10 +143,10 @@
                         <label for="jumlah_frekuensi3">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi3')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi3')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi3')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi3')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi3')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi3')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi3')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi3')">&ge;</button>
                         </div>
                         <input type="text" class="form-control" id="jumlah_frekuensi3" name="jumlah_frekuensi3" value="<?= old('jumlah_frekuensi3'); ?>" required>
                     </div>
@@ -161,10 +161,10 @@
                         <label for="presentase_kemungkinan4">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan4')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan4')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan4')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan4')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan4')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan4')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan4')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan4')">&ge;</button>
                         </div> 
                         <input type="text" class="form-control" id="presentase_kemungkinan4" name="presentase_kemungkinan4" value="<?= old('presentase_kemungkinan4'); ?>" required>
                     </div>
@@ -172,10 +172,10 @@
                         <label for="jumlah_frekuensi4">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi4')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi4')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi4')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi4')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi4')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi4')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi4')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi4')">&ge;</button>
                         </div>
                         <input type="text" class="form-control" id="jumlah_frekuensi4" name="jumlah_frekuensi4" value="<?= old('jumlah_frekuensi4'); ?>" required>
                     </div>
@@ -190,10 +190,10 @@
                         <label for="presentase_kemungkinan5">Presentase Kemungkinan
                         </label> 
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan5')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan5')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan5')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan5')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','presentase_kemungkinan5')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','presentase_kemungkinan5')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','presentase_kemungkinan5')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','presentase_kemungkinan5')">&ge;</button>
                         </div> 
                         <input type="text" class="form-control" id="presentase_kemungkinan5" name="presentase_kemungkinan5" value="<?= old('presentase_kemungkinan5'); ?>" required>
                     </div>
@@ -201,10 +201,10 @@
                         <label for="jumlah_frekuensi5">Jumlah Frekuensi dalam Satu Tahun
                         </label>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi5')">&lt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi5')">&gt;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi5')">&le;</button>
-                            <button type="button" class="btn btn-light font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi5')">&ge;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('<','jumlah_frekuensi5')">&lt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('>','jumlah_frekuensi5')">&gt;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≤','jumlah_frekuensi5')">&le;</button>
+                            <button type="button" class="btn btn-dark font-weight-bold text-center" style="border-radius: 10px;" onclick="insertInto('≥','jumlah_frekuensi5')">&ge;</button>
                         </div>
                         <input type="text" class="form-control" id="jumlah_frekuensi5" name="jumlah_frekuensi5" value="<?= old('jumlah_frekuensi5'); ?>" required>
                     </div>

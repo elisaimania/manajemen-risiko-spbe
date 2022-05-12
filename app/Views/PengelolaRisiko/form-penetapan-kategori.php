@@ -14,7 +14,8 @@
 		border: 2px solid #d1d3e2;
 		border-radius: 20px;
 
-	}
+}
+    
 </style>
 
 <div class="mb-2">
@@ -45,7 +46,7 @@
         	<form class="user" method="post" action="">
                 <div class="form-group">
                     <label for="id_kategori_risiko">Pilih Kategori Risiko</label>
-                    <select class="form-control" id="id_kategori_risiko" name="id_kategori_risiko" required>
+                    <select class="form-control selectpicker" id="id_kategori_risiko" name="id_kategori_risiko[]" multiple required data-live-search="true">
                         <option value=""></option>
                         <?php foreach ($kategoriRisiko as $r ) : ?>
                             <option value="<?= $r['id']; ?>"><?= $r['kategori_risiko']; ?></option>

@@ -56,11 +56,11 @@ a {
 
 <div class="mb-2">
     <h1 class="h3  text-gray-800 font-weight-bold" style="text-transform: uppercase;">
-        <a href="<?= base_url('PemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
+        <a href="<?= base_url('pemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
     </h1>
     <ol class="breadcrumb px-3 py-2 rounded mb-0">
         <li class="breadcrumb-item active">
-            <a href="<?= base_url('PemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
+            <a href="<?= base_url('pemilikRisiko'). '/'. $link ?>"><?= $title ?></a>
         </li>
         <li class="breadcrumb-item">
             <?= $subtitle ?>
@@ -74,16 +74,6 @@ a {
 <!-- DataTales Example -->
 <div class="card shadow  m-5">
     <div class="card-body">
-        <div class="form-group">
-             <div class="row">
-                <div class="col">
-                </div>
-                <div class="col">
-                    <a href="<?= base_url('PemilikRisiko/inputInformasiUmum'); ?>" class="btn float-right" >Tambah Data</a>
-                    <a href="<?= base_url('PemilikRisiko/importInformasiUmum'); ?>" class="btn float-right mr-3" >Import Excel</a>
-                </div>
-            </div>
-        </div>
         <div class="table-responsive" id="tabel-informasiUmum">
         </div>
     </div>

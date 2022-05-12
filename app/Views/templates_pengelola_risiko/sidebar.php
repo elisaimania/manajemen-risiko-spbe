@@ -73,7 +73,7 @@
  <ul class="navbar-nav  sidebar sidebar-dark accordion nav-pills" id="accordionSidebar" style="background-color: #8CBA08;" >
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center my-4" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center my-4" href="<?= base_url('pengelolaRisiko/dashboard'); ?>">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class=" fas fa-solid fa-book"></i>
         </div>
@@ -114,7 +114,7 @@
 
     <!-- Nav Item - Pages  Menu -->
     <li class="nav-item <?= ($active==='Penilaian Risiko SPBE') ? 'active' : ''; ?>">
-        <a class="nav-link" href="<?= base_url('pengelolaRisiko/penilaianRisiko'); ?>" >
+        <a class="nav-link <?= (empty($seleraRisiko)|| sizeof(array_unique(array_column($seleraRisiko, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih) || empty($kriteriaKemungkinan) || empty($kriteriaDampak) || empty($areaDampakTerpilih) || empty($kategoriRisikoTerpilih) || empty($peraturanPerundangan) || empty($pemangkuKepentingan) || empty($strukturPelaksana) || empty($sasaranSPBE) || empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('pengelolaRisiko/penilaianRisiko'); ?>" >
             <i class="fas fa-solid fa-database"></i>
             <span>Penilaian Risiko (3.0)</span>
         </a>
@@ -124,7 +124,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item <?= ($active==='Penanganan Risiko SPBE') ? 'active' : ''; ?>">
-        <a class="nav-link" href="<?= base_url('pengelolaRisiko/penangananRisiko'); ?>" >
+        <a class="nav-link <?= (empty($seleraRisiko)|| empty($penilaianRisiko) || empty($kriteriaKemungkinan) || empty($kriteriaDampak) || empty($areaDampakTerpilih) || empty($kategoriRisikoTerpilih) || empty($peraturanPerundangan) || empty($pemangkuKepentingan) || empty($strukturPelaksana) || empty($sasaranSPBE) || empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('pengelolaRisiko/penangananRisiko'); ?>" >
             <i class="fas fa-solid fa-database"></i>
             <span>Penanganan Risiko (4.0)</span></a>
     </li>

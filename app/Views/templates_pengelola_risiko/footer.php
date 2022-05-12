@@ -52,6 +52,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url('assets/js/sb-admin-2.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
 
     <!-- Page level plugins -->
     <script src="<?= base_url('assets/vendor/chart.js/Chart.min.js'); ?>"></script>
@@ -80,7 +81,9 @@
     <!-- Stepper JavaScript -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
     <script src="<?= base_url('assets/datatables-rowgroup/js/dataTables.rowsGroup.js'); ?>"></script>
-
+    <script type="text/javascript">
+        $('select').selectpicker();
+    </script>
  
     
 </body>

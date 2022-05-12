@@ -59,7 +59,7 @@ a:hover {
 
 <div class="mb-2">
     <h1 class="h3  text-gray-800 font-weight-bold" style="text-transform: uppercase;">
-        <a href="<?= base_url('admin'). '/'. $link ?>"><?= $title ?></a>
+        <a href="<?= base_url('pengelolaRisiko'). '/'. $link ?>"><?= $title ?></a>
     </h1>
     <ol class="breadcrumb px-3 py-2 rounded mb-0">
         <li class="breadcrumb-item active">
@@ -91,34 +91,28 @@ a:hover {
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card shadow  my-5 mx-2">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-            <h6 class="m-0 font-weight-bold ">Analisis Risiko SPBE (3.0)</h6>               
-        </div>
-        <div class="card-body">
-            <div class="table-responsive" id="tabel-analisisRisiko">
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card shadow  my-5 mx-2">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-            <h6 class="m-0 font-weight-bold ">Evaluasi Risiko SPBE (3.0)</h6>                
-        </div>
-        <div class="card-body">
-            <div class="table-responsive" id="tabel-evaluasiRisiko">
-            </div>
-        </div>
-    </div>
 
+<div class="card shadow  my-5 mx-2">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
+        <h6 class="m-0 font-weight-bold ">Analisis Risiko SPBE (3.0)</h6>               
     </div>
-    
-
-    
+    <div class="card-body">
+        <div class="table-responsive" id="tabel-analisisRisiko">
+        </div>
+    </div>
 </div>
+<div class="card shadow  my-5 mx-2">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
+        <h6 class="m-0 font-weight-bold ">Evaluasi Risiko SPBE (3.0)</h6>                
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" id="tabel-evaluasiRisiko">
+        </div>
+    </div>
+</div>
+
+ 
+    
 
 
 <?= $this->endSection(); ?>
