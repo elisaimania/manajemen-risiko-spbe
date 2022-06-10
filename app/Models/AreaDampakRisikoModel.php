@@ -24,7 +24,7 @@ class AreaDampakRisikoModel extends Model
 
     	$query = "SELECT id, area_dampak
         FROM area_dampak_risiko_spbe
-    	WHERE area_dampak_risiko_spbe.id NOT IN (SELECT area_dampak_risiko_spbe_terpilih.id_area_dampak FROM area_dampak_risiko_spbe_terpilih)";
+    	WHERE area_dampak_risiko_spbe.id NOT IN (SELECT area_dampak_risiko_spbe_terpilih.id_area_dampak FROM area_dampak_risiko_spbe_terpilih WHERE id_upr = ".session()->id_upr.")";
 
     	return $db->query($query)->getResultArray();
     }

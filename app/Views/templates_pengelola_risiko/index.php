@@ -35,15 +35,13 @@ a:hover {
 
 .btn.btn-light{
     background-color: #fff;
-    color: #777778;
-    border: 2px solid #d1d3e2;
-    border-radius: 20px;
+    color: #777779;
+    border-color: #d1d3e2;
 }
 
 .btn.btn-light:hover{
     background-color: #fff;
-    border: 2px solid #d1d3e2;
-    border-radius: 20px;
+
 }
 
 </style>

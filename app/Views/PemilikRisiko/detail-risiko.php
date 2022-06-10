@@ -20,7 +20,18 @@
 <div class="row justify-content-center">
 <div class="card shadow  m-5  col-sm-8 ">
     <div class="card-body" >
-    	<table class="table table-bordered" style="color: black">
+
+        <div class="form-group">
+             <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <input type="button" class="btn btn-secondary float-right mr-3" id="btnExport" value="Download PDF" onclick="generate()" />
+                </div>
+            </div>
+        </div>
+
+    	<table class="table table-bordered" style="color: black" id="table-risiko">
     		<tr>
     			<th>Sasaran SPBE</th>
     			<td><?= $risiko[0]['sasaran_SPBE'] ?></td>
@@ -148,6 +159,44 @@
                 presentase_kemungkinan = 'Presentase Kemungkinan terjadi ' + presentase_kemungkinan;
             }
     document.getElementById("penjelasan_kemungkinan").innerHTML=presentase_kemungkinan;
+
+function generate() {  
+    var doc = new jsPDF('p', 'pt', 'letter');  
+    var htmlstring = '';  
+    var tempVarToCheckPageHeight = 0;  
+    var pageHeight = 0;  
+    pageHeight = doc.internal.pageSize.height;  
+    specialElementHandlers = {  
+        // element with id of "bypass" - jQuery style selector  
+        '#bypassme': function(element, renderer) {  
+            // true = "handled elsewhere, bypass text extraction"  
+            return true  
+        }  
+    };  
+    margins = {  
+        top: 150,  
+        bottom: 60,  
+        left: 40,  
+        right: 40,  
+        width: 600  
+    };  
+    var y = 20;  
+    doc.setLineWidth(2);    
+    doc.autoTable({html: '#table-risiko', 
+        theme: 'grid',
+        columnStyles: { 0: { halign: 'left', fontStyle: 'bold' } },
+        willDrawCell: data => {
+        if (data.row.index ===3 || data.row.index ===10 || data.row.index ===18) {
+            doc.setFontStyle("bold");
+            data.cell.styles.halign = 'center';
+            doc.setFillColor("#8CBA08");
+            doc.setTextColor(255,255,255);
+
+        }
+    }
+    });
+    doc.save('Detail-Risiko.pdf');  
+}  
 
 
 </script>

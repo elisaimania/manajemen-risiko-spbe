@@ -35,7 +35,8 @@ class Pengguna extends Migration
 			],
             'email'      => [
 				'type'           => 'VARCHAR',
-				'constraint'     => 100
+				'constraint'     => 100,
+				'null'           => true
 			],
 			'id_upr'       => [
 				'type'           => 'INT',

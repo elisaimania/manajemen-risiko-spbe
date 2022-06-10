@@ -41,10 +41,22 @@ class Admin extends BaseController
             'active'    => 'Daftar Pengguna',
             'link'      => 'daftarPengguna'
         ];
-
-        
+        //var_dump(session()->usernama);
         return view('admin/daftar-pengguna', $data);
         
+    }
+
+    public function profilPengguna(){
+
+        $data = [
+            'title'     => 'Profil Pengguna',
+            'script'    => 'admin',
+            'template'  => 'templates_admin',
+            'active'    => '',
+            'link'      => 'profilPengguna'
+        ];
+        
+        return view('profil-pengguna', $data);
     }
 
     public function daftarKategori(){
@@ -115,9 +127,7 @@ class Admin extends BaseController
 
             $rules = [
                 'username' => 'required|is_unique[pengguna.username]',
-                'email' => 'required|is_unique[pengguna.email]',
                 'nama_pengguna' => 'required',
-                'password' => 'min_length[8]',
                 'konfirmasi_password' => 'matches[password]' 
             ];
 

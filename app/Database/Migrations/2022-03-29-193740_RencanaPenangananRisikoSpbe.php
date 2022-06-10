@@ -34,10 +34,18 @@ class RencanaPenangananRisikoSpbe extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => 255
             ],
-            'jadwal_mulai'      => [
+            'jenis_periode_implementasi'      => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 50
+            ],
+            'periode_implementasi'      => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 50
+            ],
+            'tanggal_mulai'      => [
 				'type'           => 'DATE'
             ],
-            'jadwal_selesai'      => [
+            'tanggal_selesai'      => [
 				'type'           => 'DATE'
             ],
             'penanggungjawab'      => [

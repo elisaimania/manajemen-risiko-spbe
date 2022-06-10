@@ -60,7 +60,7 @@
     <script src="<?= base_url('assets/js/demo/chart-area-demo.js'); ?>"></script>
     <script src="<?= base_url('assets/js/demo/chart-pie-demo.js'); ?>"></script>
     
-    <script src="<?= base_url('assets/my-assets/scripts/' . $script . '.js'); ?>"></script>
+    <script src="<?= base_url('assets/my-assets/scripts/koordinator-risiko/' . $script . '.js'); ?>"></script>
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/js/demo/datatables-demo.js'); ?>"></script>
@@ -79,6 +79,8 @@
     <script src="<?= base_url('assets/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
     <!-- Stepper JavaScript -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
     <script src="<?= base_url('assets/datatables-rowgroup/js/dataTables.rowsGroup.js'); ?>"></script>
 
  

@@ -22,12 +22,12 @@
 .table{
     color: black;
 }
-.btn.float-right{
+.btn.float-right.hijau{
     background-color: #8CBA08; 
     border-color: #8CBA08; 
     color:#fff;
 }
-.btn.float-right:hover{
+.btn.float-right.hijau:hover{
     background-color:#A1D70A;
 }
 
@@ -79,7 +79,8 @@ a {
                 <div class="col">
                 </div>
                 <div class="col">
-                    <a href="<?= base_url('pengelolaRisiko/inputKategoriRisikoTerpilih'); ?>" class="btn float-right" >Tambah Kategori</a>
+                    <a href="<?= base_url('pengelolaRisiko/inputKategoriRisikoTerpilih'); ?>" class="btn float-right hijau" >Tambah Kategori</a>
+                    <a href="<?= base_url('pengelolaRisiko/hapusKategoriRisikoTerpilih'); ?>" class="btn btn-danger float-right mr-3" onclick="return confirm('Apakah Anda yakin untuk menghapus semua data ini?')">Hapus Semua Data</a>
                 </div>
             </div>
         </div>

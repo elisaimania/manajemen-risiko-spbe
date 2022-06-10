@@ -1,6 +1,6 @@
 <?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
-<?php $val = service('validation') ?>
+<?php $val = service('validation') ?> 
 <style>
 	.btn.float-left.tambah {
     background-color: #8CBA08; 
@@ -10,13 +10,7 @@
 	.btn.float-left.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
 
-	}
-    .form-control[readonly]{
-        background-color: #fff;
-}
 
 
 </style>
@@ -30,7 +24,7 @@
             <a href="<?= base_url('pengelolaRisiko'). '/'. $link ?>"><?= $title ?></a>
         </li>
         <li class="breadcrumb-item active">
-            <a href="<?= base_url('pengelolaRisiko'). '/'. $sublink ?>"><?= $subtitle ?></a>
+            <?= $subtitle ?>
         </li>
         <li class="breadcrumb-item active">
             <?= $subsubtitle ?>
@@ -49,13 +43,14 @@
         	<form class="user" method="post" action="" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="col">
-                        <a class="btn btn-secondary mb-3" href="<?= base_url('pengelolaRisiko/downloadTemplateExcel/'. $template); ?>" >Download Template</a>
+                        <a class="btn  btn-secondary mb-5" href="<?= base_url('pengelolaRisiko/downloadTemplateExcel/'. $template); ?>" >Download Template</a>
                     </div>
                     <div class="col">
                     	<input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx">
                         <button type="submit" class="btn tambah float-left mt-3" name="tambah" style=" width: 120px; height: 40px;">
                             Import
                 	    </button>
+                        <a href="<?= base_url('pengelolaRisiko'). '/'. $sublink; ?>" class="btn  btn-secondary float-left m-3" style="width: 120px; height: 40px;">Batal</a>
                     </div>
                 </div>
             </form>                

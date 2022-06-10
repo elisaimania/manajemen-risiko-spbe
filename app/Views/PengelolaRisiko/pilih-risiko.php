@@ -75,7 +75,7 @@ a {
 <div class="card shadow  m-5">
     <div class="card-body">
         <div class="card-header py-3 mb-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-            <h6 class="m-0 font-weight-bold ">Pilih risiko yang akan ditangani</h6>                  
+            <h6 class="m-0 font-weight-bold ">Pilih risiko</h6>                  
         </div>
         <div class="table-responsive" id="tabel-pilihRisiko">
         </div>

@@ -24,6 +24,7 @@ use App\Models\PenilaianRisikoModel;
 use App\Models\PenangananRisikoModel;
 use App\Models\OpsiPenangananModel;
 use App\Models\UPRSPBEModel;
+use App\Models\PemantauanRisikoModel;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\API\ResponseTrait;
 use PHPExcel;
@@ -55,6 +56,7 @@ class PengelolaRisiko extends BaseController
     public $penangananRisikoModel = null;
     public $opsiPenangananModel = null;
     public $uprSPBEModel = null;
+    public $pemantauanRisikoModel = null;
 
     public function __construct(){
 
@@ -82,6 +84,7 @@ class PengelolaRisiko extends BaseController
         $this->penangananRisikoModel = new PenangananRisikoModel();
         $this->opsiPenangananModel = new OpsiPenangananModel();
         $this->uprSPBEModel = new UPRSPBEModel();
+        $this->pemantauanRisikoModel = new PemantauanRisikoModel();
 
         $this->informasiUmum = $this->informasiUmumModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
         $this->sasaranSPBE = $this->sasaranSPBEModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
@@ -90,11 +93,12 @@ class PengelolaRisiko extends BaseController
         $this->peraturanPerundangan = $this->peraturanPerundanganModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
         $this->kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
         $this->areaDampakTerpilih = $this->areaDampakRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
-        $this->kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
-        $this->kriteriaDampak = $this->kriteriaDampakModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
-        $this->seleraRisiko = $this->seleraRisikoModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
-        $this->penilaianRisiko = $this->penilaianRisikoModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['kriteria_kemungkinan_risiko_spbe.id_upr'=>session()->id_upr, 'kriteria_kemungkinan_risiko_spbe.id_status_persetujuan' => 2])->getKriteriaKemungkinan();
+        $this->kriteriaDampak = $this->kriteriaDampakModel->where(['kriteria_dampak_risiko_spbe.id_upr'=>session()->id_upr, 'kriteria_dampak_risiko_spbe.id_status_persetujuan' => 2])->getKriteriaDampak();
+        $this->seleraRisiko = $this->seleraRisikoModel->where(['selera_risiko_spbe.id_upr'=>session()->id_upr, 'selera_risiko_spbe.id_status_persetujuan' => 2])->getSelera();
+        $this->penilaianRisiko = $this->penilaianRisikoModel->getPenilaianSetuju();
         $this->kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->where(['id_upr'=>session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
+        $this->penangananRisiko = $this->penangananRisikoModel->getPenangananSetuju();
 
     }
 
@@ -116,11 +120,38 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
     	return view('PengelolaRisiko/dashboard',$data);
         
+    }
+
+    //Menampilkan profil pengguna
+    public function profilPengguna(){
+
+        $data = [
+            'title'     => 'Profil Pengguna',
+            'script'    => 'pengelola-risiko',
+            'template'  => 'templates_pengelola_risiko',
+            'active'    => '',
+            'link'      => 'profilPengguna',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+        
+        return view('profil-pengguna', $data);
     }
 
 //Menampilkan halaman penentapan konteks
@@ -141,10 +172,10 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
         
-        var_dump( sizeof(array_unique(array_column($this->kriteriaDampak, 'id_area_dampak')))!=sizeof($this->areaDampakTerpilih) );
         return view('PengelolaRisiko/penetapan-konteks',$data);
     }
 
@@ -154,7 +185,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
             'subtitle'  =>  '',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'penilaian-risiko',
             'active'    => 'Penilaian Risiko SPBE',
             'link'      => 'penilaianRisiko',
             'informasiUmum' => $this->informasiUmum,
@@ -167,7 +198,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/penilaian-risiko',$data);
@@ -179,7 +211,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subtitle'  =>  '',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'penanganan-risiko',
             'active'    => 'Penanganan Risiko SPBE',
             'link'      => 'penangananRisiko',
             'informasiUmum' => $this->informasiUmum,
@@ -192,10 +224,37 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/penanganan-risiko', $data);
+    }
+
+//Menampilkan halaman pemanataun risiko yang berisi tabel risiko yang telah ditangani
+    public function pemantauanRisiko(){
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  =>  '',
+            'script'    => 'pemantauan-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+        return view('PengelolaRisiko/pemantauan-risiko', $data);
     }
 
     //Lihat detail risiko
@@ -220,7 +279,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-risiko' , $data);
@@ -232,7 +292,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Inventarisasi Informasi Umum (2.1)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'informasi-umum',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -245,7 +305,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/informasi-umum',$data);
@@ -314,7 +375,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-informasi-umum' , $data);
@@ -404,7 +466,6 @@ class PengelolaRisiko extends BaseController
                     $date_mulai = Time::createFromFormat('Y-m-d', $kolom4);
                     $date_selesai = Time::createFromFormat('Y-m-d', $kolom5);
                     if(!($date_mulai->isBefore($date_selesai))){
-                        var_dump($date_selesai);
         	            continue;
                     }
 
@@ -449,7 +510,6 @@ class PengelolaRisiko extends BaseController
             </div>';
 
             $flash = session()->setFlashdata('flash', $flash);
-            var_dump($date_selesai);
             return redirect()->to(base_url('pengelolaRisiko/informasiUmum'));
 
         }
@@ -473,7 +533,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -503,7 +564,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
@@ -543,9 +605,11 @@ class PengelolaRisiko extends BaseController
 
     public function hapusInformasiUmum($id = null)
     {
-        
-        $delete = $this->informasiUmumModel->where('id', $id)
-        ->delete();
+        if ($id==null) {
+            $delete = $this->informasiUmumModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+            $delete = $this->informasiUmumModel->where('id', $id)->delete();
+        }
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Informasi umum berhasil dihapus!
@@ -563,7 +627,7 @@ class PengelolaRisiko extends BaseController
     public function detailPersetujuanInformasiUmum($id){
 
         $infoUmum = $this->informasiUmumModel->find($id);
-        $status = $this->statusPersetujuanModel->where('id',$informasiUmum['id_status_persetujuan'])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$infoUmum['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -585,7 +649,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
         return view('PengelolaRisiko/detail-persetujuan' , $data);
     }
@@ -595,7 +660,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Sasaran SPBE (2.2)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'sasaran-spbe',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -608,7 +673,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/sasaran-SPBE',$data);
@@ -663,7 +729,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-sasaran-SPBE' , $data);
@@ -795,7 +862,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -825,7 +893,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
@@ -853,10 +922,13 @@ class PengelolaRisiko extends BaseController
 
     public function hapusSasaranSPBE($id = null)
     {
+        if ($id==null) {
+            $delete = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+            $delete = $this->sasaranSPBEModel->where('id', $id)->delete();
+        }
         
-        $delete = $this->sasaranSPBEModel->where('id', $id)
-        ->delete();
-
+        
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -873,7 +945,7 @@ class PengelolaRisiko extends BaseController
     public function detailPersetujuanSasaranSPBE($id){
 
         $sasaranSpbeId = $this->sasaranSPBEModel->find($id);
-        $status = $this->statusPersetujuanModel->where('id',$sasaranSpbe['id_status_persetujuan'])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$sasaranSpbeId['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -895,7 +967,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -906,7 +979,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penentuan Struktur Pelaksana (2.3)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'struktur-pelaksana',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -919,7 +992,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/struktur-pelaksana',$data);
@@ -976,7 +1050,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-struktur-pelaksana' , $data);
@@ -1115,7 +1190,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -1145,7 +1221,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
@@ -1173,9 +1250,11 @@ class PengelolaRisiko extends BaseController
 
     public function hapusStrukturPelaksana($id = null)
     {
-        
-        $delete = $this->strukturPelaksanaModel->where('id', $id)
-        ->delete();
+        if ($id==null) {
+            $delete = $this->strukturPelaksanaModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+            $delete = $this->strukturPelaksanaModel->where('id', $id)->delete();
+        }
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -1193,7 +1272,7 @@ class PengelolaRisiko extends BaseController
     public function detailPersetujuanStrukturPelaksana($id){
 
         $strukturPelaksanaId = $this->strukturPelaksanaModel->find($id);
-        $status = $this->statusPersetujuanModel->where('id',$strukturPelaksana['id_status_persetujuan'])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$strukturPelaksanaId['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -1215,7 +1294,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1226,7 +1306,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Pemangku Kepentingan (2.4)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'pemangku-kepentingan',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -1239,7 +1319,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/pemangku-kepentingan',$data);
@@ -1292,7 +1373,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-pemangku-kepentingan' , $data);
@@ -1411,7 +1493,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -1441,7 +1524,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
@@ -1467,9 +1551,11 @@ class PengelolaRisiko extends BaseController
 
     public function hapusPemangkuKepentingan($id = null)
     {
-        
-        $delete = $this->pemangkuKepentinganModel->where('id', $id)
-        ->delete();
+        if ($id==null) {
+            $delete = $this->pemangkuKepentinganModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+           $delete = $this->pemangkuKepentinganModel->where('id', $id)->delete();
+        }
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -1487,7 +1573,7 @@ class PengelolaRisiko extends BaseController
     public function detailPersetujuanPemangkuKepentingan($id){
 
         $pemangkuKepentinganId = $this->pemangkuKepentinganModel->find($id);
-        $status = $this->statusPersetujuanModel->where('id',$pemangkuKepentingan['id_status_persetujuan'])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$pemangkuKepentinganId['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -1509,7 +1595,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1520,7 +1607,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Identifikasi Peraturan Perundang-undangan (2.5)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'peraturan-perundangan',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -1533,7 +1620,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/peraturan-perundangan',$data);
@@ -1588,7 +1676,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-peraturan-perundangan' , $data);
@@ -1707,7 +1796,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -1737,7 +1827,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
@@ -1763,9 +1854,12 @@ class PengelolaRisiko extends BaseController
 
     public function hapusPeraturanPerundangan($id = null)
     {
+        if ($id==null) {
+            $delete = $this->peraturanPerundanganModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+            $delete = $this->peraturanPerundanganModel->where('id', $id)->delete();
+        }
         
-        $delete = $this->peraturanPerundanganModel->where('id', $id)
-        ->delete();
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -1783,7 +1877,7 @@ class PengelolaRisiko extends BaseController
     public function detailPersetujuanPeraturanPerundangan($id){
 
         $peraturanPerundanganId = $this->peraturanPerundanganModel->find($id);
-        $status = $this->statusPersetujuanModel->where('id',$peraturanPerundangan['id_status_persetujuan'])->get()->getRowArray();
+        $status = $this->statusPersetujuanModel->where('id',$peraturanPerundanganId['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
@@ -1805,7 +1899,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1816,7 +1911,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kategori Risiko SPBE (2.6)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'penetapan-kategori',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -1829,7 +1924,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/penetapan-kategori',$data);
@@ -1886,7 +1982,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
          return view('PengelolaRisiko/form-penetapan-kategori',$data);
@@ -1895,9 +1992,12 @@ class PengelolaRisiko extends BaseController
     public function hapusKategoriRisikoTerpilih($id = null)
     {
         
-        $delete = $this->kategoriRisikoTerpilihModel->where('id', $id)
-        ->delete();
-
+        if ($id==null) {
+            $delete = $this->kategoriRisikoTerpilihModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+            $delete = $this->kategoriRisikoTerpilihModel->where('id', $id)->delete();
+        }
+        
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -1936,7 +2036,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -1947,7 +2048,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Area Dampak Risiko SPBE (2.7)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'penetapan-area-dampak',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -1960,7 +2061,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/penetapan-area-dampak',$data);
@@ -2028,7 +2130,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
          return view('PengelolaRisiko/form-penetapan-area-dampak',$data);
@@ -2037,9 +2140,14 @@ class PengelolaRisiko extends BaseController
     public function hapusAreaDampakRisikoTerpilih($id = null)
     {
         
-        $delete = $this->areaDampakRisikoTerpilihModel->where('id', $id)
-        ->delete();
+        if ($id==null) {
+            $delete = $this->areaDampakRisikoTerpilihModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+            $delete = $this->areaDampakRisikoTerpilihModel->where('id', $id)->delete();
 
+        }
+        
+        
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -2078,7 +2186,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -2089,7 +2198,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Kriteria Risiko SPBE (2.8)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'penetapan-kriteria-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -2102,7 +2211,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/penetapan-kriteria',$data);
@@ -2110,22 +2220,22 @@ class PengelolaRisiko extends BaseController
 
     public function getDaftarKriteriaKemungkinan(){
 
-        return $this->respond($this->kriteriaKemungkinanModel->where('id_upr', session()->id_upr)->getKriteriaKemungkinan());
+        return $this->respond($this->kriteriaKemungkinanModel->where('kriteria_kemungkinan_risiko_spbe.id_upr', session()->id_upr)->getKriteriaKemungkinan());
 
     }
 
     public function getDaftarKriteriaDampak(){
-
-        return $this->respond($this->kriteriaDampakModel->where('id_upr', session()->id_upr)->getKriteriaDampak());
+        return $this->respond($this->kriteriaDampakModel->where('kriteria_dampak_risiko_spbe.id_upr', session()->id_upr)->getKriteriaDampak());
 
     }
 
     public function inputKriteriaKemungkinan()
     {
+        $tag = md5(uniqid());
         if(isset($_POST['tambah'])){
 
 
-            if ($this->kriteriaKemungkinanModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko'))->get()->getRowArray() && $this->kriteriaKemungkinanModel->where('id_upr',session()->id_upr)->get()->getRowArray()) {
+            if ($this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'), 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray() || $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'), 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 1])->get()->getRowArray()) {
                 $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Kriteria kemungkinan risiko untuk kategori risiko ini telah lengkap. Pilih kategori risiko yang lain
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -2137,7 +2247,6 @@ class PengelolaRisiko extends BaseController
                 return redirect()->back();
             }
 
-
             $levelKemungkinan = $this->levelKemungkinanModel->findAll();
 
             $k = 0;
@@ -2146,8 +2255,9 @@ class PengelolaRisiko extends BaseController
                 $k += 1;
                 $this->kriteriaKemungkinanModel->insert([
                     'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
+                    'tag' => $tag,
                     'id_level_kemungkinan' => $levelKemungkinan[$i]['id'],
-                    'presentase_kemungkinan' => strtoupper($this->request->getPost('presentase_kemungkinan'.strval($k))),
+                    'presentase_kemungkinan' => $this->request->getPost('presentase_kemungkinan'.strval($k)),
                     'jumlah_frekuensi' => $this->request->getPost('jumlah_frekuensi'.strval($k)),
                     'id_upr' => session()->id_upr,
                     'id_status_persetujuan' => 1
@@ -2190,7 +2300,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
          return view('PengelolaRisiko/form-kriteria-kemungkinan',$data);
@@ -2234,6 +2345,7 @@ class PengelolaRisiko extends BaseController
                 //looping untuk mengambil data
                 $suksesImport = 0;
 
+                $tag = md5(uniqid());
                 foreach ($sheet as $idx => $data) {
                     //skip index 1 karena title excel
                     if($idx==1){
@@ -2266,22 +2378,23 @@ class PengelolaRisiko extends BaseController
                     // }
                     // $kolom1 = implode(' ', $kolomBaru);
                     // var_dump($kolomBaru);
-                    $kategori = $this->kategoriRisikoModel->where('kategori_risiko', $kolom1)->get()->getRowArray();
+                    $kategori = $this->kategoriRisikoTerpilihModel->where(['kategori_risiko' => $kolom1, 'id_status_persetujuan' => 2])->getKategoriRisikoTerpilih();
                     $level = $this->levelKemungkinanModel->where('id', $kolom2)->get()->getRowArray();
 
-                    if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategori['id'])->getKategoriRisikoTerpilih()) {
+                    if (!$kategori) {
                         continue;
                     }
                     if (!$level) {
                         continue;
                     }
-                    if ($this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $kategori['id'], 'id_level_kemungkinan' => $level['id'], 'id_upr' => session()->id_upr])->get()->getRowArray()) {
+                    if ($this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $kategori[0]['id'], 'id_level_kemungkinan' => $level['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray() || $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $kategori[0]['id'], 'id_level_kemungkinan' => $level['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 1])->get()->getRowArray()) {
                         continue;
                     }
             
                     //insert data
                     $this->kriteriaKemungkinanModel->insert([
-                        'id_kategori_risiko' => $kategori['id'],
+                        'id_kategori_risiko' => $kategori[0]['id'],
+                        'tag' => $tag,
                         'id_level_kemungkinan' => $level['id'],
                         'presentase_kemungkinan' => $kolom3,
                         'jumlah_frekuensi' =>$kolom4,
@@ -2343,15 +2456,16 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
     }  
 
-    public function updateKriteriaKemungkinan($id=null){
+    public function updateKriteriaKemungkinan($id=null, $tag=null){
 
-        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])->get()->getResultArray();
+        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr, 'tag'=> $tag])->get()->getResultArray();
         $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
         
@@ -2376,7 +2490,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
@@ -2387,13 +2502,13 @@ class PengelolaRisiko extends BaseController
             
             $k = 0;
             $l = 0;
-            for ($i=0; $i < sizeof($levelKemungkinan) ; $i++) { 
+            for ($i=0; $i < sizeof($kriteriaKemungkinan) ; $i++) { 
             
                 $k += 1;
                 $this->kriteriaKemungkinanModel
                 ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-                ->set('id_level_kemungkinan' , $levelKemungkinan[$i]['id'])
-                ->set('presentase_kemungkinan' , strtoupper($this->request->getPost('presentase_kemungkinan'.strval($k))))
+                ->set('id_level_kemungkinan' , $kriteriaKemungkinan[$l]['id_level_kemungkinan'])
+                ->set('presentase_kemungkinan' , $this->request->getPost('presentase_kemungkinan'.strval($k)))
                 ->set('jumlah_frekuensi' , $this->request->getPost('jumlah_frekuensi'.strval($k)))
                 ->where('id' , $kriteriaKemungkinan[$l]['id'])
                 ->update();
@@ -2414,11 +2529,15 @@ class PengelolaRisiko extends BaseController
         return view('PengelolaRisiko/form-edit-kriteria-kemungkinan' , $data);
     }
 
-    public function hapusKriteriaKemungkinan($id = null)
+    public function hapusKriteriaKemungkinan($id = null, $tag=null)
     {
         
-        $delete = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])
-        ->delete();
+        if ($id==null AND $tag==null) {
+            $this->kriteriaKemungkinanModel->where('id_upr' , session()->id_upr)->delete();
+        } else {
+            $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr, 'tag' => $tag])->delete();
+        }
+        
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -2433,9 +2552,9 @@ class PengelolaRisiko extends BaseController
     }
 
     //Melihat deatil persetujuan
-    public function detailPersetujuanKriteriaKemungkinan($id){
+    public function detailPersetujuanKriteriaKemungkinan($id=null, $tag=null){
 
-        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr])->get()->getRowArray();
+        $kriteriaKemungkinan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko' => $id, 'id_upr' => session()->id_upr, 'tag'=>$tag])->get()->getRowArray();
         $status = $this->statusPersetujuanModel->where('id',$kriteriaKemungkinan['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
@@ -2458,7 +2577,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
         
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -2466,10 +2586,11 @@ class PengelolaRisiko extends BaseController
 
     public function inputKriteriaDampak()
     {
+        $tag = md5(uniqid());
         if(isset($_POST['tambah'])){
 
 
-            if ($this->kriteriaDampakModel->where('id_area_dampak',$this->request->getPost('id_area_dampak'))->get()->getRowArray() && $this->kriteriaDampakModel->where('id_upr',session()->id_upr)->get()->getRowArray()) {
+            if ($this->kriteriaDampakModel->where(['id_area_dampak'=> $this->request->getPost('id_area_dampak'), 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray() || $this->kriteriaDampakModel->where(['id_area_dampak'=> $this->request->getPost('id_area_dampak'), 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 1])->get()->getRowArray()) {
                 $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Kriteria Dampak risiko untuk area dampak ini telah lengkap. Pilih area dampak yang lain
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -2481,7 +2602,6 @@ class PengelolaRisiko extends BaseController
                 return redirect()->back();
             }
 
-
             $levelDampak = $this->levelDampakModel->findAll();
 
             $jenisRisiko = $this->jenisRisikoModel->findAll();
@@ -2489,11 +2609,12 @@ class PengelolaRisiko extends BaseController
             $k = 0;
             $l = 0;
             for ($i=0; $i < sizeof($jenisRisiko) ; $i++) { 
-                for ($j=0; $j < sizeof($levelDampak) ; $j++) { 
+                for ($j=0; $j < sizeof($levelDampak) ; $j++) {
 
                     $k += 1;
                     $this->kriteriaDampakModel->insert([
                         'id_area_dampak' => $this->request->getPost('id_area_dampak'),
+                        'tag' => $tag,
                         'id_jenis_risiko' => $jenisRisiko[$i]['id'],
                         'id_level_dampak' => $levelDampak[$j]['id'],
                         'penjelasan' => $this->request->getPost('penjelasan'.strval($k)),
@@ -2538,7 +2659,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
          return view('PengelolaRisiko/form-kriteria-dampak',$data);
@@ -2582,6 +2704,7 @@ class PengelolaRisiko extends BaseController
                 //looping untuk mengambil data
                 $suksesImport = 0;
 
+                $tag = md5(uniqid());
                 foreach ($sheet as $idx => $data) {
                     //skip index 1 karena title excel
                     if($idx==1){
@@ -2606,14 +2729,11 @@ class PengelolaRisiko extends BaseController
                     }
 
 
-                    $dampak = $this->areaDampakRisikoModel->where('area_dampak', $kolom1)->get()->getRowArray();
+                    $dampak = $this->areaDampakRisikoTerpilihModel->where(['area_dampak'=> $kolom1, 'id_status_persetujuan' => 2])->getAreaDampakRisikoTerpilih();
                     $level = $this->levelDampakModel->where('id', $kolom3)->get()->getRowArray();
                     $jenisRisiko = $this->jenisRisikoModel->where('id', $kolom2)->get()->getRowArray();
 
-                    if (!$this->areaDampakRisikoTerpilihModel->where('id_area_dampak', $dampak['id'])->getAreaDampakRisikoTerpilih()) {
-                        continue;
-                    }
-                    if (!$this->areaDampakRisikoTerpilihModel->where('id_status_persetujuan', 2)->getAreaDampakRisikoTerpilih()) {
+                    if (!$dampak) {
                         continue;
                     }
                     if (!$level) {
@@ -2622,13 +2742,14 @@ class PengelolaRisiko extends BaseController
                     if (!$jenisRisiko) {
                         continue;
                     }
-                    if ($this->kriteriaDampakModel->where(['id_area_dampak' => $dampak['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_level_dampak' => $level['id'],  'id_upr' => session()->id_upr])->get()->getRowArray()) {
+                    if ($this->kriteriaDampakModel->where(['id_area_dampak' => $dampak[0]['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_level_dampak' => $level['id'],  'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray() || $this->kriteriaDampakModel->where(['id_area_dampak' => $dampak[0]['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_level_dampak' => $level['id'],  'id_upr' => session()->id_upr, 'id_status_persetujuan' => 1])->get()->getRowArray()) {
                         continue;
                     }
             
                     //insert data
                     $this->kriteriaDampakModel->insert([
-                        'id_area_dampak' => $dampak['id'],
+                        'id_area_dampak' => $dampak[0]['id'],
+                        'tag' => $tag,
                         'id_jenis_risiko' => $jenisRisiko['id'],
                         'id_level_dampak' => $level['id'],
                         'penjelasan' => $kolom4,
@@ -2690,15 +2811,16 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
     }
 
-    public function updateKriteriaDampak($id=null){
+    public function updateKriteriaDampak($id=null, $tag=null){
 
-        $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])->get()->getResultArray();
+        $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr, 'tag'=>$tag])->get()->getResultArray();
         $daftarAreaDampak = $this->areaDampakRisikoTerpilihModel->where('id_status_persetujuan', 2)->getAreaDampakRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $daftarLevelDampak = $this->levelDampakModel->findAll();
@@ -2725,30 +2847,28 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
 
-            $levelDampak = $this->levelDampakModel->findAll();
+            // $levelDampak = $this->levelDampakModel->findAll();
 
-            $jenisRisiko = $this->jenisRisikoModel->findAll();
+            // $jenisRisiko = $this->jenisRisikoModel->findAll();
 
         $k = 0;
         $l = 0;
-        for ($i=0; $i < sizeof($jenisRisiko) ; $i++) { 
-            for ($j=0; $j < sizeof($levelDampak) ; $j++) { 
+        for ($i=0; $i < sizeof($kriteriaDampak) ; $i++) {  
 
                 $k += 1;
                 $this->kriteriaDampakModel
                 ->set('id_area_dampak' , $this->request->getPost('id_area_dampak'))
-                ->set('id_jenis_risiko' , $jenisRisiko[$i]['id'])
-                ->set('id_level_dampak' , $levelDampak[$j]['id'])
                 ->set('penjelasan' , $this->request->getPost('penjelasan'.strval($k)))
                 ->where('id' , $kriteriaDampak[$l]['id'])
                 ->update();
                 $l += 1;
-            }
+            
         }
             
             
@@ -2766,11 +2886,15 @@ class PengelolaRisiko extends BaseController
         return view('PengelolaRisiko/form-edit-kriteria-dampak' , $data);
     }
 
-    public function hapusKriteriaDampak($id = null)
+    public function hapusKriteriaDampak($id = null, $tag=null)
     {
         
-        $delete = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])
-        ->delete();
+        if ($id==null AND $tag==null) {
+            $delete = $this->kriteriaDampakModel->where('id_upr' ,session()->id_upr)->delete();
+        } else {
+            $delete = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr, 'tag'=>$tag])->delete();
+        }
+        
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -2785,9 +2909,9 @@ class PengelolaRisiko extends BaseController
     }
 
     //Melihat deatil persetujuan
-    public function detailPersetujuanKriteriaDampak($id){
+    public function detailPersetujuanKriteriaDampak($id=null, $tag=null){
 
-        $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr])->get()->getRowArray();
+        $kriteriaDampak = $this->kriteriaDampakModel->where(['id_area_dampak' => $id, 'id_upr' => session()->id_upr, 'tag'=>$tag])->get()->getRowArray();
         $status = $this->statusPersetujuanModel->where('id',$kriteriaDampak['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
@@ -2810,7 +2934,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -2821,7 +2946,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Matriks Analisis dan Level Risiko SPBE (2.9)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'matriks-level-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -2834,7 +2959,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/matriks-level',$data);
@@ -2855,7 +2981,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Penetapan Konteks Risiko SPBE (2.0)',
             'subtitle'  => 'Penetapan Selera Risiko SPBE (2.10)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'selera-risiko',
             'active'    => 'Penetapan Konteks Risiko SPBE',
             'link'      => 'penetapanKonteks',
             'informasiUmum' => $this->informasiUmum,
@@ -2868,7 +2994,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/selera-risiko',$data);
@@ -2876,19 +3003,19 @@ class PengelolaRisiko extends BaseController
 
     public function getSeleraRisiko(){
 
-        return $this->respond($this->seleraRisikoModel->orderBy('id','ASC')->where('id_upr',session()->id_upr)->getSelera());
+        return $this->respond($this->seleraRisikoModel->orderBy('id','ASC')->where('selera_risiko_spbe.id_upr',session()->id_upr)->getSelera());
     }
 
     public function inputSeleraRisiko()
     {
         if(isset($_POST['tambah'])){
 
-
+            $tag = md5(uniqid());
             $jenisRisiko1 = $this->jenisRisikoModel->where('jenis_risiko',$this->request->getPost('jenis_risiko1'))->get()->getRowArray();
             $jenisRisiko2 = $this->jenisRisikoModel->where('jenis_risiko',$this->request->getPost('jenis_risiko2'))->get()->getRowArray();
 
 
-            if ($this->seleraRisikoModel->where('id_kategori_risiko',$this->request->getPost('id_kategori_risiko'))->get()->getRowArray() && $this->seleraRisikoModel->where('id_upr',session()->id_upr)->get()->getRowArray()) {
+            if ($this->seleraRisikoModel->where(['id_kategori_risiko'=> $this->request->getPost('id_kategori_risiko'), 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray() || $this->seleraRisikoModel->where(['id_kategori_risiko'=> $this->request->getPost('id_kategori_risiko'), 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 1])->get()->getRowArray()) {
                 $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Selera risiko untuk kategori risiko ini telah lengkap. Pilih kategori risiko yang lain
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -2903,6 +3030,7 @@ class PengelolaRisiko extends BaseController
             
             $inputData1 = [
                 'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
+                'tag' => $tag,
                 'id_jenis_risiko' => $jenisRisiko1['id'],
                 'besaran_risiko_min' => $this->request->getPost('besaran_risiko_min1'),
                 'id_upr' => session()->id_upr,
@@ -2911,6 +3039,7 @@ class PengelolaRisiko extends BaseController
 
             $inputData2 = [
                 'id_kategori_risiko' => $this->request->getPost('id_kategori_risiko'),
+                'tag' => $tag,
                 'id_jenis_risiko' => $jenisRisiko2['id'],
                 'besaran_risiko_min' => $this->request->getPost('besaran_risiko_min2'),
                 'id_upr' => session()->id_upr,
@@ -2955,7 +3084,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
          return view('PengelolaRisiko/form-selera-risiko',$data);
@@ -2999,6 +3129,7 @@ class PengelolaRisiko extends BaseController
                 //looping untuk mengambil data
                 $suksesImport = 0;
 
+                $tag = md5(uniqid());
                 foreach ($sheet as $idx => $data) {
                     //skip index 1 karena title excel
                     if($idx==1){
@@ -3020,17 +3151,14 @@ class PengelolaRisiko extends BaseController
                     }
 
 
-                    $kategori = $this->kategoriRisikoModel->where('kategori_risiko', $kolom1)->get()->getRowArray();
+                    $kategori = $this->kategoriRisikoTerpilihModel->where(['kategori_risiko'=> $kolom1, 'id_status_persetujuan' => 2])->getKategoriRisikoTerpilih();
                     $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko', $kolom2)->get()->getRowArray();
                     $besaranRisiko = $this->matriksRisikoModel->where('besaran_risiko', $kolom3)->get()->getRowArray();
 
-                    if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategori['id'])->getKategoriRisikoTerpilih()) {
+                    if (!$kategori) {
                         continue;
                     }
-                    if (!$this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih()) {
-                        continue;
-                    }
-                    if ($this->seleraRisikoModel->where(['id_kategori_risiko' => $kategori['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr])->get()->getRowArray() ) {
+                    if ($this->seleraRisikoModel->where(['id_kategori_risiko' => $kategori[0]['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr,'id_status_persetujuan' => 2])->get()->getRowArray() || $this->seleraRisikoModel->where(['id_kategori_risiko' => $kategori[0]['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr,'id_status_persetujuan' => 1])->get()->getRowArray() ) {
                         continue;
                     }
                     if (!$jenisRisiko) {
@@ -3042,7 +3170,8 @@ class PengelolaRisiko extends BaseController
             
                     //insert data
                     $this->seleraRisikoModel->insert([
-                        'id_kategori_risiko' => $kategori['id'],
+                        'id_kategori_risiko' => $kategori[0]['id'],
+                        'tag' => $tag,
                         'id_jenis_risiko' => $jenisRisiko['id'],
                         'besaran_risiko_min' => $besaranRisiko['besaran_risiko'],
                         'id_upr' => session()->id_upr,
@@ -3102,15 +3231,16 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
     } 
 
-    public function updateSeleraRisiko($id=null){
+    public function updateSeleraRisiko($id=null, $tag=null){
 
-        $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])->get()->getResultArray();
+        $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr, 'tag'=>$tag])->get()->getResultArray();
         $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
         $daftarJenisRisiko = $this->jenisRisikoModel->findAll();
         $besaranRisiko = $this->matriksRisikoModel->orderBy('besaran_risiko', 'ASC')->findAll();
@@ -3137,7 +3267,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
@@ -3146,19 +3277,18 @@ class PengelolaRisiko extends BaseController
 
             $matriksRisiko1 = $this->matriksRisikoModel->where('besaran_risiko',$this->request->getPost('besaran_risiko_min1'))->get()->getRowArray();
 
-            $this->seleraRisikoModel
-            ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-            ->set('id_jenis_risiko'  , $jenisRisiko[0]['id'])
-            ->set('besaran_risiko_min' , $this->request->getPost('besaran_risiko_min1'))
-            ->where('id' , $seleraRisiko[0]['id'])
-            ->update();
+            $k = 0;
+            for ($i=0; $i < sizeof($seleraRisiko) ; $i++) { 
 
-            $this->seleraRisikoModel
-            ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
-            ->set('id_jenis_risiko'  , $jenisRisiko[1]['id'])
-            ->set('besaran_risiko_min' , $this->request->getPost('besaran_risiko_min2'))
-            ->where('id' , $seleraRisiko[1]['id'])
-            ->update();
+                $k++;
+                $this->seleraRisikoModel
+                    ->set('id_kategori_risiko' , $this->request->getPost('id_kategori_risiko'))
+                    ->set('besaran_risiko_min' , $this->request->getPost('besaran_risiko_min'.strval($k)))
+                    ->where('id' , $seleraRisiko[$i]['id'])
+                    ->update();
+                
+            }
+
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data selera risiko berhasil diubah
@@ -3173,11 +3303,15 @@ class PengelolaRisiko extends BaseController
         return view('PengelolaRisiko/form-edit-selera-risiko' , $data);
     }
 
-    public function hapusSeleraRisiko($id = null)
+    public function hapusSeleraRisiko($id = null, $tag=null)
     {
         
-        $delete = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])
-        ->delete();
+        if ($id==null AND $tag==null) {
+            $delete = $this->seleraRisikoModel->where('id_upr',session()->id_upr)->delete();
+        } else {
+            $delete = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr, 'tag'=>$tag])->delete();
+        }
+        
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -3192,9 +3326,9 @@ class PengelolaRisiko extends BaseController
     }
 
     //Melihat deatil persetujuan
-    public function detailPersetujuanSeleraRisiko($id){
+    public function detailPersetujuanSeleraRisiko($id=null, $tag=null){
 
-        $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr])->get()->getRowArray();
+        $seleraRisiko = $this->seleraRisikoModel->where(['id_kategori_risiko'=>$id, 'id_upr'=>session()->id_upr, 'tag'=>$tag])->get()->getRowArray();
         $status = $this->statusPersetujuanModel->where('id',$seleraRisiko['id_status_persetujuan'])->get()->getRowArray();
         
         $data = [
@@ -3217,7 +3351,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -3251,7 +3386,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-risiko' , $data);
@@ -3262,20 +3398,20 @@ class PengelolaRisiko extends BaseController
     {
         if(isset($_POST['tambah'])){
 
-            $areaDampak = $this->areaDampakRisikoModel->where('area_dampak',$this->request->getPost('area_dampak'))->get()->getRowArray();
+            $areaDampak = $this->areaDampakRisikoTerpilihModel->where('area_dampak_risiko_spbe_terpilih.id',$this->request->getPost('id_area_dampak'))->getAreaDampakRisikoTerpilih();
 
             $levelDampak = $this->levelDampakModel->where('level_dampak',$this->request->getPost('level_dampak'))->get()->getRowArray();
 
             $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko',$this->request->getPost('jenis_risiko'))->get()->getRowArray();
 
-            $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko',$this->request->getPost('kategori_risiko'))->get()->getRowArray();
+            $kategoriRisiko = $this->kategoriRisikoTerpilihModel->where('kategori_risiko_spbe_terpilih.id',$this->request->getPost('id_kategori_risiko'))->getKategoriRisikoTerpilih();
 
-            $indikatorKinerja = $this->sasaranSPBEModel->where('id',$this->request->getPost('id_sasaran_SPBE'))->get()->getRowArray();
+            $indikatorKinerja = $this->sasaranSPBEModel->where(['id'=> $this->request->getPost('id_sasaran_SPBE'), 'id_status_persetujuan' => 2, 'id_upr' => session()->id_upr])->get()->getRowArray();
 
             $levelKemungkinan = $this->levelKemungkinanModel->where('level_kemungkinan',$this->request->getPost('level_kemungkinan'))->get()->getRowArray();
 
             $multiClause = array('id_level_kemungkinan' => $levelKemungkinan['id'], 'id_level_dampak' => $levelDampak['id']);
-            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr);
+            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko[0]['id_kategori_risiko'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
 
             $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
             $besaranRisiko = $matriksRisiko['besaran_risiko'];
@@ -3294,15 +3430,14 @@ class PengelolaRisiko extends BaseController
             }
 
 
-
             $inputData = [
                 'id_sasaran_SPBE' => $indikatorKinerja['id'],
                 'id_jenis_risiko' => $jenisRisiko['id'],
                 'kejadian' => $this->request->getPost('kejadian'),
                 'penyebab' => $this->request->getPost('penyebab'),
-                'id_kategori_risiko' => $kategoriRisiko['id'],
+                'id_kategori_risiko' => $kategoriRisiko[0]['id'],
                 'dampak' => $this->request->getPost('dampak'),
-                'id_area_dampak' => $areaDampak['id'],
+                'id_area_dampak' => $areaDampak[0]['id'],
                 'sistem_pengendalian' => $this->request->getPost('sistem_pengendalian'),
                 'id_level_kemungkinan' => $levelKemungkinan['id'],
                 'id_level_dampak' => $levelDampak['id'],
@@ -3329,7 +3464,7 @@ class PengelolaRisiko extends BaseController
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
         $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
-        $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
+        $daftarIndikatorKinerja = $this->sasaranSPBEModel->where(['id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
         
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
@@ -3353,7 +3488,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
          return view('PengelolaRisiko/form-penilaian-risiko',$data);
@@ -3420,19 +3556,18 @@ class PengelolaRisiko extends BaseController
                     
                     $indikatorKinerja = $this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$kolom1)->get()->getRowArray();
                     $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko', $kolom5)->get()->getRowArray();
+                    $kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->where(['id_kategori_risiko'=> $kategoriRisiko['id'], 'id_status_persetujuan' => 2])->getKategoriRisikoTerpilih();
                     $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko', $kolom2)->get()->getRowArray();
                     $dampakRisiko = $this->areaDampakRisikoModel->where('area_dampak', $kolom7)->get()->getRowArray();
+                    $dampakRisikoTerpilih = $this->areaDampakRisikoTerpilihModel->where(['id_area_dampak'=> $dampakRisiko['id'], 'id_status_persetujuan' => 2])->getAreaDampakRisikoTerpilih();
 
-                    if (!$this->kategoriRisikoTerpilihModel->where('id_kategori_risiko', $kategoriRisiko['id'])->getKategoriRisikoTerpilih()) {
+                    if (!$kategoriRisikoTerpilih) {
                         continue;
                     }
-                    if (!$this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih()) {
+                    if (!$this->sasaranSPBEModel->where(['indikator_kinerja_SPBE'=> $kolom1, 'id_status_persetujuan' => 2, 'id_upr' => session()->id_upr])->get()->getRowArray()) {
                         continue;
                     }
-                    if (!$this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$kolom1)->get()->getRowArray()) {
-                        continue;
-                    }
-                    if (!$this->areaDampakRisikoTerpilihModel->where('id_area_dampak', $dampakRisiko['id'])->getAreaDampakRisikoTerpilih()) {
+                    if (!$dampakRisikoTerpilih) {
                         continue;
                     }
                     if (!$jenisRisiko) {
@@ -3451,7 +3586,7 @@ class PengelolaRisiko extends BaseController
                     
                     $levelRisiko = $this->levelRisikoModel->where(array('rentang_min <=' => $besaranRisiko, 'rentang_maks >=' => $besaranRisiko))->get()->getRowArray();
 
-                    $seleraRisiko = $this->seleraRisikoModel->where(array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr))->get()->getRowArray();
+                    $seleraRisiko = $this->seleraRisikoModel->where(array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2))->get()->getRowArray();
 
                     $besaranRisikoMin = $seleraRisiko['besaran_risiko_min'];
 
@@ -3468,9 +3603,9 @@ class PengelolaRisiko extends BaseController
                         'id_jenis_risiko' => $jenisRisiko['id'],
                         'kejadian' => $kolom3,
                         'penyebab' => $kolom4,
-                        'id_kategori_risiko' => $kategoriRisiko['id'],
+                        'id_kategori_risiko' => $kategoriRisikoTerpilih[0]['id'],
                         'dampak' => $kolom6,
-                        'id_area_dampak' => $dampakRisiko['id'],
+                        'id_area_dampak' => $dampakRisikoTerpilih[0]['id'],
                         'sistem_pengendalian' => $kolom8,
                         'id_level_kemungkinan' => $kolom9,
                         'id_level_dampak' => $kolom10,
@@ -3521,7 +3656,7 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penilaian Risiko SPBE',
             'link'  => 'penilaianRisiko',
-            'sublink' => '',
+            'sublink' => 'penilaianRisiko',
             'template' => 'penilaian_risiko.xlsx',
             'informasiUmum' => $this->informasiUmum,
             'sasaranSPBE' => $this->sasaranSPBE,
@@ -3533,7 +3668,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -3547,7 +3683,7 @@ class PengelolaRisiko extends BaseController
         $daftarLevelDampak = $this->levelDampakModel->findAll();
         $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
         $daftarKategoriRisiko = $this->kategoriRisikoTerpilihModel->where('id_status_persetujuan', 2)->getKategoriRisikoTerpilih();
-        $daftarIndikatorKinerja = $this->sasaranSPBEModel->where('id_upr', session()->id_upr)->get()->getResultArray();
+        $daftarIndikatorKinerja = $this->sasaranSPBEModel->where(['id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getResultArray();
         
         $data = [
             'title'     => 'Penilaian Risiko SPBE (3.0)',
@@ -3572,25 +3708,26 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
 
-            $areaDampak = $this->areaDampakRisikoModel->where('area_dampak',$this->request->getPost('area_dampak'))->get()->getRowArray();
+            $areaDampak = $this->areaDampakRisikoTerpilihModel->where('area_dampak_risiko_spbe_terpilih.id',$this->request->getPost('id_area_dampak'))->getAreaDampakRisikoTerpilih();
 
             $levelDampak = $this->levelDampakModel->where('level_dampak',$this->request->getPost('level_dampak'))->get()->getRowArray();
 
             $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko',$this->request->getPost('jenis_risiko'))->get()->getRowArray();
 
-            $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko',$this->request->getPost('kategori_risiko'))->get()->getRowArray();
+            $kategoriRisiko = $this->kategoriRisikoTerpilihModel->where('kategori_risiko_spbe_terpilih.id',$this->request->getPost('id_kategori_risiko'))->getKategoriRisikoTerpilih();
 
-            $indikatorKinerja = $this->sasaranSPBEModel->where('id',$this->request->getPost('id_sasaran_SPBE'))->get()->getRowArray();
+            $indikatorKinerja = $this->sasaranSPBEModel->where(['id'=> $this->request->getPost('id_sasaran_SPBE'), 'id_status_persetujuan' => 2, 'id_upr' => session()->id_upr])->get()->getRowArray();
 
             $levelKemungkinan = $this->levelKemungkinanModel->where('level_kemungkinan',$this->request->getPost('level_kemungkinan'))->get()->getRowArray();
 
             $multiClause = array('id_level_kemungkinan' => $levelKemungkinan['id'], 'id_level_dampak' => $levelDampak['id']);
-            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr);
+            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko[0]['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
 
             $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
             $besaranRisiko = $matriksRisiko['besaran_risiko'];
@@ -3613,9 +3750,9 @@ class PengelolaRisiko extends BaseController
             ->set('id_sasaran_SPBE' , $indikatorKinerja['id'])
             ->set('id_jenis_risiko' , $jenisRisiko['id'])
             ->set('kejadian' , $this->request->getPost('kejadian'))
-            ->set('id_kategori_risiko' , $kategoriRisiko['id'])
+            ->set('id_kategori_risiko' , $kategoriRisiko[0]['id'])
             ->set('dampak' , $this->request->getPost('dampak'))
-            ->set('id_area_dampak' , $areaDampak['id'])
+            ->set('id_area_dampak' , $areaDampak[0]['id'])
             ->set('sistem_pengendalian' , $this->request->getPost('sistem_pengendalian'))
             ->set('penyebab' , $this->request->getPost('penyebab'))
             ->set('id_level_kemungkinan' , $levelKemungkinan['id'])
@@ -3640,9 +3777,11 @@ class PengelolaRisiko extends BaseController
 
     public function hapusPenilaianRisiko($id = null)
     {
-        
-        $delete = $this->penilaianRisikoModel->where('id', $id)
-        ->delete();
+        if ($id==null) {
+            $delete = $this->penilaianRisikoModel->where('id_upr', session()->id_upr)->delete();
+        } else {
+            $delete = $this->penilaianRisikoModel->where('id', $id)->delete();
+        }
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -3682,7 +3821,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -3690,7 +3830,7 @@ class PengelolaRisiko extends BaseController
 
     public function getPenangananRisiko(){
 
-        return $this->respond($this->penangananRisikoModel->where('id_upr', session()->id_upr)->getPenanganan());
+        return $this->respond($this->penangananRisikoModel->getPenanganan());
 
     }
 
@@ -3703,7 +3843,7 @@ class PengelolaRisiko extends BaseController
         $data = [
             'title'     => 'Rencana Penanganan Risiko SPBE (4.0)',
             'subtitle'  => 'Memilih Risiko yang Akan Ditangani (4.0)',
-            'script'    => 'pengelola-risiko',
+            'script'    => 'pilih-risiko',
             'active'    => 'Penanganan Risiko SPBE',
             'link'      => 'penangananRisiko',
             'informasiUmum' => $this->informasiUmum,
@@ -3716,7 +3856,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
          return view('PengelolaRisiko/pilih-risiko',$data);
@@ -3726,28 +3867,39 @@ class PengelolaRisiko extends BaseController
 
         if(isset($_POST['tambah'])){
 
-            $opsiPenanganan = $this->opsiPenangananModel->where('opsi_penanganan',$this->request->getPost('opsi_penanganan'))->get()->getRowArray();
+            $tanggal_mulai = '';
+            $tanggal_selesai = '';
 
-            $rules =[
-                'jadwal_mulai' => 'jadwalValidation[jadwal_mulai,jadwal_selesai]'
-            ];
+            if ($this->request->getPost('periode_implementasi')=="Tanggal") {
+                $rules =[
+                    'tanggal_mulai' => 'datePeriodeValidation[tanggal_mulai,tanggal_selesai]'
+                ];
 
-            $errors = [
-                'jadwal_mulai'=> [
-                    'jadwalValidation' => 'Tanggal memulai implementasi harus lebih dulu dari tanggal selesai']
-            ];
+                $errors = [
+                    'tanggal_mulai'=> [
+                        'datePeriodeValidation' => 'Tanggal memulai implementasi harus lebih dulu dari tanggal selesai']
+                ];
 
-            if(!$this->validate($rules, $errors)){
-                return redirect()->back()->withInput();
-            }
-            
+                if(!$this->validate($rules, $errors)){
+                    return redirect()->back()->withInput();
+                }
+
+                $tanggal_mulai = $this->request->getPost('tanggal_mulai');
+                $tanggal_selesai = $this->request->getPost('tanggal_selesai');
+                $periode_implementasi = $this->request->getPost('periode_implementasi');
+            } else{
+                $periode_implementasi = strval($this->request->getPost('jadwal')) .' '. strval(date('Y'));
+            } 
+                
             $inputData = [
                 'id_risiko' => $id,
-                'id_opsi_penanganan' => $opsiPenanganan['id'],
+                'id_opsi_penanganan' => $this->request->getPost('id_opsi_penanganan'),
                 'rencana_aksi' => $this->request->getPost('rencana_aksi'),
                 'keluaran' => $this->request->getPost('keluaran'),
-                'jadwal_mulai' => $this->request->getPost('jadwal_mulai'),
-                'jadwal_selesai' => $this->request->getPost('jadwal_selesai'),
+                'jenis_periode_implementasi' => $this->request->getPost('periode_implementasi'),
+                'periode_implementasi' => $periode_implementasi,
+                'tanggal_mulai' => $tanggal_mulai,
+                'tanggal_selesai' => $tanggal_selesai,
                 'penanggungjawab' => $this->request->getPost('penanggungjawab'),
                 'risiko_residual' => $this->request->getPost('risiko_residual'),
                 'id_status_persetujuan' => 1
@@ -3791,7 +3943,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-penanganan-risiko' , $data);
@@ -3848,9 +4001,11 @@ class PengelolaRisiko extends BaseController
                     $kolom6 = $data['F'];
                     $kolom7 = $data['G'];
                     $kolom8 = $data['H'];
+                    $kolom9 = $data['I'];
+                    $kolom10 = $data['J'];
                    
 
-                    if (empty($kolom1) || empty($kolom2) || empty($kolom3) || empty($kolom4) ||empty($kolom5) || empty($kolom6) || empty($kolom7) || empty($kolom8)) {
+                    if (empty($kolom1) || empty($kolom2) || empty($kolom3) || empty($kolom4) ||empty($kolom5) || empty($kolom9) || empty($kolom10)) {
                         continue;
                     }
 
@@ -3860,21 +4015,37 @@ class PengelolaRisiko extends BaseController
 
                     $opsiPenanganan = $this->opsiPenangananModel->where(['opsi_penanganan'=> $kolom2, 'id_jenis_risiko' => $risiko['id_jenis_risiko']])->get()->getRowArray();
                     
-                    $format= explode('-',$kolom5);
-                    $format1= explode('-',$kolom6);
+                    $kolom5 = strtolower($kolom5);
+                    $kolom5 = ucfirst($kolom5);
 
-                    if (sizeof($format)==1 or sizeof($format1)==1) {
-                        $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    $tanggal_mulai = '';
+                    $tanggal_selesai = '';
+
+                    if ($kolom5=="Tanggal") {
+
+                        $format= explode('-',$kolom7);
+                        $format1= explode('-',$kolom8);
+
+                        if (sizeof($format)==1 or sizeof($format1)==1) {
+                            $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Format tanggal salah, periksa kembali file excel Anda.
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                        </div>';
+                            </div>';
 
-                        $flash = session()->setFlashdata('flash', $flash);
-                        return redirect()->to(base_url('pengelolaRisiko/penangananRisiko'));
+                            $flash = session()->setFlashdata('flash', $flash);
+                            return redirect()->to(base_url('pengelolaRisiko/penangananRisiko'));
+                        }
+
+                        $tanggal_mulai = $kolom7;
+                        $tanggal_selesai = $kolom8;
+                        $periode_implementasi = $kolom5;
+                    } else {
+                        $periode_implementasi = $kolom6 .' '. strval(date('Y'));
                     }
-                    if (!$this->penilaianRisikoModel->where(['id' => $risiko['id'], 'id_upr' => session()->id_upr])->get()->getRowArray()) {
+
+                    if (!$this->penilaianRisikoModel->where(['id' => $risiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray()) {
                         continue;
                     }
 
@@ -3896,10 +4067,12 @@ class PengelolaRisiko extends BaseController
                         'id_opsi_penanganan' => $opsiPenanganan['id'],
                         'rencana_aksi' => $kolom3,
                         'keluaran' => $kolom4,
-                        'jadwal_mulai' => $kolom5,
-                        'jadwal_selesai' => $kolom6,
-                        'penanggungjawab' => $kolom7,
-                        'risiko_residual' => $kolom8,
+                        'jenis_periode_implementasi' => $kolom5,
+                        'periode_implementasi' => $periode_implementasi,
+                        'tanggal_mulai' => $tanggal_mulai,
+                        'tanggal_selesai' => $tanggal_selesai,
+                        'penanggungjawab' => $kolom9,
+                        'risiko_residual' => $kolom10,
                         'id_status_persetujuan' => 1
                     ]);
 
@@ -3944,7 +4117,7 @@ class PengelolaRisiko extends BaseController
             'script' => 'pengelola-risiko',
             'active' => 'Penanganan Risiko SPBE',
             'link'  => 'penangananRisiko',
-            'sublink' => '',
+            'sublink' => 'penangananRisiko',
             'template' => 'penanganan_risiko.xlsx',
             'informasiUmum' => $this->informasiUmum,
             'sasaranSPBE' => $this->sasaranSPBE,
@@ -3956,7 +4129,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/form-import' , $data);
@@ -3988,33 +4162,45 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         if(isset($_POST['submit'])){
 
-            $opsiPenanganan = $this->opsiPenangananModel->where('opsi_penanganan',$this->request->getPost('opsi_penanganan'))->get()->getRowArray();
+            $tanggal_mulai = '';
+            $tanggal_selesai = '';
 
-            $rules =[
-                'jadwal_mulai' => 'jadwalValidation[jadwal_mulai,jadwal_selesai]'
-            ];
+            if ($this->request->getPost('periode_implementasi')=="Tanggal") {
+                $rules =[
+                    'tanggal_mulai' => 'datePeriodeValidation[tanggal_mulai,tanggal_selesai]'
+                ];
 
-            $errors = [
-                'jadwal_mulai'=> [
-                    'jadwalValidation' => 'Tanggal memulai implementasi harus lebih dulu dari tanggal selesai']
-            ];
+                $errors = [
+                    'tanggal_mulai'=> [
+                        'datePeriodeValidation' => 'Tanggal memulai implementasi harus lebih dulu dari tanggal selesai']
+                ];
 
-            if(!$this->validate($rules, $errors)){
-                return redirect()->back()->withInput();
-            }            
+                if(!$this->validate($rules, $errors)){
+                    return redirect()->back()->withInput();
+                }
+
+                $tanggal_mulai = $this->request->getPost('tanggal_mulai');
+                $tanggal_selesai = $this->request->getPost('tanggal_selesai');
+                $periode_implementasi = $this->request->getPost('periode_implementasi');
+            } else{
+                $periode_implementasi = strval($this->request->getPost('jadwal')) .' '. strval(date('Y'));
+            }      
             
             $this->penangananRisikoModel
             ->set('id_risiko' , $rencana_penanganan['id_risiko'])
-            ->set('id_opsi_penanganan' , $opsiPenanganan['id'])
+            ->set('id_opsi_penanganan' , $this->request->getPost('id_opsi_penanganan'))
             ->set('rencana_aksi' , $this->request->getPost('rencana_aksi'))
             ->set('keluaran' , $this->request->getPost('keluaran'))
-            ->set('jadwal_mulai' , $this->request->getPost('jadwal_mulai'))
-            ->set('jadwal_selesai' ,$this->request->getPost('jadwal_selesai'))
+            ->set('jenis_periode_implementasi' , $this->request->getPost('periode_implementasi'))
+            ->set('periode_implementasi' , $periode_implementasi)
+            ->set('tanggal_mulai' , $tanggal_mulai)
+            ->set('tanggal_selesai' ,$tanggal_selesai)
             ->set('penanggungjawab' , $this->request->getPost('penanggungjawab'))
             ->set('risiko_residual' , $this->request->getPost('risiko_residual'))
             ->where('id' , $id)
@@ -4035,9 +4221,14 @@ class PengelolaRisiko extends BaseController
 
     public function hapusPenangananRisiko($id = null)
     {
+
+        $risiko_upr = $this->penilaianRisikoModel->select('id')->where('id_upr',session()->id_upr)->get()->getResultArray();
+        if ($id==null) {
+            $delete = $this->penangananRisikoModel->whereIn('id_risiko', $risiko_upr[0])->delete();
+        } else {
+            $delete = $this->penangananRisikoModel->where('id', $id)->delete();
+        }
         
-        $delete = $this->penangananRisikoModel->where('id', $id)
-        ->delete();
 
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                     Data berhasil dihapus!
@@ -4077,7 +4268,8 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-persetujuan' , $data);
@@ -4105,12 +4297,773 @@ class PengelolaRisiko extends BaseController
             'kriteriaDampak' => $this->kriteriaDampak,
             'seleraRisiko' => $this->seleraRisiko,
             'penilaianRisiko' => $this->penilaianRisiko,
-            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
         ];
 
         return view('PengelolaRisiko/detail-risiko' , $data);
 
     }
+
+
+    public function getPemantauanRisiko(){
+
+        return $this->respond($this->pemantauanRisikoModel->getPemantauan());
+
+    }
+
+    public function getRisikoByPenanganan(){
+        return $this->respond($this->penilaianRisikoModel->getPenilaianByPenanganan());
+    }
+
+    public function pilihRisikoPemantauan(){
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Memilih Risiko yang Akan Dipantau',
+            'script'    => 'pilih-risiko-pemantauan',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+         return view('PengelolaRisiko/pilih-risiko-pemantauan',$data);
+    }
+
+    public function pilihJenisLaporanPemantauan($id_risiko=null){
+
+        if(isset($_POST['tambah'])){
+
+            if ($id_risiko==null) {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Pilih risiko, Anda belum memilih risiko yang ingin dipantau
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/pilihRisikoPemantauan'));
+            }
+
+            return redirect()->to(base_url('pengelolaRisiko/penilaianLanjutan/'.$id_risiko.'/'.$this->request->getPost('jenis_laporan')));
+        }
+
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Memilih Risiko yang Akan Dipantau',
+            'subsubtitle'  => 'Memilih Jenis Laporan Pemantauan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'sublink'  =>  'pilihRisikoPemantauan',
+            'id_risiko' => $id_risiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+         return view('PengelolaRisiko/pilih-jenis-laporan',$data);
+    }
+
+    public function penilaianLanjutan($id_risiko=null, $jenis_laporan=null, $tipe_halaman=null, $id_pemantauan=null){
+
+        if(isset($_POST['tambah'])){
+
+            if ($id_risiko==null or $jenis_laporan==null) {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Pilih risiko dan jenis laporan terlebih dahulu, Anda belum memilih risiko yang ingin dipantau serta jenis laporannya
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/pilihRisikoPemantauan'));
+            }
+
+
+            $risiko = $this->penilaianRisikoModel->where('id', $id_risiko)->get()->getRowArray();
+
+            $id_level_kemungkinan = $this->request->getPost('id_level_kemungkinan_pemantauan');
+            $id_level_dampak = $this->request->getPost('id_level_dampak_pemantauan');
+
+            $multiClause = array('id_level_kemungkinan' => $id_level_kemungkinan, 'id_level_dampak' => $id_level_dampak); 
+            $multiClause2 = array('id_kategori_risiko' => $risiko['id_kategori_risiko'], 'id_jenis_risiko' => $risiko['id_jenis_risiko'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
+
+            $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
+            $besaranRisiko = $matriksRisiko['besaran_risiko'];
+            $multiClause3 = array('rentang_min <=' => $besaranRisiko, 'rentang_maks >=' => $besaranRisiko);
+
+            $levelRisiko = $this->levelRisikoModel->where($multiClause3)->get()->getRowArray();
+
+            $seleraRisiko = $this->seleraRisikoModel->where($multiClause2)->get()->getRowArray();
+            $besaranRisikoMin = $seleraRisiko['besaran_risiko_min'];
+
+            if ($tipe_halaman=='edit') {
+                $ganti_besaran_risiko = 'true';
+                 return redirect()->to(base_url('pengelolaRisiko/updatePemantauanRisiko/'.$id_pemantauan.'/'.$id_risiko.'/'.$id_level_kemungkinan.'/'.$id_level_dampak.'/'.$besaranRisiko.'/'.$levelRisiko['level_risiko'].'/'.$besaranRisikoMin.'/'.$ganti_besaran_risiko));
+            } else {
+                return redirect()->to(base_url('pengelolaRisiko/inputPemantauanRisiko/'.$id_risiko.'/'.$jenis_laporan.'/'.$id_level_kemungkinan.'/'.$id_level_dampak.'/'.$besaranRisiko.'/'.$levelRisiko['level_risiko'].'/'.$besaranRisikoMin));
+            }
+            
+        }
+
+        $daftarLevelDampak = $this->levelDampakModel->findAll();
+        $daftarLevelKemungkinan = $this->levelKemungkinanModel->findAll();
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Memilih Risiko yang Akan Dipantau',
+            'subsubtitle'  => 'Memilih Jenis Laporan Pemantauan',
+            'subsubsubtitle' => 'Memeriksa Besaran dan Level Risiko Saat ini',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'sublink'      => 'pilihRisikoPemantauan',
+            'subsublink' => 'pilihJenisLaporanPemantauan',
+            'id_risiko'   => $id_risiko,
+            'daftarLevelDampak' => $daftarLevelDampak,
+            'daftarLevelKemungkinan' => $daftarLevelKemungkinan,
+            'tipe_halaman' => $tipe_halaman,
+            'jenis_laporan' => $jenis_laporan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+         return view('PengelolaRisiko/form-input-penilaian-lanjutan',$data);
+    }
+
+
+    public function inputPemantauanRisiko($id_risiko=null, $jenis_laporan=null, $id_level_kemungkinan=null, $id_level_dampak=null, $besaranRisiko=null, $levelRisiko=null, $besaranRisikoMin=null){
+
+
+        if(isset($_POST['tambah'])){
+
+            $penanganan_risiko = $this->penangananRisikoModel->where('id_risiko',$id_risiko)->get()->getRowArray();
+
+            if ($jenis_laporan=='tahunan') {
+                $jenis_laporan = $jenis_laporan.' '. strval(date('Y'));
+                $periode_laporan = '';
+                $waktu_pelaksanaan_rencana='';
+            } else {
+                $periode_laporan = $this->request->getPost('periode_laporan').' '. strval(date('Y'));
+                $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+            }
+            
+
+            $inputData = [
+                'id_risiko' => $id_risiko,
+                'id_penanganan_risiko' => $penanganan_risiko['id'],
+                'id_level_kemungkinan_pemantauan' => $id_level_kemungkinan,
+                'id_level_dampak_pemantauan' => $id_level_dampak,
+                'jenis_laporan' => $jenis_laporan,
+                'periode_laporan' => $periode_laporan,
+                'deskripsi_risiko_saat_ini' => $this->request->getPost('deskripsi'),
+                'rekomendasi' => $this->request->getPost('rekomendasi'),
+                'rencana_penanganan' => $this->request->getPost('rencana_penanganan'),
+                'penanggungjawab' => $this->request->getPost('penanggungjawab'),
+                'waktu_pelaksanaan_rencana' => $waktu_pelaksanaan_rencana,
+                'id_status_persetujuan' => 1
+            ];
+
+            $this->pemantauanRisikoModel->insert($inputData);
+
+            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Laporan Pemantauan risiko berhasil ditambahkan
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/pemantauanRisiko'));
+        }
+
+    
+        $risiko = $this->penilaianRisikoModel->getPenilaianById($id_risiko);
+        $penanganan_risiko = $this->penangananRisikoModel->where(['id_risiko' => $id_risiko])->get()->getRowArray();
+
+        $kriteria_dampak_pemantauan = $this->kriteriaDampakModel->where(['id_area_dampak'=>$risiko[0]['id_area_dampak'],'id_level_dampak' => $id_level_dampak, 'id_jenis_risiko' => $risiko[0]['id_jenis_risiko'], 'id_upr'=> session()->id_upr])->get()->getRowArray();
+        $kriteria_kemungkinan_pemantauan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko'=> $risiko[0]['id_kategori_risiko'], 'id_level_kemungkinan'=>$id_level_kemungkinan, 'id_upr'=>session()->id_upr])->get()->getRowArray();
+            
+        
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Memilih Risiko yang Akan Dipantau',
+            'subsubtitle'  => 'Memilih Jenis Laporan Pemantauan',
+            'subsubsubtitle' => 'Memeriksa Besaran dan Level Risiko Saat ini',
+            'subsubsubsubtitle' => 'Menambah Laporan Pemantauan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'sublink'      => 'pilihRisikoPemantauan',
+            'subsublink' => 'pilihJenisLaporanPemantauan',
+            'subsubsublink' => 'penilaianLanjutan',
+            'risiko'   => $risiko,
+            'levelDampak' => $this->levelDampakModel->find($id_level_dampak),
+            'levelKemungkinan' => $this->levelKemungkinanModel->find($id_level_kemungkinan),
+            'penanganan_risiko' => $penanganan_risiko,
+            'besaranRisiko' =>$besaranRisiko,
+            'levelRisiko' => $levelRisiko,
+            'besaranRisikoMin' => $besaranRisikoMin,
+            'besaranRisikoMin' => $besaranRisikoMin,
+            'kriteria_dampak_pemantauan' => $kriteria_dampak_pemantauan,
+            'kriteria_kemungkinan_pemantauan' => $kriteria_kemungkinan_pemantauan,
+            'jenis_laporan' => $jenis_laporan,
+            'tipe_halaman' => 'input',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+        return view('PengelolaRisiko/form-input-pemantauan-risiko',$data);
+
+    }
+
+
+    //Menambah data rencana penanganan risiko dengan melakukan import file excel
+    public function importPemantauanRisiko(){
+
+        if(isset($_POST['tambah'])){
+
+            //Menambah rules untuk file excel yang di upload dengan ukuran maksimal 2 MB
+            $rules =[
+                'fileexcel' => 'uploaded[fileexcel]|max_size[fileexcel,2048]'
+            ];
+
+            $errors = [
+                'fileexcel'=> [
+                    'max_size' => 'Ukuran File Maksimal 2 MB']
+            ];
+
+            if(!$this->validate($rules, $errors)){
+                return redirect()->back()->withInput();
+            }
+
+            $file = $this->request->getFile('fileexcel');
+            //var_dump($file);
+
+            if ($file->isValid() && ! $file->hasMoved()) {
+
+                $excelReader  = new PHPExcel();
+
+                //mengambil lokasi temp file
+                $fileLocation = $file->getTempName();
+
+                //baca file
+                $objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+
+                //ambil sheet active
+                $sheet  = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+                //looping untuk mengambil data
+                $suksesImport = 0;
+
+                foreach ($sheet as $idx => $data) {
+                    //skip index 1,2,3 karena header excel
+                    if($idx==1 || $idx==2 || $idx==3){
+                        continue;
+                    }
+                    $kolom1 = $data['A'];
+                    $kolom2 = $data['B'];
+                    $kolom3 = $data['C'];
+                    $kolom4 = $data['D'];
+                    $kolom5 = $data['E'];
+                    $kolom6 = $data['F'];
+                    $kolom7 = $data['G'];
+                    $kolom8 = $data['H'];
+                    $kolom9 = $data['I'];
+                   
+
+                    if (empty($kolom1) || empty($kolom2) || empty($kolom3) || empty($kolom4)) {
+                        continue;
+                    }
+
+                    $kolom1 = explode('_', $kolom1);
+                    
+                    $risiko = $this->penilaianRisikoModel->getPenilaianById($kolom1[1]);
+
+                    $penanganan_risiko = $this->penangananRisikoModel->where('id_risiko',$risiko[0]['id'])->get()->getRowArray();
+
+                    $jenis_laporan = strtolower($kolom2);
+
+                    if ($jenis_laporan=='triwulanan') {
+                        $jenis_laporan= substr($jenis_laporan, 0, 8);
+                    }
+
+                    $id_level_kemungkinan_pemantauan = $kolom3;
+                    $id_level_dampak_pemantauan= $kolom4;
+                    $levelKemungkinanPemantauan= $this->levelKemungkinanModel->find($id_level_kemungkinan_pemantauan);
+                    $levelDampakPemantauan= $this->levelDampakModel->find($id_level_dampak_pemantauan);
+
+                    $rencana_penanganan = '';
+                    $waktu_pelaksanaan_rencana = '';
+                    $penanggungjawab = '';
+                    $rekomendasi = '';
+                    $periode_laporan = $kolom5.' '. strval(date('Y'));
+
+                    $kolom5 = strtolower($kolom5);
+                    $kolom5 = ucwords($kolom5);
+
+                    if ($jenis_laporan=="tahunan") {
+                        $jenis_laporan = $jenis_laporan .' '. strval(date('Y'));
+                        $rekomendasi = $kolom9;
+                    } elseif($jenis_laporan=="triwulan" AND $kolom5=='Triwulan 1') {
+                        $periode_laporan = 'Triwulan I '. strval(date('Y'));
+                    } elseif ($jenis_laporan=='triwulan' AND $kolom5=='Triwulan 2') {
+                        $periode_laporan = 'Triwulan II '. strval(date('Y'));
+                    } elseif ($jenis_laporan=='triwulan' AND $kolom5=='Triwulan 3') {
+                        $periode_laporan = 'Triwulan III '. strval(date('Y'));
+                    } elseif ($jenis_laporan=='triwulan' AND $kolom5=='Triwulan 4') {
+                        $periode_laporan = 'Triwulan IV '. strval(date('Y'));
+                    } elseif ($jenis_laporan=='semesteran' AND $kolom5=='Semester 1') {
+                        $periode_laporan = 'Semester I '. strval(date('Y'));
+                    } elseif ($jenis_laporan=='semesteran' AND $kolom5=='Semester 2') {
+                        $periode_laporan = 'Semester II '. strval(date('Y'));
+                    }
+
+                    if ($jenis_laporan == "triwulan" OR $jenis_laporan == "semesteran" OR $jenis_laporan == 'bulanan') {
+                        $rencana_penanganan = $kolom6;
+                        $waktu_pelaksanaan_rencana = $kolom7.' '. strval(date('Y'));
+                        $penanggungjawab = $kolom8;
+                     }
+
+
+                    if (!$this->penangananRisikoModel->where(['id_risiko' => $kolom1[1], 'id_status_persetujuan' => 2])->get()->getRowArray()) {
+                        continue;
+                    }
+
+                    
+                    if (!$this->levelKemungkinanModel->where('id',$id_level_kemungkinan_pemantauan)->get()->getRowArray() OR !$this->levelDampakModel->where('id',$id_level_dampak_pemantauan)->get()->getRowArray()) {
+                        continue;
+                    }
+
+                    $multiClause = array('id_level_kemungkinan' => $id_level_kemungkinan_pemantauan, 'id_level_dampak' => $id_level_dampak_pemantauan); 
+                    $multiClause2 = array('id_kategori_risiko' => $risiko[0]['id_kategori_risiko'], 'id_jenis_risiko' => $risiko[0]['id_jenis_risiko'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
+
+                    $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
+                    $besaranRisiko = $matriksRisiko['besaran_risiko'];
+                    $multiClause3 = array('rentang_min <=' => $besaranRisiko, 'rentang_maks >=' => $besaranRisiko);
+
+                    $levelRisiko = $this->levelRisikoModel->where($multiClause3)->get()->getRowArray();
+
+                    $seleraRisiko = $this->seleraRisikoModel->where($multiClause2)->get()->getRowArray();
+                    $besaranRisikoMin = $seleraRisiko['besaran_risiko_min'];
+
+                    $kriteria_dampak_pemantauan = $this->kriteriaDampakModel->where(['id_area_dampak'=>$risiko[0]['id_area_dampak'],'id_level_dampak' => $id_level_dampak_pemantauan, 'id_jenis_risiko' => $risiko[0]['id_jenis_risiko'], 'id_upr'=> session()->id_upr])->get()->getRowArray();
+                    $kriteria_kemungkinan_pemantauan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko'=> $risiko[0]['id_kategori_risiko'], 'id_level_kemungkinan'=>$id_level_kemungkinan_pemantauan, 'id_upr'=>session()->id_upr])->get()->getRowArray();
+
+                    switch ($jenis_laporan) {
+                        case 'triwulan':
+                            $periode = 'triwulan';
+                            break;
+                        case 'bulanan':
+                            $periode = 'bulan';
+                            break;
+                        case 'semesteran':
+                            $periode = 'semester';
+                            break;
+                        default:
+                            $periode = '';
+                            break;
+                    }
+
+                    if ($besaranRisiko >=$besaranRisikoMin) {
+                        $str="Besaran risiko ini masih berada di atas selera risiko SPBE.";
+                    } else{
+                        $str="Besaran risiko ini sudah berada di bawah selera risiko SPBE.";
+                    }
+
+                    if ($jenis_laporan=='triwulan' OR $jenis_laporan=='bulanan' OR $jenis_laporan=='semesteran') {
+                        $deskripsi= 'Risiko SPBE pada awal tahun berada pada Level Risiko SPBE "'.$risiko[0]['level_risiko'].'" dengan Besaran Risiko SPBE sebesar '.$risiko[0]['besaran_risiko'].' dimana presentase kemungkinan terjadinya '.$risiko[0]['presentase_kemungkinan'].' dalam satu periode ('.$risiko[0]['level_kemungkinan'].') dengan dampak '.$risiko[0]['penjelasan'].' ('.$risiko[0]['level_dampak'].'). <br><br> Risiko SPBE tersebut pada '.$periode.' ini  berada pada Level Risiko SPBE "'.$levelRisiko['level_risiko'].'" dengan Besaran Risiko SPBE sebesar '.$besaranRisiko.' dimana presentase kemungkinan terjadinya '.$kriteria_kemungkinan_pemantauan['presentase_kemungkinan'].' ('.$levelKemungkinanPemantauan['level_kemungkinan'].') dengan dampak '.$kriteria_dampak_pemantauan['penjelasan'].' ('.$levelDampakPemantauan['level_dampak'].'). '.$str;
+                    } else {
+                        $deskripsi= 'Risiko SPBE pada awal tahun berada pada Level Risiko SPBE "'.$risiko[0]['level_risiko'].'" dengan Besaran Risiko SPBE sebesar '.$risiko[0]['besaran_risiko'].' dimana presentase kemungkinan terjadinya '.$risiko[0]['presentase_kemungkinan'].' dalam satu periode ('.$risiko[0]['level_kemungkinan'].') dengan dampak '.$risiko[0]['penjelasan'].' ('.$risiko[0]['level_dampak'].'). <br><br> Secara umum Setelah dilakukan pemantauan selama satu tahun risiko SPBE berada pada  level risiko "'.$levelRisiko['level_risiko'].'" dengan besaran risiko SPBE sebesar '.$besaranRisiko.'. '.$str;
+                    }
+                    
+
+                    
+
+                    //insert data
+                    $this->pemantauanRisikoModel->insert([
+                        'id_risiko' => $risiko[0]['id'],
+                        'id_penanganan_risiko' => $penanganan_risiko['id'],
+                        'id_level_kemungkinan_pemantauan' => $id_level_kemungkinan_pemantauan,
+                        'id_level_dampak_pemantauan' => $id_level_dampak_pemantauan,
+                        'jenis_laporan' => $jenis_laporan,
+                        'periode_laporan' => $periode_laporan,
+                        'deskripsi_risiko_saat_ini' => $deskripsi,
+                        'rekomendasi' => $rekomendasi,
+                        'rencana_penanganan' => $rencana_penanganan,
+                        'penanggungjawab' => $penanggungjawab,
+                        'waktu_pelaksanaan_rencana' => $waktu_pelaksanaan_rencana,
+                        'id_status_persetujuan' => 1
+                    ]);
+
+                    $suksesImport++;
+
+                }
+
+            } else {
+                $flash = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Gagal import data, periksa kembali file excel Anda.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+
+                $flash = session()->setFlashdata('flash', $flash);
+                return redirect()->to(base_url('pengelolaRisiko/penangananRisiko'));
+            }
+
+            $pesan = '';
+            $alert = 'success';
+            if ($suksesImport == 0) {
+                $pesan = 'Periksa kembali data dalam file excel Anda.';
+                $alert = 'danger';
+            }
+            $flash = '<div class="alert alert-'.$alert .' alert-dismissible fade show" role="alert">
+                                    Jumlah baris data excel yang berhasil di-import adalah '.$suksesImport. ' baris. '.$pesan.
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+            return redirect()->to(base_url('pengelolaRisiko/pemantauanRisiko'));
+
+        }
+
+        $data = [
+            'title'     => 'Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Import Laporan Pemantauan Risiko SPBE (5.0)',
+            'subsubtitle'  => '',
+            'script' => 'pengelola-risiko',
+            'active' => 'Pemantauan Risiko SPBE',
+            'link'  => 'pemantauanRisiko',
+            'sublink' => 'pemantauanRisiko',
+            'template' => 'pemantauan_risiko.xlsx',
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+        return view('PengelolaRisiko/form-import' , $data);
+    } 
+
+
+    public function updatePemantauanRisiko($id=null, $id_risiko=null, $id_level_kemungkinan=null, $id_level_dampak=null, $besaranRisiko=null, $levelRisiko=null, $besaranRisikoMin=null, $ganti_besaran_risiko=null){
+
+        $pemantauan_risiko = $this->pemantauanRisikoModel->find($id);
+        if ($ganti_besaran_risiko=='true') {
+            $risiko = $this->penilaianRisikoModel->getPenilaianById($id_risiko);
+        } else {
+            $risiko = $this->penilaianRisikoModel->getPenilaianById($pemantauan_risiko['id_risiko']);
+        }
+        $kriteria_dampak_pemantauan = null;
+        $kriteria_kemungkinan_pemantauan = null;
+        $levelKemungkinanPemantauan = null;
+        $levelDampakPemantauan = null;
+        if ($ganti_besaran_risiko=='true') {
+            $kriteria_dampak_pemantauan = $this->kriteriaDampakModel->where(['id_area_dampak'=>$risiko[0]['id_area_dampak'],'id_level_dampak' => $id_level_dampak, 'id_jenis_risiko' => $risiko[0]['id_jenis_risiko'], 'id_upr'=> session()->id_upr])->get()->getRowArray();
+
+            $kriteria_kemungkinan_pemantauan = $this->kriteriaKemungkinanModel->where(['id_kategori_risiko'=> $risiko[0]['id_kategori_risiko'], 'id_level_kemungkinan'=>$id_level_kemungkinan, 'id_upr'=>session()->id_upr])->get()->getRowArray();
+
+            $levelKemungkinanPemantauan = $this->levelKemungkinanModel->where('id',$id_level_kemungkinan)->get()->getRowArray();
+            $levelDampakPemantauan = $this->levelDampakModel->where('id',$id_level_dampak)->get()->getRowArray();
+            
+        }
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Mengedit Laporan Pemantauan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'tipe_halaman' => 'edit',
+            'pemantauan_risiko' => $pemantauan_risiko,
+            'risiko' => $risiko,
+            'levelKemungkinanPemantauan' => $levelKemungkinanPemantauan,
+            'levelDampakPemantauan' => $levelDampakPemantauan,
+            'levelRisikoPemantauan' => $levelRisiko,
+            'besaranRisikoPemantauan' => $besaranRisiko,
+            'besaranRisikoMin' => $besaranRisikoMin,
+            'kriteria_kemungkinan_pemantauan' => $kriteria_kemungkinan_pemantauan ,
+            'kriteria_dampak_pemantauan' => $kriteria_dampak_pemantauan,
+            'levelKemungkinan' => $this->levelKemungkinanModel->where('id',$pemantauan_risiko['id_level_kemungkinan_pemantauan'])->get()->getRowArray(),
+            'levelDampak' => $this->levelDampakModel->where('id',$pemantauan_risiko['id_level_dampak_pemantauan'])->get()->getRowArray(),
+            'ganti_besaran_risiko' => $ganti_besaran_risiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+        if(isset($_POST['submit'])){
+            $level_kemungkinan = $this->levelKemungkinanModel->where('level_kemungkinan',$this->request->getPost('level_kemungkinan'))->get()->getRowArray();
+            $level_dampak = $this->levelDampakModel->where('level_dampak',$this->request->getPost('level_dampak'))->get()->getRowArray();
+
+
+            $jenis_laporan = explode(' ', $pemantauan_risiko['jenis_laporan']);
+            if ($jenis_laporan[0]=='tahunan') {
+                $periode_laporan = '';
+                $waktu_pelaksanaan_rencana='';
+            } else {
+                $periode_laporan = $this->request->getPost('periode_laporan').' '. strval(date('Y'));
+                $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+            }
+
+
+            $this->pemantauanRisikoModel
+            ->set('id_level_kemungkinan_pemantauan' , $level_kemungkinan['id'])
+            ->set('id_level_dampak_pemantauan' , $level_dampak['id'])
+            ->set('periode_laporan' , $periode_laporan)
+            ->set('deskripsi_risiko_saat_ini' , $this->request->getPost('deskripsi'))
+            ->set('rekomendasi' , $this->request->getPost('rekomendasi'))
+            ->set('rencana_penanganan' ,$this->request->getPost('rencana_penanganan'))
+            ->set('penanggungjawab' , $this->request->getPost('penanggungjawab'))
+            ->set('waktu_pelaksanaan_rencana' , $waktu_pelaksanaan_rencana)
+            ->where('id' , $id)
+            ->update();
+
+            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Laporan pemantauan risiko berhasil diubah
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>';
+            $flash = session()->setFlashdata('flash', $flash);
+
+            return redirect()->to(base_url('pengelolaRisiko/pemantauanRisiko'));
+        }
+        return view('PengelolaRisiko/form-edit-pemantauan-risiko' , $data);
+    }
+
+    public function detailRisikoPemantauan($id){
+
+        $risiko = $this->penilaianRisikoModel->getPenilaianById($id);
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Detail Risiko SPBE',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'risiko' => $risiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+        return view('PengelolaRisiko/detail-risiko' , $data);
+
+    }
+
+    public function detailRencanaPenanganan($id){
+
+        $rencana_penanganan = $this->penangananRisikoModel->find($id);
+        $opsi_penanganan = $this->opsiPenangananModel->where('id',$rencana_penanganan['id_opsi_penanganan'])->get()->getRowArray();
+        $status_persetujuan = $this->statusPersetujuanModel->find($rencana_penanganan['id_status_persetujuan']);
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Detail Rencana Penanganan Risiko SPBE',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'rencana_penanganan' => $rencana_penanganan,
+            'opsi_penanganan' => $opsi_penanganan,
+            'status_persetujuan' => $status_persetujuan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+        return view('PengelolaRisiko/detail-rencana-penanganan' , $data);
+
+    }
+
+    public function detailLaporanPemantauan($id){
+
+        $pemantauan = $this->pemantauanRisikoModel->getPemantauanById($id);
+        $risiko = $this->penilaianRisikoModel->getPenilaianById($pemantauan[0]['id_risiko']);
+
+        if ($pemantauan[0]['jenis_laporan']=='bulanan') {
+            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'bulanan', 'id <' => $id,  ])->get()->getResultArray();
+        } elseif ($pemantauan[0]['jenis_laporan']=='triwulan') {
+            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'triwulan', 'id <' => $id,  ])->get()->getResultArray();
+        } elseif ($pemantauan[0]['jenis_laporan']=='semesteran') {
+            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'semesteran', 'id <' => $id,  ])->get()->getResultArray();
+        } else {
+            $daftarPemantauan = $this->pemantauanRisikoModel->groupStart()
+            ->where('id_risiko',$pemantauan[0]['id_risiko'])->where('jenis_laporan','triwulan')->where('id <=', $id)->where('id_status_persetujuan' , 2 )
+            ->groupEnd()
+            ->orGroupStart()->where('id_risiko',$pemantauan[0]['id_risiko'])->where('jenis_laporan','bulanan')->where('id <=', $id)->where('id_status_persetujuan' , 2 )
+            ->groupEnd()
+            ->orGroupStart()->where('id_risiko',$pemantauan[0]['id_risiko'])->where('jenis_laporan','semesteran')->where('id <=', $id)->where('id_status_persetujuan' , 2 )
+            ->groupEnd()->get()->getResultArray();
+        }
+        
+        $upr = $this->uprSPBEModel->find(session()->id_upr);
+
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subtitle'  => 'Detail Risiko SPBE',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'pemantauan' => $pemantauan,
+            'risiko' => $risiko,
+            'upr' => $upr,
+            'daftarPemantauan' => $daftarPemantauan,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+        
+        return view('PengelolaRisiko/detail-pemantauan' , $data);
+
+    }
+
+    public function hapusPemantauanRisiko($id = null)
+    {
+        $risiko_upr = $this->penilaianRisikoModel->select('id')->where('id_upr',session()->id_upr)->get()->getResultArray();
+        if ($id==null) {
+            $delete = $this->pemantauanRisikoModel->whereIn('id_risiko', $risiko_upr[0])->delete();
+        } else {
+            $delete = $this->pemantauanRisikoModel->where('id', $id)->delete();
+        }
+        
+
+        $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Data berhasil dihapus!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+                
+        $flash = session()->setFlashdata('flash', $flash);
+        return redirect()->to(base_url('pengelolaRisiko/pemantauanRisiko'));
+        
+    }
+
+    //Melihat deatil persetujuan
+    public function detailPersetujuanPemantauanRisiko($id){
+
+        $pemantauanRisiko = $this->pemantauanRisikoModel->find($id);
+        $status = $this->statusPersetujuanModel->where('id',$pemantauanRisiko['id_status_persetujuan'])->get()->getRowArray();
+        
+        $data = [
+            'title'     => 'Laporan Pemantauan Risiko SPBE (5.0)',
+            'subsubtitle' => '',
+            'subtitle'  => 'Detail Persetujuan',
+            'script'    => 'pengelola-risiko',
+            'active'    => 'Pemantauan Risiko SPBE',
+            'link'      => 'pemantauanRisiko',
+            'sublink'   => '',
+            'status'    => $status,
+            'data' => $pemantauanRisiko,
+            'informasiUmum' => $this->informasiUmum,
+            'sasaranSPBE' => $this->sasaranSPBE,
+            'strukturPelaksana' => $this->strukturPelaksana,
+            'pemangkuKepentingan' => $this->pemangkuKepentingan,
+            'peraturanPerundangan' => $this->peraturanPerundangan,
+            'areaDampakTerpilih' => $this->areaDampakTerpilih,
+            'kriteriaKemungkinan' => $this->kriteriaKemungkinan,
+            'kriteriaDampak' => $this->kriteriaDampak,
+            'seleraRisiko' => $this->seleraRisiko,
+            'penilaianRisiko' => $this->penilaianRisiko,
+            'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
+            'penangananRisiko' => $this->penangananRisiko
+        ];
+
+        return view('PengelolaRisiko/detail-persetujuan' , $data);
+    }
+
 
     public function downloadTemplateExcel($namaFile){
         // $data = file_get_contents(base_url('/public/Template_Excel/' . $namaFile));

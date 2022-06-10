@@ -16,6 +16,10 @@ class KriteriaKemungkinanRisikoSPBE extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
+			'tag'      => [
+				'type'           => 'VARCHAR',
+				'constraint'     => 50
+            ],
             'id_kategori_risiko'      => [
 				'type'           => 'INT',
 				'constraint'     => 4,

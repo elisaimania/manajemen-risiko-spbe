@@ -102,7 +102,7 @@
        <!-- Divider -->
     <hr class="sidebar-divider border-light my-0">
 
-    <!-- Nav Item - Utilities  Menu -->
+    <!-- Nav Item -Menu -->
     <li class="nav-item <?= ($active==='Penetapan Konteks Risiko SPBE') ? 'active' : ''; ?>">
         <a class="nav-link " href="<?= base_url('pengelolaRisiko/penetapanKonteks'); ?>">
             <i class="fas fa-solid fa-database"></i>
@@ -112,9 +112,9 @@
 
     <div class="bs-stepper-line" ></div>
 
-    <!-- Nav Item - Pages  Menu -->
+    <!-- Nav Item -Menu -->
     <li class="nav-item <?= ($active==='Penilaian Risiko SPBE') ? 'active' : ''; ?>">
-        <a class="nav-link <?= (empty($seleraRisiko)|| sizeof(array_unique(array_column($seleraRisiko, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih) || empty($kriteriaKemungkinan) || empty($kriteriaDampak) || empty($areaDampakTerpilih) || empty($kategoriRisikoTerpilih) || empty($peraturanPerundangan) || empty($pemangkuKepentingan) || empty($strukturPelaksana) || empty($sasaranSPBE) || empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('pengelolaRisiko/penilaianRisiko'); ?>" >
+        <a class="nav-link <?= (empty($seleraRisiko)|| sizeof(array_unique(array_column($seleraRisiko, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih) || empty($kriteriaKemungkinan) || empty($kriteriaDampak)|| sizeof(array_unique(array_column($kriteriaKemungkinan, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih) || sizeof(array_unique(array_column($kriteriaDampak, 'id_area_dampak')))!=sizeof($areaDampakTerpilih) || empty($areaDampakTerpilih) || empty($kategoriRisikoTerpilih) || empty($peraturanPerundangan) || empty($pemangkuKepentingan) || empty($strukturPelaksana) || empty($sasaranSPBE) || empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('pengelolaRisiko/penilaianRisiko'); ?>" >
             <i class="fas fa-solid fa-database"></i>
             <span>Penilaian Risiko (3.0)</span>
         </a>
@@ -122,11 +122,20 @@
 
     <div class="bs-stepper-line"></div>
 
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Menu -->
     <li class="nav-item <?= ($active==='Penanganan Risiko SPBE') ? 'active' : ''; ?>">
-        <a class="nav-link <?= (empty($seleraRisiko)|| empty($penilaianRisiko) || empty($kriteriaKemungkinan) || empty($kriteriaDampak) || empty($areaDampakTerpilih) || empty($kategoriRisikoTerpilih) || empty($peraturanPerundangan) || empty($pemangkuKepentingan) || empty($strukturPelaksana) || empty($sasaranSPBE) || empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('pengelolaRisiko/penangananRisiko'); ?>" >
+        <a class="nav-link <?= (empty($seleraRisiko) || sizeof(array_unique(array_column($seleraRisiko, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih)|| empty($penilaianRisiko) || empty($kriteriaKemungkinan) || empty($kriteriaDampak) || empty($areaDampakTerpilih) || empty($kategoriRisikoTerpilih) || empty($peraturanPerundangan) || empty($pemangkuKepentingan) || empty($strukturPelaksana) || sizeof(array_unique(array_column($kriteriaKemungkinan, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih) || sizeof(array_unique(array_column($kriteriaDampak, 'id_area_dampak')))!=sizeof($areaDampakTerpilih) || empty($sasaranSPBE) || empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('pengelolaRisiko/penangananRisiko'); ?>" >
             <i class="fas fa-solid fa-database"></i>
             <span>Penanganan Risiko (4.0)</span></a>
+    </li>
+
+    <div class="bs-stepper-line"></div>
+
+    <!-- Nav Item - Menu -->
+    <li class="nav-item <?= ($active==='Pemantauan Risiko SPBE') ? 'active' : ''; ?>">
+        <a class="nav-link <?= (empty($seleraRisiko) || sizeof(array_unique(array_column($seleraRisiko, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih)|| empty($penilaianRisiko) || empty($kriteriaKemungkinan) || empty($kriteriaDampak) || empty($areaDampakTerpilih) || empty($kategoriRisikoTerpilih) || empty($peraturanPerundangan) || empty($pemangkuKepentingan) || empty($strukturPelaksana) || sizeof(array_unique(array_column($kriteriaKemungkinan, 'id_kategori_risiko')))!=sizeof($kategoriRisikoTerpilih) || sizeof(array_unique(array_column($kriteriaDampak, 'id_area_dampak')))!=sizeof($areaDampakTerpilih) || empty($sasaranSPBE) || empty($informasiUmum) || empty($penangananRisiko)) ? 'disabled' : ''; ?>" href="<?= base_url('pengelolaRisiko/pemantauanRisiko'); ?>" >
+            <i class="fas fa-solid fa-database"></i>
+            <span>Pemantauan Risiko (5.0)</span></a>
     </li>
 
 

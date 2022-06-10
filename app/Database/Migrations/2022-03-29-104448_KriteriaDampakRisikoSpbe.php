@@ -16,6 +16,10 @@ class KriteriaDampakRisikoSPBE extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
+			'tag'      => [
+				'type'           => 'VARCHAR',
+				'constraint'     => 50
+            ],
 			'id_area_dampak'      => [
 				'type'           => 'INT',
 				'constraint'     => 4,

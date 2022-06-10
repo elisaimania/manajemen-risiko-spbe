@@ -1,4 +1,4 @@
-function loadRisikoDitangani() {
+function loadDaftarRisiko() {
     $.get('getPenilaianRisiko', (data) => {
         
         th = ``
@@ -415,7 +415,7 @@ function loadBarChartDampakRisiko() {
 }
 
 $(document).ready( () => {
-    loadRisikoDitangani()
+    loadDaftarRisiko()
     loadBarChartLevelRisiko()
     loadBarChartKategoriRisiko()
     loadBarChartDampakRisiko()

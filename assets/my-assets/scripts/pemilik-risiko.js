@@ -47,7 +47,7 @@ function loadDataInformasiUmum() {
         $('#tabel-informasiUmum').html(table)
         $("#table1").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table1_wrapper .col-md-6:eq(0)');
     })
 }
@@ -139,7 +139,7 @@ function loadDataMatriks() {
         $('#tabel-matriksRisiko').html(table)
         $("#table2").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table2_wrapper .col-md-6:eq(0)');
         
 
@@ -209,7 +209,7 @@ function loadDataLevelRisiko() {
         $('#tabel-levelRisiko').html(table)
         $("#table3").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table3_wrapper .col-md-6:eq(0)');
     })
 
@@ -254,7 +254,7 @@ function loadDataPemangkuKepentingan() {
         $('#tabel-pemangkuKepentingan').html(table)
         $("#table4").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table4_wrapper .col-md-6:eq(0)');
     })
 }
@@ -294,7 +294,7 @@ function loadDataPenetapanAreaDampak() {
         $('#tabel-areaDampakTerpilih').html(table)
         $("#table5").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table5_wrapper .col-md-6:eq(0)');
     })
 }
@@ -334,7 +334,7 @@ function loadDataPenetapanKategori() {
         $('#tabel-kategoriTerpilih').html(table)
         $("#table6").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table6_wrapper .col-md-6:eq(0)');
     })
 }
@@ -382,8 +382,8 @@ function loadDataKriteriaKemungkinan() {
 
         $('#tabel-kriteriaKemungkinan').html(table)
         $("#table7").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"],
+            "responsive": false, "lengthChange": false, "autoWidth": false,
+            "buttons": ["csv", "excel", "pdf"],
             "rowsGroup": [0]
         }).buttons().container().appendTo('#table7_wrapper .col-md-6:eq(0)');
     })
@@ -431,7 +431,7 @@ function loadDataKriteriaDampak() {
         $('#tabel-kriteriaDampak').html(table)
         $("#table8").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"],
+            "buttons": ["csv", "excel", "pdf"],
             "rowsGroup": [0,1]
         }).buttons().container().appendTo('#table8_wrapper .col-md-6:eq(0)');
     })
@@ -476,7 +476,7 @@ function loadDataPerundangan() {
         $('#tabel-peraturanPerundangan').html(table)
         $("#table9").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table9_wrapper .col-md-6:eq(0)');
     })
 }
@@ -524,7 +524,7 @@ function loadDataSasaranSPBE() {
         $('#tabel-sasaranSPBE').html(table)
         $("#table10").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"],
+            "buttons": ["csv", "excel", "pdf"],
             "rowsGroup" : [0,1]
         }).buttons().container().appendTo('#table10_wrapper .col-md-6:eq(0)');
     })
@@ -568,8 +568,8 @@ function loadDataSeleraRisiko() {
 
         $('#tabel-seleraRisiko').html(table)
         $("#table11").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"],
+            "responsive": false, "lengthChange": false, "autoWidth": false,
+            "buttons": ["csv", "excel", "pdf"],
             "rowsGroup": [0]
         }).buttons().container().appendTo('#table11_wrapper .col-md-6:eq(0)');
     })
@@ -614,7 +614,7 @@ function loadDataStrukturPelaksana() {
         $('#tabel-strukturPelaksana').html(table)
         $("#table12").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table12_wrapper .col-md-6:eq(0)');
     })
 }
@@ -637,7 +637,8 @@ function ubahSimbol(simbol){
           }
 }
 
-function loadDataIdentifikasiRisiko() {
+
+function loadDataPenilaianRisiko() {
     $.get('getPenilaianRisiko', (data) => {
         
         th = ``
@@ -651,6 +652,15 @@ function loadDataIdentifikasiRisiko() {
                 <th >Kategori</th>
                 <th >Dampak</th>
                 <th >Area Dampak</th>
+                <th >Sistem Pengendalian</th>
+                <th >Level Kemungkinan Risiko</th>
+                <th >Penjelasan Level Kemungkinan</th>
+                <th >Level Dampak Risiko</th>
+                <th >Penjelasan Level Dampak</th>
+                <th >Besaran Risiko</th>
+                <th >Level Risiko</th>
+                <th >Keputusan Penanganan Risiko SPBE (Ya/Tidak)</th>
+                <th >Prioritas Risiko</th>
         `
 
         thead = `<thead class="text-center">
@@ -659,6 +669,27 @@ function loadDataIdentifikasiRisiko() {
 
         cell = ``
         data.forEach(d => {
+            d.presentase_kemungkinan = d.presentase_kemungkinan.toLowerCase();
+            if (d.presentase_kemungkinan.includes('x')){
+
+                let result = d.presentase_kemungkinan.replace(/<=/g,"&le;").replace(/=</g,"&le;").replace(/≤/g,"&le;")
+                .replace(/=>/g,"&ge;").replace(/>=/g,"&ge;").replace(/≥/g,"&ge;").replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/ /g,'');
+
+                if(result[0] == 'x'){
+                    result = result.replace(/x/g,'');
+                    d.presentase_kemungkinan = 'Presentase kemungkinan terjadi ' + result;
+                } else {
+                    simbol1 = result.substr(result.indexOf('x')-4, 4);
+                    simbol1 = ubahSimbol(simbol1);
+                    result = result.replace(result.substr(result.indexOf('x')-4, 4), ' dan ');
+                    result = result.replace(/x/g,'');
+                    d.presentase_kemungkinan = 'Presentase Kemungkinan terjadi ' + simbol1 + result ;
+                } 
+            } else{
+                d.presentase_kemungkinan = 'Presentase Kemungkinan terjadi ' + d.presentase_kemungkinan;
+            }
+
             cell+=`
                 <tr>
                     <td>
@@ -688,76 +719,7 @@ function loadDataIdentifikasiRisiko() {
                     <td>
                         ${d.area_dampak}
                     </td>
-                </tr>
-            `
-        });
-        tbody = `<tbody>${cell}</tbody>`
-        table = `<table id="table13" class="table table-bordered">
-        ${thead}
-        ${tbody}
-        </table>`
-
-        $('#tabel-identifikasiRisiko').html(table)
-        $("#table13").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf"],
-            "rowsGroup": [2,3], "order" :[[0,'DESC']]
-        }).buttons().container().appendTo('#table13_wrapper .col-md-6:eq(0)');
-    })
-}
-
-
-function loadDataAnalisisRisiko() {
-    $.get('getPenilaianRisiko', (data) => {
-        
-        th = ``
-        th+= `
-                <th >ID</th>
-                <th >Sistem Pengendalian</th>
-                <th >Level Kemungkinan Risiko</th>
-                <th >Penjelasan Level Kemungkinan</th>
-                <th >Level Dampak Risiko</th>
-                <th >Penjelasan Level Dampak</th>
-                <th >Besaran Risiko</th>
-                <th >Level Risiko</th>
-        `
-
-
-
-        thead = `<thead class="text-center">
-        <tr>${th}</tr>
-        </thead>`
-
-        cell = ``
-        no = 1
-        data.forEach(d => {
-            d.presentase_kemungkinan = d.presentase_kemungkinan.toLowerCase();
-            if (d.presentase_kemungkinan.includes('x')){
-
-                let result = d.presentase_kemungkinan.replace(/<=/g,"&le;").replace(/=</g,"&le;").replace(/≤/g,"&le;")
-                .replace(/=>/g,"&ge;").replace(/>=/g,"&ge;").replace(/≥/g,"&ge;").replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;').replace(/ /g,'');
-
-                if(result[0] == 'x'){
-                    result = result.replace(/x/g,'');
-                    d.presentase_kemungkinan = 'Presentase kemungkinan terjadi ' + result;
-                } else {
-                    simbol1 = result.substr(result.indexOf('x')-4, 4);
-                    simbol1 = ubahSimbol(simbol1);
-                    result = result.replace(result.substr(result.indexOf('x')-4, 4), ' dan ');
-                    result = result.replace(/x/g,'');
-                    d.presentase_kemungkinan = 'Presentase Kemungkinan terjadi ' + simbol1 + result ;
-                } 
-            } else{
-                d.presentase_kemungkinan = 'Presentase Kemungkinan terjadi ' + d.presentase_kemungkinan;
-            }
-
-            cell+=`
-                <tr>
                     <td>
-                        <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
-                    </td>
-                     <td>
                         ${d.sistem_pengendalian.replace(/\n/g, "<br>")}
                     </td>
                     <td>
@@ -778,47 +740,6 @@ function loadDataAnalisisRisiko() {
                     <td>
                         ${d.level_risiko}
                     </td>
-                </tr>
-            `
-        });
-        tbody = `<tbody>${cell}</tbody>`
-        table = `<table id="table15" class="table table-bordered">
-        ${thead}
-        ${tbody}
-        </table>`
-
-        $('#tabel-analisisRisiko').html(table)
-        $("#table15").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf"], "order" :[[0,'DESC']]
-        }).buttons().container().appendTo('#table15_wrapper .col-md-6:eq(0)');
-    })
-}
-
-
-function loadDataEvaluasiRisiko() {
-    $.get('getPenilaianRisiko', (data) => {
-        
-        th = ``
-        th+= `
-                <th >ID</th>
-                <th >Keputusan Penanganan Risiko SPBE (Ya/Tidak)</th>
-                <th >Prioritas Risiko</th>
-        `
-
-        thead = `<thead class="text-center">
-        <tr>${th}</tr>
-        </thead>`
-
-        cell = ``
-        no = 1
-        data.forEach(d => {
-
-            cell+=`
-                <tr class="text-wrap">
-                    <td>
-                        <a href="detailRisiko/${d.id}" class="font-weight-bold">${'ID_'+d.id}</a>
-                    </td>
                     <td>
                         ${d.keputusan}
                     </td>
@@ -829,16 +750,53 @@ function loadDataEvaluasiRisiko() {
             `
         });
         tbody = `<tbody>${cell}</tbody>`
-        table = `<table id="table16" class="table table-bordered">
+        table = `<table id="table13" class="table table-bordered">
         ${thead}
         ${tbody}
         </table>`
 
-        $('#tabel-evaluasiRisiko').html(table)
-        $("#table16").DataTable({
+        $('#tabel-penilaianRisiko').html(table)
+        $("#table13").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf"], "order" :[[0,'DESC']]
-        }).buttons().container().appendTo('#table16_wrapper .col-md-6:eq(0)');
+            "dom": 'lBfrtip',
+            "buttons": [{
+                extend: 'csv',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                }
+            }, {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                }
+            }, {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                }
+            }, {
+                extend: 'colvisGroup',
+                text: 'Identifikasi Risiko',
+                show: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ],
+                hide: [ 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+            }, {
+                extend: 'colvisGroup',
+                text: 'Analisis Risiko',
+                show: [ 0, 9, 10, 11, 12, 13, 14, 15 ],
+                hide: [ 1, 2, 3, 4, 5, 6, 7, 8, 16, 17 ]
+            }, {
+                extend: 'colvisGroup',
+                text: 'Evaluasi Risiko',
+                show: [ 0,  16, 17 ],
+                hide: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+            }, {
+                extend: 'colvisGroup',
+                text: 'All',
+                show: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ],
+                hide: []
+            }],
+           "order" :[[2,'DESC']], "pageLength" : 5
+        }).buttons().container().appendTo('#table13_wrapper .col-md-6:eq(0)');
     })
 }
 
@@ -864,6 +822,13 @@ function loadDataPenangananRisiko() {
         cell = ``
         no = 1
         data.forEach(d => {
+            if (d.periode_implementasi=="Tanggal") {
+                jadwal = new Date(d.tanggal_mulai).getDate().toString() + ' ' + new Date(d.tanggal_mulai).toLocaleString('id-ID', { month: 'long' }) 
+                        + ' ' + new Date(d.tanggal_mulai).getFullYear().toString() + ' - ' + new Date(d.tanggal_selesai).getDate().toString() + ' '
+                        + new Date(d.tanggal_selesai).toLocaleString('id-ID', { month: 'long' }) + ' ' + new Date(d.tanggal_selesai).getFullYear().toString();
+            } else {
+                jadwal = d.periode_implementasi;
+            }
             cell+=`
                 <tr>
                     <td>
@@ -882,9 +847,7 @@ function loadDataPenangananRisiko() {
                         ${d.keluaran.replace(/\n/g, "<br>")}
                     </td>
                     <td>
-                        ${new Date(d.jadwal_mulai).getDate().toString() + ' ' + new Date(d.jadwal_mulai).toLocaleString('id-ID', { month: 'long' }) 
-                        + ' ' + new Date(d.jadwal_mulai).getFullYear().toString() + ' - ' + new Date(d.jadwal_selesai).getDate().toString() + ' '
-                        + new Date(d.jadwal_selesai).toLocaleString('id-ID', { month: 'long' }) + ' ' + new Date(d.jadwal_selesai).getFullYear().toString()}
+                        ${jadwal}
                     </td>
                     <td>
                         ${d.penanggungjawab}
@@ -904,7 +867,7 @@ function loadDataPenangananRisiko() {
         $('#tabel-penangananRisiko').html(table)
         $("#table17").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table17_wrapper .col-md-6:eq(0)');
     })
 }
@@ -923,9 +886,7 @@ $(document).ready( () => {
     loadDataSasaranSPBE()
     loadDataSeleraRisiko()
     loadDataStrukturPelaksana()
-    loadDataIdentifikasiRisiko()
-    loadDataAnalisisRisiko()
-    loadDataEvaluasiRisiko()
+    loadDataPenilaianRisiko()
     loadDataPenangananRisiko()
 
     

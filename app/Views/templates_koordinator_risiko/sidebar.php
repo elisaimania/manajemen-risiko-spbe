@@ -102,7 +102,7 @@
        <!-- Divider -->
     <hr class="sidebar-divider border-light my-0">
 
-    <!-- Nav Item - Utilities  Menu -->
+    <!-- Nav Item -Menu -->
     <li class="nav-item <?= ($active==='Penetapan Konteks Risiko SPBE') ? 'active' : ''; ?>">
         <a class="nav-link " href="<?= base_url('koordinatorRisiko/penetapanKonteks'); ?>">
             <i class="fas fa-solid fa-database"></i>
@@ -112,7 +112,7 @@
 
     <div class="bs-stepper-line" ></div>
 
-    <!-- Nav Item - Pages  Menu -->
+    <!-- Nav Item -Menu -->
     <li class="nav-item <?= ($active==='Penilaian Risiko SPBE') ? 'active' : ''; ?>">
         <a class="nav-link <?= (!empty($seleraRisiko) || !empty($kriteriaKemungkinan) || !empty($kriteriaDampak) || !empty($areaDampakTerpilih) || !empty($kategoriRisikoTerpilih) || !empty($peraturanPerundangan) || !empty($pemangkuKepentingan) || !empty($strukturPelaksana) || !empty($sasaranSPBE) || !empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('koordinatorRisiko/penilaianRisiko'); ?>" >
             <i class="fas fa-solid fa-database"></i>
@@ -122,11 +122,20 @@
 
     <div class="bs-stepper-line"></div>
 
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item -Menu-->
     <li class="nav-item <?= ($active==='Penanganan Risiko SPBE') ? 'active' : ''; ?>">
         <a class="nav-link <?= (!empty($penilaianRisiko) || !empty($seleraRisiko) || !empty($kriteriaKemungkinan) || !empty($kriteriaDampak) || !empty($areaDampakTerpilih) || !empty($kategoriRisikoTerpilih) || !empty($peraturanPerundangan) || !empty($pemangkuKepentingan) || !empty($strukturPelaksana) || !empty($sasaranSPBE) || !empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('koordinatorRisiko/penangananRisiko'); ?>" >
             <i class="fas fa-solid fa-database"></i>
             <span>Penanganan Risiko (4.0)</span></a>
+    </li>
+
+    <div class="bs-stepper-line"></div>
+
+    <!-- Nav Item -Menu -->
+    <li class="nav-item <?= ($active==='Pemantauan Risiko SPBE') ? 'active' : ''; ?>">
+        <a class="nav-link <?= (!empty($penangananRisiko)|| !empty($penilaianRisiko) || !empty($seleraRisiko) || !empty($kriteriaKemungkinan) || !empty($kriteriaDampak) || !empty($areaDampakTerpilih) || !empty($kategoriRisikoTerpilih) || !empty($peraturanPerundangan) || !empty($pemangkuKepentingan) || !empty($strukturPelaksana) || !empty($sasaranSPBE) || !empty($informasiUmum)) ? 'disabled' : ''; ?>" href="<?= base_url('koordinatorRisiko/pemantauanRisiko'); ?>" >
+            <i class="fas fa-solid fa-database"></i>
+            <span>Pemantauan Risiko (5.0)</span></a>
     </li>
 
 

@@ -22,12 +22,12 @@
 .table{
     color: black;
 }
-.btn.float-right{
+.btn.float-right.hijau{
     background-color: #8CBA08; 
     border-color: #8CBA08; 
     color:#fff;
 }
-.btn.float-right:hover{
+.btn.float-right.hijau:hover{
     background-color:#A1D70A;
 }
 
@@ -74,7 +74,7 @@ a:hover {
 <!-- DataTales Example -->
 <div class="card shadow  mt-5 mx-2 mb-2">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-        <h6 class="m-0 font-weight-bold ">Identifikasi Risiko SPBE (3.0)</h6>                  
+        <h6 class="m-0 font-weight-bold ">Penilaian Risiko SPBE (3.0)</h6>                  
     </div>
     <div class="card-body">
         <div class="form-group">
@@ -82,37 +82,16 @@ a:hover {
                 <div class="col">
                 </div>
                 <div class="col">
-                    <a href="<?= base_url('pengelolaRisiko/inputPenilaianRisiko'); ?>" class="btn float-right" >Tambah</a>
-                    <a href="<?= base_url('pengelolaRisiko/importPenilaianRisiko'); ?>" class="btn float-right mr-3" >Import Excel</a>
+                    <a href="<?= base_url('pengelolaRisiko/inputPenilaianRisiko'); ?>" class="btn float-right hijau" >Tambah</a>
+                    <a href="<?= base_url('pengelolaRisiko/importPenilaianRisiko'); ?>" class="btn float-right mr-3 hijau" >Import Excel</a>
+                    <a href="<?= base_url('pengelolaRisiko/hapusPenilaianRisiko'); ?>" class="btn btn-danger float-right mr-3" onclick="return confirm('Apakah Anda yakin untuk menghapus semua data ini?')">Hapus Semua Data</a>
                 </div>
             </div>
         </div>
-        <div class="table-responsive" id="tabel-identifikasiRisiko">
+        <div class="table-responsive" id="tabel-penilaianRisiko">
         </div>
     </div>
 </div>
-
-<div class="card shadow  my-5 mx-2">
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-        <h6 class="m-0 font-weight-bold ">Analisis Risiko SPBE (3.0)</h6>               
-    </div>
-    <div class="card-body">
-        <div class="table-responsive" id="tabel-analisisRisiko">
-        </div>
-    </div>
-</div>
-<div class="card shadow  my-5 mx-2">
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-        <h6 class="m-0 font-weight-bold ">Evaluasi Risiko SPBE (3.0)</h6>                
-    </div>
-    <div class="card-body">
-        <div class="table-responsive" id="tabel-evaluasiRisiko">
-        </div>
-    </div>
-</div>
-
- 
-    
 
 
 <?= $this->endSection(); ?>

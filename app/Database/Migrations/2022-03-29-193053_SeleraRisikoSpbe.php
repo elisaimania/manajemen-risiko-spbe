@@ -16,6 +16,10 @@ class SeleraRisikoSpbe extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
+			'tag'      => [
+				'type'           => 'VARCHAR',
+				'constraint'     => 50
+            ],
 			'id_kategori_risiko'      => [
 				'type'           => 'INT',
 				'constraint'     => 4,
@@ -49,7 +53,7 @@ class SeleraRisikoSpbe extends Migration
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe_terpilih', 'id_kategori_risiko', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe_terpilih', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_upr', 'upr_spbe', 'id', 'CASCADE', 'CASCADE');
 
 

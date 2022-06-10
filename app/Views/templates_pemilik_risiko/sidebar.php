@@ -129,6 +129,15 @@
             <span>Penanganan Risiko (4.0)</span></a>
     </li>
 
+    <div class="bs-stepper-line"></div>
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item <?= ($active==='Pemantauan Risiko SPBE') ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= base_url('pemilikRisiko/pemantauanRisiko'); ?>" >
+            <i class="fas fa-solid fa-database"></i>
+            <span>Pemantauan Risiko (4.0)</span></a>
+    </li>
+
 
 
     <!-- Divider -->

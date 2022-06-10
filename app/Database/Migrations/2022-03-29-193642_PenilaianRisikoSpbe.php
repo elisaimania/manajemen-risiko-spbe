@@ -12,7 +12,7 @@ class PenilaianRisikoSpbe extends Migration
 		$this->forge->addField([
 			'id'      => [
 				'type'           => 'INT',
-				'constraint'     => 4,
+				'constraint'     => 10,
                 'unsigned'       => true,
 				'auto_increment' => true
             ],
@@ -93,7 +93,7 @@ class PenilaianRisikoSpbe extends Migration
         $this->forge->addForeignKey('id_status_persetujuan', 'status_persetujuan', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_sasaran_SPBE', 'sasaran_spbe', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_jenis_risiko', 'jenis_risiko', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe_terpilih', 'id_kategori_risiko', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_kategori_risiko', 'kategori_risiko_spbe_terpilih', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_area_dampak', 'area_dampak_risiko_spbe_terpilih', 'id_area_dampak', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_level_risiko', 'level_risiko_spbe', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_keputusan', 'keputusan', 'id', 'CASCADE', 'CASCADE');

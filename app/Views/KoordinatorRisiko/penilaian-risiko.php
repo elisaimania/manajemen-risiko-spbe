@@ -74,31 +74,12 @@ a:hover {
 <!-- DataTales Example -->
 <div class="card shadow  mt-5 mx-2 mb-2">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-        <h6 class="m-0 font-weight-bold ">Identifikasi Risiko SPBE (3.0)</h6>                  
+        <h6 class="m-0 font-weight-bold ">Penilaian Risiko SPBE (3.0)</h6>                  
     </div>
     <div class="card-body">
-        <div class="table-responsive" id="tabel-identifikasiRisiko">
+        <div class="table-responsive" id="tabel-penilaianRisiko">
         </div>
     </div>
 </div>
-<div class="card shadow  my-5 mx-2">
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-        <h6 class="m-0 font-weight-bold ">Analisis Risiko SPBE (3.0)</h6>               
-    </div>
-    <div class="card-body">
-        <div class="table-responsive" id="tabel-analisisRisiko">
-        </div>
-    </div>
-</div>
-<div class="card shadow  my-5 mx-2">
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #fff; color: black;">
-        <h6 class="m-0 font-weight-bold ">Evaluasi Risiko SPBE (3.0)</h6>                
-    </div>
-    <div class="card-body">
-        <div class="table-responsive" id="tabel-evaluasiRisiko">
-        </div>
-    </div>
-</div>
-
 
 <?= $this->endSection(); ?>
