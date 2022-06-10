@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -10,11 +10,7 @@
 	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
-		border-radius: 20px;
 
-	}
 </style>
 
 <div class="mb-2">
@@ -47,21 +43,21 @@
                     <label for="nama_role">Pilih Role</label>
                     <select class="form-control" id="nama_role" name="nama_role" required>
                         <?php foreach ($role as $r ) : ?>
-                            <option value="<?= $r['nama_role']; ?>" <?= ($strukturPelaksana['id_role']==$r['id']) ? 'selected' : ''; ?>><?= $r['nama_role']; ?></option>
+                            <option value="<?= $r['nama_role']; ?>" <?= ($strukturPelaksanaId['id_role']==$r['id']) ? 'selected' : ''; ?>><?= $r['nama_role']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="pelaksana">Pelaksana</label>
-                        <input type="text" class="form-control" id="pelaksana" name="pelaksana" required value="<?= $strukturPelaksana['pelaksana']; ?>">
+                        <input type="text" class="form-control" id="pelaksana" name="pelaksana" required value="<?= $strukturPelaksanaId['pelaksana']; ?>">
                     </div>
                 </div>
                 <div class="col mt-5">
                 </div>
                 <div class="col mt-5">
-                	<a href="<?= base_url('pengelolaRisiko/strukturPelaksana'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
+                	<a href="<?= base_url('pengelolaRisiko/strukturPelaksana'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="width: 120px; height: 40px;">
                     Ubah
                 	</button>
                 </div>

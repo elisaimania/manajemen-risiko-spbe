@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -22,12 +22,12 @@
 .table{
     color: black;
 }
-.btn.float-right{
+.btn.float-right.hijau{
     background-color: #8CBA08; 
     border-color: #8CBA08; 
     color:#fff;
 }
-.btn.float-right:hover{
+.btn.float-right.hijau:hover{
     background-color:#A1D70A;
 }
 
@@ -48,15 +48,18 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
   text-decoration: none;
   background-color: #858796;
 }
-a {
-    
+
+a:hover {
+        color: #858796;
+        text-decoration: underline;
+
 }
 
 </style>
 
 <div class="mb-2">
     <h1 class="h3  text-gray-800 font-weight-bold" style="text-transform: uppercase;">
-        <a href="<?= base_url('admin'). '/'. $link ?>"><?= $title ?></a>
+        <a href="<?= base_url('pengelolaRisiko'). '/'. $link ?>"><?= $title ?></a>
     </h1>
     <ol class="breadcrumb px-3 py-2 rounded mb-0">
         <li class="breadcrumb-item active">
@@ -76,7 +79,9 @@ a {
                 <div class="col">
                 </div>
                 <div class="col">
-                    <a href="<?= base_url('pengelolaRisiko/pilihRisiko'); ?>" class="btn float-right" >Tambah</a>
+                    <a href="<?= base_url('pengelolaRisiko/pilihRisiko'); ?>" class="btn float-right hijau" >Tambah</a>
+                    <a href="<?= base_url('pengelolaRisiko/importPenangananRisiko'); ?>" class="btn float-right mr-3 hijau" >Import Excel</a>
+                    <a href="<?= base_url('pengelolaRisiko/hapusPenangananRisiko'); ?>" class="btn btn-danger float-right mr-3" onclick="return confirm('Apakah Anda yakin untuk menghapus semua data ini?')">Hapus Semua Data</a>
                 </div>
             </div>
         </div>

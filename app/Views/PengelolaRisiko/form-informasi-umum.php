@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 <?php $val = service('validation') ?>
 <style>
@@ -10,11 +10,12 @@
 	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
-		border-radius: 20px;
+	
+    .form-control[readonly]{
+        background-color: #fff;
+}
 
-	}
+
 </style>
 
 <div class="mb-2">
@@ -46,7 +47,7 @@
                 <div class="form-group row">
                     <div class="col">
                     	<label for="nama_UPR">Nama UPR SPBE</label>
-                    	<input type="text" class="form-control" id="nama_UPR" name="nama_UPR" required value="<?= old('nama_UPR'); ?>">
+                    	<input type="text" class="form-control" id="nama_UPR" name="nama_UPR" value="<?= $namaUpr['upr_SPBE']; ?>" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -78,8 +79,8 @@
                 <div class="col mt-5">
                 </div>
                 <div class="col mt-5">
-                	<a href="<?= base_url('pengelolaRisiko/informasiUmum'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="tambah" style="border-radius: 30px; width: 120px; height: 40px;">
+                	<a href="<?= base_url('pengelolaRisiko/informasiUmum'); ?>" class="btn  btn-secondary float-right m-3" style=" width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="tambah" style=" width: 120px; height: 40px;">
                     Tambah
                 	</button>
                 </div>

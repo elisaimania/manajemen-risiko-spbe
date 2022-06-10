@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -10,11 +10,7 @@
 	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
-		border-radius: 20px;
 
-	}
 </style>
 
 <div class="mb-2">
@@ -46,20 +42,20 @@
                 <div class="form-group row">
                     <div class="col">
                         <label for="nama_peraturan">Nama Peraturan</label>
-                        <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan" required value="<?= $peraturanPerundangan['nama_peraturan']?>">
+                        <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan" required value="<?= $peraturanPerundanganId['nama_peraturan']?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="amanat">Amanat</label>
-                        <textarea  class="form-control" id="amanat" name="amanat" required><?= $peraturanPerundangan['amanat']?></textarea> 
+                        <textarea  class="form-control" id="amanat" name="amanat" required><?= $peraturanPerundanganId['amanat']?></textarea> 
                     </div>
                 </div>
                 <div class="col mt-5">
                 </div>
                 <div class="col mt-5">
-                	<a href="<?= base_url('pengelolaRisiko/peraturanPerundangan'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
+                	<a href="<?= base_url('pengelolaRisiko/peraturanPerundangan'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="width: 120px; height: 40px;">
                     Ubah
                 	</button>
                 </div>

@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -22,12 +22,12 @@
 .table{
     color: black;
 }
-.btn.float-right{
+.btn.float-right.hijau{
     background-color: #8CBA08; 
     border-color: #8CBA08; 
     color:#fff;
 }
-.btn.float-right:hover{
+.btn.float-right.hijau:hover{
     background-color:#A1D70A;
 }
 
@@ -79,7 +79,8 @@ a {
                 <div class="col">
                 </div>
                 <div class="col">
-                    <a href="<?= base_url('pengelolaRisiko/inputAreaDampakRisikoTerpilih'); ?>" class="btn float-right" >Tambah Area Dampak</a>
+                    <a href="<?= base_url('pengelolaRisiko/inputAreaDampakRisikoTerpilih'); ?>" class="btn float-right hijau" >Tambah Area Dampak</a>
+                    <a href="<?= base_url('pengelolaRisiko/hapusAreaDampakRisikoTerpilih'); ?>" class="btn btn-danger float-right mr-3" onclick="return confirm('Apakah Anda yakin untuk menghapus semua data ini?')">Hapus Semua Data</a>
                 </div>
             </div>
         </div>

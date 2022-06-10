@@ -38,7 +38,7 @@ function loadDataDampak() {
         $('#tabel-dampak').html(table)
         $("#table1").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table1_wrapper .col-md-6:eq(0)');
     })
 }
@@ -83,7 +83,7 @@ function loadDataKategori() {
         $('#tabel-kategori').html(table)
         $("#table2").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table2_wrapper .col-md-6:eq(0)');
     })
 }
@@ -133,7 +133,7 @@ function loadDataOpsiPenanganan() {
         $('#tabel-penanganan').html(table)
         $("#table3").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table3_wrapper .col-md-6:eq(0)');
     })
 }
@@ -149,6 +149,7 @@ function loadDataPengguna() {
         <th>Email</th>
         <th>Password</th>
         <th>Role</th>
+        <th>UPR</th>
         <th>Aksi</th>
         `
         thead = `<thead>
@@ -179,6 +180,9 @@ function loadDataPengguna() {
                         ${d.nama_role}
                     </td>
                     <td>
+                        ${d.upr_SPBE}
+                    </td>
+                    <td>
                         <a href="updateDataPengguna/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
                         <a href="hapusDataPengguna/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
                     </td>
@@ -194,8 +198,53 @@ function loadDataPengguna() {
         $('#tabel-pengguna').html(table)
         $("#table4").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["csv", "excel", "pdf"]
         }).buttons().container().appendTo('#table4_wrapper .col-md-6:eq(0)');
+    })
+}
+
+function loadDataUPR() {
+    $.get('getDaftarUPR/', (data) => {
+        
+        th = ``
+        th+= `
+        <th>No</th>
+        <th>Unit Pemilik Risiko (UPR) SPBE</th>
+        <th>Aksi</th>
+        `
+        thead = `<thead>
+        <tr>${th}</tr>
+        </thead>`
+
+        cell = ``
+        no = 1
+        data.forEach(d => {
+            cell+=`
+                <tr>
+                    <td>
+                        ${no++}
+                    </td>
+                    <td>
+                        ${d.upr_SPBE}
+                    </td>
+                    <td>
+                        <a href="updateUPR/${d.id}" type="button" class="badge badge-success" style="color: #fff; background-color:#8CBA08; border:none">Edit</a>
+                        <a href="hapusUPR/${d.id}" type="button" class="badge badge-danger" style="border:none" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')">Hapus</a>
+                    </td>
+                </tr>
+            `
+        });
+        tbody = `<tbody>${cell}</tbody>`
+        table = `<table id="table5" class="table table-bordered">
+        ${thead}
+        ${tbody}
+        </table>`
+
+        $('#tabel-upr').html(table)
+        $("#table5").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["csv", "excel", "pdf"]
+        }).buttons().container().appendTo('#table2_wrapper .col-md-6:eq(0)');
     })
 }
 
@@ -204,4 +253,5 @@ $(document).ready( () => {
     loadDataKategori()
     loadDataOpsiPenanganan()
     loadDataPengguna()
+    loadDataUPR()
 })

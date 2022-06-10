@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -10,20 +10,8 @@
     .btn.float-right.tambah:hover{
         background-color:#A1D70A;
 }
-    .form-control{
-        border: 2px solid #d1d3e2;
-        border-radius: 20px;
-}
-    .btn.btn-light{
-        background-color: #C4C4C4;
-        border-color: #C4C4C4;
-        color: black;
-}
 
-    .btn.btn-light:hover{
-        background-color: #D3D3D3;
-        border-color: #D3D3D3;
-}
+
 
 </style>
 
@@ -53,11 +41,11 @@
             <form class="user" method="post" action="">
                 <h3 class="font-weight-bold" style="font-size: 0.9rem;">IDENTIFIKASI RISIKO SPBE</h3>
                 <div class="form-group m-3">
-                    <label for="indikator_kinerja_SPBE">Pilih Indikator Kinerja SPBE</label>
-                    <select class="form-control" id="indikator_kinerja_SPBE" name="indikator_kinerja_SPBE" required>
+                    <label for="id_sasaran_SPBE">Pilih Indikator Kinerja SPBE</label>
+                    <select class="form-control" id="id_sasaran_SPBE" name="id_sasaran_SPBE" required>
                         <option value="" ></option>
                         <?php foreach ($daftarIndikatorKinerja as $r ) : ?>
-                            <option value="<?= $r['indikator_kinerja_SPBE']; ?>" ><?= $r['indikator_kinerja_SPBE']; ?></option>
+                            <option value="<?= $r['id']; ?>" ><?= $r['indikator_kinerja_SPBE']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -76,23 +64,23 @@
                 </div>
                 <div class="form-group m-3">
                     <label for="penyebab">Penyebab</label>
-                    <input type="text" class="form-control" id="penyebab" name="penyebab" required>
+                    <textarea type="text" class="form-control" id="penyebab" name="penyebab" required></textarea> 
                 </div>
                 <div class="form-group m-3">
-                    <label for="kategori_risiko">Pilih Kategori Risiko SPBE</label>
-                    <select class="form-control" id="kategori_risiko" name="kategori_risiko" required>
+                    <label for="id_kategori_risiko">Pilih Kategori Risiko SPBE</label>
+                    <select class="form-control" id="id_kategori_risiko" name="id_kategori_risiko" required>
                         <option value="" ></option>
                         <?php foreach ($daftarKategoriRisiko as $r ) : ?>
-                            <option value="<?= $r['kategori_risiko']; ?>" ><?= $r['kategori_risiko']; ?></option>
+                            <option value="<?= $r['id']; ?>" ><?= $r['kategori_risiko']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group m-3">
-                    <label for="area_dampak">Pilih Area Dampak Risiko SPBE</label>
-                    <select class="form-control" id="area_dampak" name="area_dampak" required>
+                    <label for="id_area_dampak">Pilih Area Dampak Risiko SPBE</label>
+                    <select class="form-control" id="id_area_dampak" name="id_area_dampak" required>
                         <option value="" ></option>
                         <?php foreach ($daftarAreaDampak as $r ) : ?>
-                            <option value="<?= $r['area_dampak']; ?>" ><?= $r['area_dampak']; ?></option>
+                            <option value="<?= $r['id']; ?>" ><?= $r['area_dampak']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -103,7 +91,7 @@
                 <h3 class="font-weight-bold" style="font-size: 0.9rem;">ANALISIS RISIKO SPBE</h3>
                 <div class="form-group m-3">
                     <label for="sistem_pengendalian">Sistem Pengendalian</label>
-                    <input type="text" class="form-control" id="sistem_pengendalian" name="sistem_pengendalian" required>
+                    <textarea type="text" class="form-control" id="sistem_pengendalian" name="sistem_pengendalian" required></textarea> 
                 </div>
                 <div class="form-group m-3">
                     <label for="level_kemungkinan">Pilih Level Kemungkinan Risiko SPBE</label>
@@ -126,8 +114,8 @@
                 <div class="col mt-5">
                 </div>
                 <div class="col mt-5">
-                    <a href="<?= base_url('pengelolaRisiko/penilaianRisiko'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                    <button type="submit" class="btn tambah float-right m-3" name="tambah" style="border-radius: 30px; width: 120px; height: 40px;">
+                    <a href="<?= base_url('pengelolaRisiko/penilaianRisiko'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                    <button type="submit" class="btn tambah float-right m-3" name="tambah" style="width: 120px; height: 40px;">
                     Tambah
                     </button>
                 </div>

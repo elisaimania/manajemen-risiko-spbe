@@ -18,6 +18,16 @@ class AreaDampakRisikoModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
+    public function getAreaDampak(){
+
+    	$db = db_connect();
+
+    	$query = "SELECT id, area_dampak
+        FROM area_dampak_risiko_spbe
+    	WHERE area_dampak_risiko_spbe.id NOT IN (SELECT area_dampak_risiko_spbe_terpilih.id_area_dampak FROM area_dampak_risiko_spbe_terpilih WHERE id_upr = ".session()->id_upr.")";
+
+    	return $db->query($query)->getResultArray();
+    }
 
 
 }

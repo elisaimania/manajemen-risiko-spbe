@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 <?php $val = service('validation') ?>
 
@@ -11,11 +11,7 @@
     .btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-    .form-control{
-        border: 2px solid #d1d3e2;
-        border-radius: 20px;
 
-}
     .form-control[readonly]{
         background-color: #fff;
     }
@@ -94,8 +90,8 @@
                 <div class="col mt-5">
                 </div>
                 <div class="col mt-5">
-                    <a href="<?= base_url('pengelolaRisiko/seleraRisiko'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                    <button type="submit" class="btn tambah float-right m-3" name="tambah" style="border-radius: 30px; width: 120px; height: 40px;">
+                    <a href="<?= base_url('pengelolaRisiko/seleraRisiko'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                    <button type="submit" class="btn tambah float-right m-3" name="tambah" style="width: 120px; height: 40px;">
                     Tambah
                     </button>
                 </div>

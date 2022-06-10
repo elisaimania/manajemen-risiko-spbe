@@ -6,6 +6,7 @@ use App\Models\KategoriRisikoModel;
 use App\Models\AreaDampakRisikoModel;
 use App\Models\OpsiPenangananModel;
 use App\Models\JenisRisikoModel;
+use App\Models\UPRSPBEModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Admin extends BaseController
@@ -17,6 +18,7 @@ class Admin extends BaseController
     public $penggunaModel = null;
 	public $roleModel = null;
     public $jenisRisikoModel = null;
+    public $uprSPBEModel = null;
 
 	public function __construct()
     {
@@ -27,6 +29,7 @@ class Admin extends BaseController
         $this->areaDampakRisikoModel = new AreaDampakRisikoModel();
         $this->opsiPenangananModel = new opsiPenangananModel();
         $this->jenisRisikoModel = new JenisRisikoModel();
+        $this->uprSPBEModel = new UPRSPBEModel();
     }
 
     public function daftarPengguna(){
@@ -38,10 +41,22 @@ class Admin extends BaseController
             'active'    => 'Daftar Pengguna',
             'link'      => 'daftarPengguna'
         ];
-
-        
+        //var_dump(session()->usernama);
         return view('admin/daftar-pengguna', $data);
         
+    }
+
+    public function profilPengguna(){
+
+        $data = [
+            'title'     => 'Profil Pengguna',
+            'script'    => 'admin',
+            'template'  => 'templates_admin',
+            'active'    => '',
+            'link'      => 'profilPengguna'
+        ];
+        
+        return view('profil-pengguna', $data);
     }
 
     public function daftarKategori(){
@@ -86,6 +101,20 @@ class Admin extends BaseController
         
     }
 
+    public function daftarUPR(){
+
+        $data = [
+            'title'     => 'Daftar Unit Pemilik Risiko (UPR) SPBE',
+            'subtitle'  => '',
+            'script'    => 'admin',
+            'active'    => 'Daftar Unit Pemilik Risiko (UPR)',
+            'link'      => 'daftarUPR'
+        ];
+        
+        return view('admin/daftar-upr', $data);
+        
+    }
+
     public function getDaftarPengguna(){
 
         return $this->respond($this->penggunaModel->getPengguna());
@@ -98,9 +127,7 @@ class Admin extends BaseController
 
             $rules = [
                 'username' => 'required|is_unique[pengguna.username]',
-                'email' => 'required|is_unique[pengguna.email]',
                 'nama_pengguna' => 'required',
-                'password' => 'min_length[8]',
                 'konfirmasi_password' => 'matches[password]' 
             ];
 
@@ -116,9 +143,11 @@ class Admin extends BaseController
                 'email' => $this->request->getPost('email'),
                 'nama_pengguna' => $this->request->getPost('nama_pengguna'),
                 'password' => password_hash($this->request->getPost('password') , PASSWORD_DEFAULT),
+                'id_upr' => $this->request->getPost('upr'),
                 'id_role' => $id_role
             ];
 
+            //var_dump($inputData['id_upr']);
             $this->penggunaModel->insert($inputData);
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -137,7 +166,8 @@ class Admin extends BaseController
             'script' => 'admin',
             'active' => 'Daftar Pengguna',
             'link'      => 'daftarPengguna',
-            'role' => $this->roleModel->findAll()
+            'role' => $this->roleModel->findAll(),
+            'upr' => $this->uprSPBEModel->findAll()
         ];
 
         return view('admin/form-tambah-pengguna' , $data);
@@ -156,7 +186,8 @@ class Admin extends BaseController
             'pengguna' => $pengguna,
             'id' => $pengguna['id'],
             'link'      => 'daftarPengguna',
-            'role' => $this->roleModel->findAll()
+            'role' => $this->roleModel->findAll(),
+            'upr' => $this->uprSPBEModel->findAll()
         ];
 
         if(isset($_POST['submit'])){
@@ -169,6 +200,7 @@ class Admin extends BaseController
             ->set('username' , $this->request->getPost('username'))
             ->set('email' , $this->request->getPost('email'))
             ->set('id_role' , $id_role)
+            ->set('id_upr',$this->request->getPost('upr'))
             ->where('id' , $id)
             ->update();
 
@@ -523,6 +555,95 @@ class Admin extends BaseController
         $flash = session()->setFlashdata('flash', $flash);
         return redirect()->to(base_url('admin/daftarPenanganan'));
         
-    }       
+    }
+    
+    public function getDaftarUPR(){
+
+        return $this->respond($this->uprSPBEModel->get()->getResultArray());
+        
+    }
+
+    public function inputUPR()
+    {
+        if(isset($_POST['tambah'])){
+            $inputData = [
+                'upr_SPBE' => $this->request->getPost('upr_SPBE')
+            ];
+
+            $this->uprSPBEModel->insert($inputData);
+
+            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Unit Pemilik Risiko (UPR) berhasil ditambahkan
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+            </div>';
+
+            $flash = session()->setFlashdata('flash', $flash);
+        }
+
+        $data = [
+            'title' => 'Daftar Unit Pemilik Risiko (UPR) SPBE',
+            'subtitle' => 'Tambah Unit Pemilik Risiko (UPR)',
+            'script' => 'admin',
+            'active' => 'Daftar Unit Pemilik Risiko (UPR)',
+            'link'  => 'daftarUPR'
+        ];
+
+        return view('admin/form-tambah-upr' , $data);
+    }
+
+    public function updateUPR($id=null){
+
+        $upr = $this->uprSPBEModel->find($id);
+
+        $data = [
+            'title' => 'Daftar Unit Pemilik Risiko (UPR) SPBE',
+            'subtitle' => 'Edit Unit Pemilik Risiko (UPR)',
+            'script' => 'admin',
+            'active' => 'Daftar Unit Pemilik Risiko (UPR)',
+            'upr' => $upr,
+            'id' => $upr['id'],
+            'link'      => 'daftarUPR'
+        ];
+
+        if(isset($_POST['submit'])){
+
+
+            $this->uprSPBEModel
+            ->set('upr_SPBE' , $this->request->getPost('upr_SPBE'))
+            ->where('id' , $id)
+            ->update();
+
+            $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Unit Pemilik Risiko (UPR) berhasil diubah
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>';
+            $flash = session()->setFlashdata('flash', $flash);
+
+            return redirect()->to(base_url('admin/daftarKategori'));
+        }
+        return view('admin/form-edit-upr' , $data);
+    }
+
+   public function hapusUPR($id = null)
+    {
+        
+        $delete = $this->uprSPBEModel->where('id', $id)
+        ->delete();
+
+        $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Unit Pemilik Risiko (UPR) berhasil dihapus!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                </div>';
+                
+        $flash = session()->setFlashdata('flash', $flash);
+        return redirect()->to(base_url('admin/daftarUPR'));
+        
+    }   
 
 }    

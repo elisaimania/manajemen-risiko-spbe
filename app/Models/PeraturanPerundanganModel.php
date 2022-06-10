@@ -13,14 +13,14 @@ class PeraturanPerundanganModel extends Model
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
-    protected $allowedFields =['id','nama_peraturan','amanat','id_status_persetujuan','komentar'];
+    protected $allowedFields =['id','nama_peraturan','amanat', 'id_upr', 'id_status_persetujuan','komentar'];
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
     public function getPeraturanPerundangan(){
         $this->builder()->join('status_persetujuan','status_persetujuan.id = peraturan_perundangan.id_status_persetujuan');
-        return $this->builder()->select('peraturan_perundangan.id, nama_peraturan, amanat, id_status_persetujuan, status_persetujuan.status,komentar')->get()->getResultArray();
+        return $this->builder()->select('peraturan_perundangan.id, nama_peraturan, amanat, id_upr, id_status_persetujuan, status_persetujuan.status,komentar')->get()->getResultArray();
         
     }
 

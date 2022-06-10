@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -10,11 +10,7 @@
 	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
-		border-radius: 20px;
 
-	}
 </style>
 
 <div class="mb-2">
@@ -44,18 +40,19 @@
         <div class="form-group">
         	<form class="user" method="post" action="">
                 <div class="form-group">
-                    <label for="area_dampak">Pilih Area Dampak Risiko</label>
-                    <select class="form-control" id="area_dampak" name="area_dampak" required>
+                    <label for="id_area_dampak">Pilih Area Dampak Risiko</label>
+                    <select class="form-control selectpicker" id="id_area_dampak" name="id_area_dampak[]" multiple required>
+                        <option value=""></option>
                         <?php foreach ($areaDampak as $r ) : ?>
-                            <option value="<?= $r['area_dampak']; ?>"><?= $r['area_dampak']; ?></option>
+                            <option value="<?= $r['id']; ?>"><?= $r['area_dampak']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="col mt-3">
                 </div>
                 <div class="col mt-3">
-                	<a href="<?= base_url('pengelolaRisiko/areaDampakRisikoTerpilih'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="tambah" style="border-radius: 30px; width: 120px; height: 40px;">
+                	<a href="<?= base_url('pengelolaRisiko/areaDampakRisikoTerpilih'); ?>" class="btn  btn-secondary float-right m-3" style=" width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="tambah" style="width: 120px; height: 40px;">
                     Tambah
                 	</button>
                 </div>

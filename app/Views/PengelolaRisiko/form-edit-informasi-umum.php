@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 <?php $val = service('validation') ?>
 <style>
@@ -10,11 +10,7 @@
 	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
-		border-radius: 20px;
 
-	}
 </style>
 
 <div class="mb-2">
@@ -45,41 +41,35 @@
         	<form class="user" method="post" action="">
                 <div class="form-group row">
                     <div class="col">
-                    	<label for="nama_UPR">Nama UPR SPBE</label>
-                    	<input type="text" class="form-control" id="nama_UPR" name="nama_UPR" required value="<?= $informasiUmum['nama_UPR'] ?>">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col">
                         <label for="tugas_UPR">Tugas UPR SPBE</label>
-                        <textarea  class="form-control" id="tugas_UPR" name="tugas_UPR" required ><?= $informasiUmum['tugas_UPR'] ?></textarea> 
+                        <textarea  class="form-control" id="tugas_UPR" name="tugas_UPR" required ><?= $infoUmum['tugas_UPR'] ?></textarea> 
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="fungsi_UPR">Fungsi UPR SPBE</label>
-                        <textarea  class="form-control" id="fungsi_UPR" name="fungsi_UPR" required ><?= $informasiUmum['fungsi_UPR'] ?></textarea> 
+                        <textarea  class="form-control" id="fungsi_UPR" name="fungsi_UPR" required ><?= $infoUmum['fungsi_UPR'] ?></textarea> 
                     </div>
                 </div>
                 <?= ($val->hasError('tanggal_mulai')) ? '<br><span class="text-sm text-danger" style="font-size:15px">' . $val->getError('tanggal_mulai') .'*</span>' : ''; ?>
                 <div class="form-group row">
                     <div class="col-sm-5 mb-3 mb-sm-0">
                         <label for="periode">Periode Waktu</label>
-                        <input type="date" class="form-control" id="periode" name="tanggal_mulai" required value="<?= $informasiUmum['tanggal_mulai'] ?>">
+                        <input type="date" class="form-control" id="periode" name="tanggal_mulai" required value="<?= $infoUmum['tanggal_mulai'] ?>">
                     </div>
                     <div class="col-sm-2 text-center sampai" style="margin-top: 35px;">
                         Sampai
                     </div>
                     <div class="col-sm-5">
                         <label for="periode" style="color: #fff;">Periode Waktu</label>
-                        <input type="date" class="form-control" id="periode" name="tanggal_selesai" required value="<?= $informasiUmum['tanggal_selesai'] ?>">
+                        <input type="date" class="form-control" id="periode" name="tanggal_selesai" required value="<?= $infoUmum['tanggal_selesai'] ?>">
                     </div>
                 </div>
                 <div class="col mt-5">
                 </div>
                 <div class="col mt-5">
-                	<a href="<?= base_url('pengelolaRisiko/informasiUmum'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
+                	<a href="<?= base_url('pengelolaRisiko/informasiUmum'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="width: 120px; height: 40px;">
                     Edit
                 	</button>
                 </div>

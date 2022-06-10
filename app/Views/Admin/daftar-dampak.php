@@ -1,4 +1,4 @@
-<?= $this->extend('templates/index'); ?>
+<?= $this->extend('templates_admin/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>

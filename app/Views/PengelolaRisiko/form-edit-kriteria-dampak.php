@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 
@@ -11,11 +11,7 @@
     .btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-    .form-control{
-        border: 2px solid #d1d3e2;
-        border-radius: 20px;
 
-}
     .form-control[readonly]{
         background-color: #fff;
 }
@@ -53,33 +49,45 @@
                     <select class="form-control" id="id_area_dampak" name="id_area_dampak" required>
                         <option value=""></option>
                         <?php foreach ($daftarAreaDampak as $r ) : ?>
-                            <option value="<?= $r['id']; ?>" <?= ( $kriteriaDampak[0]['id_area_dampak']==$r['id']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
+                            <option value="<?= $r['id']; ?>" <?= ( $kriteriaDampakId[0]['id_area_dampak']==$r['id']) ? 'selected' : ''; ?> ><?= $r['area_dampak']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
 
+                <?php $no=1 ?>
+                <?php foreach($kriteriaDampakId as $k): ?>
+                <?php $jenisRisiko= array_filter($daftarJenisRisiko, function ($var) use ($k) { return ($var['id'] == $k['id_jenis_risiko']);});
+                $levelDampak = array_filter($daftarLevelDampak, function ($var) use ($k) { return ($var['id'] == $k['id_level_dampak']);});?>
+
+                <?php foreach($jenisRisiko as $jenis): ?>
+                <?php foreach($levelDampak as $dampak): ?>
+
                 <label for="jenis_risiko1" class=" font-weight-bold">
-                    Jenis Risiko SPBE "<?= $daftarJenisRisiko[0]['jenis_risiko']; ?>"
+                    Jenis Risiko SPBE "<?= $jenis['jenis_risiko']; ?>"
                 </label>
 
                 <div class="form-group row m-3">
                     <div class="col-sm-6">
                         <label for="level_dampak1">Level Dampak Risiko SPBE</label>
-                        <input type="text" class="form-control" id="level_dampak1" name="level_dampak1" value="<?= $daftarLevelDampak[0]['level_dampak']; ?>" required readonly>
+                        <input type="text" class="form-control" id="level_dampak1" name="level_dampak1" value="<?= $dampak['level_dampak']; ?>" required readonly>
                     </div>
                     <div class="col-sm-6">
-                        <label for="penjelasan1">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan1" name="penjelasan1" required value="<?= $kriteriaDampak[0]['penjelasan']; ?>">
+                        <label for="penjelasan<?= $no; ?>">Penjelasan</label>
+                        <input type="text" class="form-control" id="penjelasan<?= $no; ?>" name="penjelasan<?= $no; ?>" required value="<?= $k['penjelasan']; ?>">
                     </div>
                 </div>
-                <div class="form-group row m-3">
+                <?php $no++ ?>
+                <?php endforeach; ?>
+                <?php endforeach; ?>
+                <?php endforeach; ?>
+                <!-- <div class="form-group row m-3">
                     <div class="col-sm-6">
                         <label for="level_dampak2">Level Dampak Risiko SPBE</label>
                         <input type="text" class="form-control" id="level_dampak2" name="level_dampak2" value="<?= $daftarLevelDampak[1]['level_dampak']; ?>" required readonly>
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan2">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan2" required value="<?= $kriteriaDampak[1]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan2" required value="<?= $kriteriaDampakId[1]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -89,7 +97,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan3">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan3" required value="<?= $kriteriaDampak[2]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan3" required value="<?= $kriteriaDampakId[2]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -99,7 +107,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan4">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan4" required value="<?= $kriteriaDampak[3]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan4" required value="<?= $kriteriaDampakId[3]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -109,11 +117,11 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan5">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan5" required value="<?= $kriteriaDampak[4]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan5" required value="<?= $kriteriaDampakId[4]['penjelasan']; ?>">
                     </div>
                 </div>
-
-                <label for="jenis_risiko1" class=" font-weight-bold">
+ -->
+                <!-- <label for="jenis_risiko1" class=" font-weight-bold">
                     Jenis Risiko SPBE "<?= $daftarJenisRisiko[1]['jenis_risiko']; ?>"
                 </label>
 
@@ -124,7 +132,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan1">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan1" name="penjelasan6" required value="<?= $kriteriaDampak[5]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan1" name="penjelasan6" required value="<?= $kriteriaDampakId[5]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -134,7 +142,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan2">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan7" required value="<?= $kriteriaDampak[6]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan2" name="penjelasan7" required value="<?= $kriteriaDampakId[6]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -144,7 +152,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan3">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan8" required value="<?= $kriteriaDampak[7]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan3" name="penjelasan8" required value="<?= $kriteriaDampakId[7]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -154,7 +162,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan4">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan9" required value="<?= $kriteriaDampak[8]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan4" name="penjelasan9" required value="<?= $kriteriaDampakId[8]['penjelasan']; ?>">
                     </div>
                 </div>
                 <div class="form-group row m-3">
@@ -164,15 +172,15 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="penjelasan5">Penjelasan</label>
-                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan10" required value="<?= $kriteriaDampak[9]['penjelasan']; ?>">
+                        <input type="text" class="form-control" id="penjelasan5" name="penjelasan10" required value="<?= $kriteriaDampakId[9]['penjelasan']; ?>">
                     </div>
                 </div>
-
+ -->
                 <div class="col mt-5">
                 </div>
                 <div class="col mt-5">
-                    <a href="<?= base_url('pengelolaRisiko/kriteriaRisiko'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                    <button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
+                    <a href="<?= base_url('pengelolaRisiko/kriteriaRisiko'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                    <button type="submit" class="btn tambah float-right m-3" name="submit" style="width: 120px; height: 40px;">
                     Ubah
                     </button>
                 </div>

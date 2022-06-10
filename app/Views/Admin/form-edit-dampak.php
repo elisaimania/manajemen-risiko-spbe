@@ -1,4 +1,4 @@
-<?= $this->extend('templates/index'); ?>
+<?= $this->extend('templates_admin/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -10,11 +10,7 @@
 	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
-		border-radius: 20px;
 
-	}
 </style>
 
 <div class="mb-2">
@@ -49,8 +45,8 @@
                 <div class="col">
                 </div>
                 <div class="col">
-                	<a href="<?= base_url('admin/daftarDampak'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="border-radius: 30px; width: 120px; height: 40px;">
+                	<a href="<?= base_url('admin/daftarDampak'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="submit" style="width: 120px; height: 40px;">
                     Edit
                 	</button>
                 </div>

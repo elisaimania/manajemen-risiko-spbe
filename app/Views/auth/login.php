@@ -1,4 +1,4 @@
-<?= $this->extend('templates/auth/index'); ?>
+<?= $this->extend('templates_auth/index'); ?>
 <?= $this->section('content'); ?>
 
     <div class="container">
@@ -18,7 +18,7 @@
                                     <form class="user" action="<?= base_url('auth/login') ?>" method="post" autocomplete="off">
                                         <div class="form-group">
                                             <input type="text" name="username" class="form-control form-control-user"
-                                                id="username" placeholder="Username atau Email" style="border-radius: 20px; border-color: #8CBA08;" required>
+                                                id="username" placeholder="Username" style="border-radius: 20px; border-color: #8CBA08;" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
@@ -28,7 +28,7 @@
                                             Login
                                         </button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block border-0"  style="background-color: #8CBA08; border-radius: 20px">
+                                        <a href="#" class="btn btn-primary btn-user btn-block border-0"  style="background-color: #8CBA08; border-radius: 20px" data-toggle="modal" data-target="#loginModal">
                                             <i></i> Login Dengan Akun BPS
                                         </a>
                                        
@@ -46,6 +46,41 @@
             </div>
 
         </div>
+
+        <!-- Login SSO Modal-->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 text-align="center" class="modal-title" id="exampleModalLabel">Login dengan akun BPS Anda!</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="flash"><?= session()->flash; ?></div>
+                        <form class="user mb-5 mt-5" action="<?= base_url('auth/loginSSO') ?>" method="post" autocomplete="off">
+                            <div class="form-group">
+                                <input type="text" name="usernameSSO" class="form-control form-control-user"
+                                                id="username" placeholder="Username" style="border-radius: 20px; border-color: #8CBA08;" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="passwordSSO" class="form-control form-control-user"
+                                                id="password" placeholder="Password" style="border-radius: 20px; border-color: #8CBA08" required>
+                            </div>
+                            <button type="submit" name="loginSSO" class="btn btn-primary btn-user btn-block border-0" style="background-color: #8CBA08;border-radius: 20px;" >
+                                            Login
+                            </button>
+                                       
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        
+                    </div>
+                </div>
+            </div>
+        </div> 
 
     </div>
 <?= $this->endSection(); ?>

@@ -1,0 +1,501 @@
+CRITICAL - 2022-04-16 14:43:51 --> File not found: assets/my-assets/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('assets/my-asset...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('assets/my-asset...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('assets/my-asset...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 14:46:09 --> File not found: Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('Template_Excel/...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('Template_Excel/...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('Template_Excel/...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 14:48:15 --> File not found: uploads/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('uploads/Templat...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('uploads/Templat...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('uploads/Templat...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 14:56:00 --> File not found: Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('Template_Excel/...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('Template_Excel/...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('Template_Excel/...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 14:56:17 --> File not found: publics/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('publics/Templat...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('publics/Templat...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('publics/Templat...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 14:57:26 --> File not found: public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('public/Template...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('public/Template...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('public/Template...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 14:57:43 --> File not found: C:\xampp\htdocs\manrisk\public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 14:59:35 --> File not found: public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('public/Template...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('public/Template...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('public/Template...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:00:38 --> File not found: C:\xampp\htdocs\manrisk\writable\public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:03:48 --> File not found: public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('public/Template...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('public/Template...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('public/Template...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:07:35 --> File not found: Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('Template_Excel/...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('Template_Excel/...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('Template_Excel/...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:08:24 --> File not found: App/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('App/Template_Ex...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('App/Template_Ex...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('App/Template_Ex...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:10:54 --> File not found: /Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/Template_Excel...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/Template_Excel...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/Template_Excel...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:11:17 --> File not found: /public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/public/Templat...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/public/Templat...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/public/Templat...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:11:42 --> File not found: C:\xampp\htdocs\manrisk\/public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:12:33 --> File not found: C:\xampp\htdocs\manrisk\public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:15:45 --> File not found: C:\xampp\htdocs\manrisk\public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:19:24 --> Use of undefined constant PUBLIC_PATH - assumed 'PUBLIC_PATH' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 3100, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 15:19:43 --> File not found: C:\xampp\htdocs\manrisk\public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:24:48 --> File not found: C:\xampp\htdocs\manrisk\public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:26:44 --> File not found: C:\xampp\htdocs\manrisk\Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:29:31 --> File not found: C:\xampp\htdocs\manrisk\Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:33:01 --> File not found: public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('public/Template...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('public/Template...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('public/Template...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:44:47 --> File not found: Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('Template_Excel/...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('Template_Excel/...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('Template_Excel/...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:44:58 --> File not found: /penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/penanganan_ris...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/penanganan_ris...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/penanganan_ris...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:48:43 --> File not found: /Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/Template_Excel...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/Template_Excel...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/Template_Excel...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:49:02 --> File not found: C:\xampp\htdocs\manrisk\writable\Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:49:35 --> syntax error, unexpected ''Template_Excel\' . $namaFile,' (T_ENCAPSED_AND_WHITESPACE)
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 15:49:49 --> File not found: C:\xampp\htdocs\manrisk\writable\Template_Excel\penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 15:51:09 --> Illegal string offset 'xlx'
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string ...', 'C:\\xampp\\htdocs...', 3100, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 15:51:31 --> File not found: C:\xampp\htdocs\manrisk\writable\Template_Excel\penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:02:30 --> File not found: http://localhost/manrisk/writeable/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('http://localhos...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('http://localhos...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('http://localhos...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:03:08 --> File not found: http://localhost/manrisk/public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('http://localhos...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('http://localhos...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('http://localhos...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:06:38 --> File not found: ../public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('../public/Templ...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('../public/Templ...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('../public/Templ...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:07:54 --> File not found: http://localhost/manrisk/public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('http://localhos...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('http://localhos...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('http://localhos...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:07:59 --> File not found: http://localhost/manrisk/public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('http://localhos...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('http://localhos...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('http://localhos...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3100): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:19:23 --> File not found: /public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/public/Templat...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/public/Templat...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/public/Templat...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:19:27 --> File not found: /public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/public/Templat...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/public/Templat...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/public/Templat...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:19:49 --> File not found: http://localhost/manrisk/public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('http://localhos...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('http://localhos...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('http://localhos...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:21:12 --> File not found: http://localhost/manrisk/public/Template_Excel/penanganan_risiko.xlsx
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('http://localhos...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('http://localhos...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('http://localhos...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:22:12 --> File not found: http://localhost/manrisk/public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('http://localhos...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('http://localhos...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('http://localhos...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:25:03 --> File not found: C:\xampp\htdocs\manrisk\/public/Template_Excel/penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:25:30 --> File not found: C:\xampp\htdocs\manrisk\public\Template_Excel\penanganan_risiko
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:29:24 --> File not found: C:\xampp\htdocs\manrisk\public\Template_Excel\penanganan_risiko.xlsx.xlsx
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3101): CodeIgniter\HTTP\Response->download('penanganan_risi...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penanganan_risi...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 16:35:09 --> File not found: C:\xampp\htdocs\manrisk\public\Template_Excel\penilaian_risiko.xlsx
+#0 C:\xampp\htdocs\manrisk\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\manrisk\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('C:\\xampp\\htdocs...', true)
+#2 C:\xampp\htdocs\manrisk\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(3102): CodeIgniter\HTTP\Response->download('penilaian_risik...', NULL)
+#4 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->downloadTemplateExcel('penilaian_risik...')
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-04-16 18:30:29 --> Undefined variable: kolomBaru
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1714): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 1714, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->importKriteriaKemungkinan()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 18:41:21 --> Undefined variable: template
+#0 C:\xampp\htdocs\manrisk\app\Views\PengelolaRisiko\form-import.php(52): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 52, Array)
+#1 C:\xampp\htdocs\manrisk\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\manrisk\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\manrisk\system\Common.php(1089): CodeIgniter\View\View->render('PengelolaRisiko...', Array, true)
+#4 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(2012): view('PengelolaRisiko...', Array)
+#5 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->importKriteriaDampak()
+#6 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#7 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-04-16 18:46:38 --> syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 18:48:38 --> syntax error, unexpected ')', expecting ']'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 18:49:47 --> syntax error, unexpected ')', expecting ']'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 18:50:18 --> syntax error, unexpected ')', expecting ']'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 18:51:15 --> Undefined variable: kolomBaru
+#0 C:\xampp\htdocs\manrisk\app\Controllers\PengelolaRisiko.php(1990): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 1990, Array)
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(832): App\Controllers\PengelolaRisiko->importKriteriaDampak()
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PengelolaRisiko))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-04-16 19:07:07 --> syntax error, unexpected ';'
+#0 C:\xampp\htdocs\manrisk\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('pengelolaRisiko...')
+#1 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('pengelolaRisiko...')
+#2 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\manrisk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\manrisk\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

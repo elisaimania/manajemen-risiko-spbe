@@ -1,4 +1,4 @@
-<?= $this->extend('templates_risiko/index'); ?>
+<?= $this->extend('templates_pengelola_risiko/index'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -22,12 +22,12 @@
 .table{
     color: black;
 }
-.btn.float-right{
+.btn.float-right.hijau{
     background-color: #8CBA08; 
     border-color: #8CBA08; 
     color:#fff;
 }
-.btn.float-right:hover{
+.btn.float-right.hijau:hover{
     background-color:#A1D70A;
 }
 
@@ -82,7 +82,9 @@ a {
                 <div class="col">
                 </div>
                 <div class="col">
-                    <a href="<?= base_url('pengelolaRisiko/inputKriteriaKemungkinan'); ?>" class="btn float-right" >Tambah Kriteria</a>
+                    <a href="<?= base_url('pengelolaRisiko/inputKriteriaKemungkinan'); ?>" class="btn float-right hijau" >Tambah Kriteria</a>
+                    <a href="<?= base_url('pengelolaRisiko/importKriteriaKemungkinan'); ?>" class="btn float-right mr-3 hijau" >Import Excel</a>
+                    <a href="<?= base_url('pengelolaRisiko/hapusKriteriaKemungkinan'); ?>" class="btn btn-danger float-right mr-3" onclick="return confirm('Apakah Anda yakin untuk menghapus semua data ini?')">Hapus Semua Data</a>
                 </div>
             </div>
         </div>
@@ -102,7 +104,10 @@ a {
                 <div class="col">
                 </div>
                 <div class="col">
-                    <a href="<?= base_url('pengelolaRisiko/inputKriteriaDampak'); ?>" class="btn float-right" >Tambah Kriteria</a>
+                    <a href="<?= base_url('pengelolaRisiko/inputKriteriaDampak'); ?>" class="btn float-right hijau" >Tambah Kriteria</a>
+                    <a href="<?= base_url('pengelolaRisiko/importKriteriaDampak'); ?>" class="btn float-right mr-3 hijau" >Import Excel</a>
+                    <a href="<?= base_url('pengelolaRisiko/hapusKriteriaDampak'); ?>" class="btn btn-danger float-right mr-3" onclick="return confirm('Apakah Anda yakin untuk menghapus semua data ini?')">Hapus Semua Data</a>
+
                 </div>
             </div>
         </div>

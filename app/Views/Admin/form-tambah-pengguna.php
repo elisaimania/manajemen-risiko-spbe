@@ -1,4 +1,4 @@
-<?= $this->extend('templates/index'); ?>
+<?= $this->extend('templates_admin/index'); ?>
 <?= $this->section('content'); ?>
 <?php $val = service('validation') ?>
 <style>
@@ -10,11 +10,7 @@
 	.btn.float-right.tambah:hover{
     background-color:#A1D70A;
 }
-	.form-control{
-		border: 2px solid #d1d3e2;
-		border-radius: 20px;
 
-	}
 </style>
 
 <div class="mb-2">
@@ -55,6 +51,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="upr">Pilih Unit Pemilik Risiko</label>
+                    <select class="form-control" id="upr" name="upr" required>
+                        <?php foreach ($upr as $r ) : ?>
+                            <option value="<?= $r['id']; ?>"><?= $r['upr_SPBE']; ?></option>
+                        <?php endforeach; ?>
+                </select>
+                </div>
+                <div class="form-group">
     				<label for="nama_role">Pilih Role Pengguna</label>
     				<select class="form-control" id="nama_role" name="nama_role" required>
     					<?php foreach ($role as $r ) : ?>
@@ -65,7 +69,7 @@
   				<?= ($val->hasError('email')) ? '<span class="text-sm text-danger" style="font-size:15px">' . $val->getError('email') .'*</span>' : ''; ?>
                 <div class="form-group">
                 	<label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?= old('email'); ?>" required>
+                    <input type="email" class="form-control" id="email" name="email" value="<?= old('email'); ?>">
                 </div>
                 <?= ($val->hasError('password')) ? '<span class="text-sm text-danger" style="font-size:15px">' . $val->getError('password') .'*</span>' : ''; ?>
                 <?= ($val->hasError('konfirmasi_password')) ? '<br><span class="text-sm text-danger" style="font-size:15px">' . $val->getError('konfirmasi_password') .'*</span>' : ''; ?>
@@ -82,8 +86,8 @@
                 <div class="col">
                 </div>
                 <div class="col">
-                	<a href="<?= base_url('admin/daftarPengguna'); ?>" class="btn  btn-secondary float-right m-3" style="border-radius: 30px; width: 120px; height: 40px;">Batal</a>
-                	<button type="submit" class="btn tambah float-right m-3" name="tambah" style="border-radius: 30px; width: 120px; height: 40px;">
+                	<a href="<?= base_url('admin/daftarPengguna'); ?>" class="btn  btn-secondary float-right m-3" style="width: 120px; height: 40px;">Batal</a>
+                	<button type="submit" class="btn tambah float-right m-3" name="tambah" style="width: 120px; height: 40px;">
                     Tambah
                 	</button>
                 </div>
