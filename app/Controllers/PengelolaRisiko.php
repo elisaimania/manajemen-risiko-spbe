@@ -308,7 +308,7 @@ class PengelolaRisiko extends BaseController
             'kategoriRisikoTerpilih' => $this->kategoriRisikoTerpilih,
             'penangananRisiko' => $this->penangananRisiko
         ];
-
+    
         return view('PengelolaRisiko/informasi-umum',$data);
     }
 
@@ -1952,10 +1952,10 @@ class PengelolaRisiko extends BaseController
             }
 
             $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Kategori risiko berhasil ditambahkan
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+            Kategori risiko berhasil ditambahkan
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
             </div>';
 
             $flash = session()->setFlashdata('flash', $flash);
@@ -1999,11 +1999,11 @@ class PengelolaRisiko extends BaseController
         }
         
         $flash = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Data berhasil dihapus!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                </div>';
+        Data berhasil dihapus!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
                 
         $flash = session()->setFlashdata('flash', $flash);
         return redirect()->to(base_url('pengelolaRisiko/kategoriRisikoTerpilih'));
@@ -3411,7 +3411,7 @@ class PengelolaRisiko extends BaseController
             $levelKemungkinan = $this->levelKemungkinanModel->where('level_kemungkinan',$this->request->getPost('level_kemungkinan'))->get()->getRowArray();
 
             $multiClause = array('id_level_kemungkinan' => $levelKemungkinan['id'], 'id_level_dampak' => $levelDampak['id']);
-            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko[0]['id_kategori_risiko'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
+            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko[0]['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
 
             $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
             $besaranRisiko = $matriksRisiko['besaran_risiko'];
@@ -3727,7 +3727,7 @@ class PengelolaRisiko extends BaseController
             $levelKemungkinan = $this->levelKemungkinanModel->where('level_kemungkinan',$this->request->getPost('level_kemungkinan'))->get()->getRowArray();
 
             $multiClause = array('id_level_kemungkinan' => $levelKemungkinan['id'], 'id_level_dampak' => $levelDampak['id']);
-            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko[0]['id'], 'id_jenis_risiko' => $jenisRisiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
+            $multiClause2 = array('id_kategori_risiko' => $kategoriRisiko[0]['id'], 'id' => $jenisRisiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2);
 
             $matriksRisiko = $this->matriksRisikoModel->where($multiClause)->get()->getRowArray();
             $besaranRisiko = $matriksRisiko['besaran_risiko'];
@@ -4011,7 +4011,7 @@ class PengelolaRisiko extends BaseController
 
                     $kolom1 = explode('_', $kolom1);
                     
-                    $risiko = $this->penilaianRisikoModel->where('id' , $kolom1[1])->get()->getRowArray();
+                    $risiko = $this->penilaianRisikoModel->where(['id' => $kolom1[1], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray();
 
                     $opsiPenanganan = $this->opsiPenangananModel->where(['opsi_penanganan'=> $kolom2, 'id_jenis_risiko' => $risiko['id_jenis_risiko']])->get()->getRowArray();
                     
@@ -4043,6 +4043,10 @@ class PengelolaRisiko extends BaseController
                         $periode_implementasi = $kolom5;
                     } else {
                         $periode_implementasi = $kolom6 .' '. strval(date('Y'));
+                    }
+
+                    if (!$risiko) {
+                        continue;
                     }
 
                     if (!$this->penilaianRisikoModel->where(['id' => $risiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray()) {
@@ -4478,7 +4482,12 @@ class PengelolaRisiko extends BaseController
                 $waktu_pelaksanaan_rencana='';
             } else {
                 $periode_laporan = $this->request->getPost('periode_laporan').' '. strval(date('Y'));
-                $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+                if ($this->request->getPost('waktu_pelaksanaan_rencana') != '') {
+                    $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+                } else {
+                    $waktu_pelaksanaan_rencana='';
+                }
+                
             }
             
 
@@ -4964,11 +4973,11 @@ class PengelolaRisiko extends BaseController
         $risiko = $this->penilaianRisikoModel->getPenilaianById($pemantauan[0]['id_risiko']);
 
         if ($pemantauan[0]['jenis_laporan']=='bulanan') {
-            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'bulanan', 'id <' => $id,  ])->get()->getResultArray();
+            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'bulanan', 'id <' => $id, 'id_status_persetujuan'=> 2 ])->get()->getResultArray();
         } elseif ($pemantauan[0]['jenis_laporan']=='triwulan') {
-            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'triwulan', 'id <' => $id,  ])->get()->getResultArray();
+            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'triwulan', 'id <' => $id, 'id_status_persetujuan'=> 2 ])->get()->getResultArray();
         } elseif ($pemantauan[0]['jenis_laporan']=='semesteran') {
-            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'semesteran', 'id <' => $id,  ])->get()->getResultArray();
+            $daftarPemantauan = $this->pemantauanRisikoModel->where(['id_risiko'=>$pemantauan[0]['id_risiko'], 'jenis_laporan'=>'semesteran', 'id <' => $id, 'id_status_persetujuan'=> 2 ])->get()->getResultArray();
         } else {
             $daftarPemantauan = $this->pemantauanRisikoModel->groupStart()
             ->where('id_risiko',$pemantauan[0]['id_risiko'])->where('jenis_laporan','triwulan')->where('id <=', $id)->where('id_status_persetujuan' , 2 )
@@ -5067,6 +5076,7 @@ class PengelolaRisiko extends BaseController
 
     public function downloadTemplateExcel($namaFile){
         // $data = file_get_contents(base_url('/public/Template_Excel/' . $namaFile));
+
         return $this->response->download(FCPATH.'public\Template_Excel\\'.$namaFile, null);
         
     }

@@ -50,6 +50,13 @@
                     	<input type="text" class="form-control" id="username" name="username" value="<?= old('username'); ?>" required>
                     </div>
                 </div>
+                <?= ($val->hasError('username')) ? '<span class="text-sm text-danger" style="font-size:15px">' . $val->getError('username') .'*</span>' : ''; ?>
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="nip">NIP</label>
+                        <input type="text" class="form-control" id="nip" name="nip" value="<?= old('nip'); ?>" required>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="upr">Pilih Unit Pemilik Risiko</label>
                     <select class="form-control" id="upr" name="upr" required>

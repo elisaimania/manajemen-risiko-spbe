@@ -140,6 +140,7 @@ class Admin extends BaseController
 
             $inputData = [
                 'username' => $this->request->getPost('username'),
+                'nip' => $this->request->getPost('nip'),
                 'email' => $this->request->getPost('email'),
                 'nama_pengguna' => $this->request->getPost('nama_pengguna'),
                 'password' => password_hash($this->request->getPost('password') , PASSWORD_DEFAULT),
@@ -198,6 +199,7 @@ class Admin extends BaseController
             $this->penggunaModel
             ->set('nama_pengguna' , $this->request->getPost('nama_pengguna'))
             ->set('username' , $this->request->getPost('username'))
+            ->set('nip' , $this->request->getPost('nip'))
             ->set('email' , $this->request->getPost('email'))
             ->set('id_role' , $id_role)
             ->set('id_upr',$this->request->getPost('upr'))

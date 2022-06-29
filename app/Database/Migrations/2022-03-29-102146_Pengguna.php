@@ -28,6 +28,10 @@ class Pengguna extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => 100
 			],
+			'nip' => [
+				'type'           => 'CHAR',
+				'constraint'     => 18
+			],
 			'password'      => [
 				'type'           => 'VARCHAR',
 				'constraint'     => 100,

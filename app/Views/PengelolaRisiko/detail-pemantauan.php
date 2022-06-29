@@ -82,6 +82,7 @@ $pemantauan[0]['jenis_laporan'] = $jenisLaporan[0];
             <?php endif; ?>
             <?php endforeach; ?>
             <?php  if ($pemantauan[0]['jenis_laporan']=='triwulan' OR $pemantauan[0]['jenis_laporan']=='bulanan' OR $pemantauan[0]['jenis_laporan']=='semesteran'): ?>
+            <?php if($pemantauan[0]['rencana_penanganan'] != ''): ?>
             <tr>
                 <th colspan="2" class="text-center">Rencana Penanganan Lanjutan</th>
             </tr>
@@ -97,6 +98,7 @@ $pemantauan[0]['jenis_laporan'] = $jenisLaporan[0];
                 <th>Penanggungjawab</th>
                 <td><?= $pemantauan[0]['penanggungjawab'] ?></td>
             </tr>
+            <?php endif ?>
             <?php endif ?>
             <?php if($pemantauan[0]['jenis_laporan']=='tahunan' AND $pemantauan[0]['rekomendasi']!=''): ?>
             <tr>

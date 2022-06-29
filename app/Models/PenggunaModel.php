@@ -13,7 +13,7 @@ class PenggunaModel extends Model
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
-    protected $allowedFields =['username','nama_pengguna','email','password','id_role','id', 'id_upr'];
+    protected $allowedFields =['username','nip','nama_pengguna','email','password','id_role','id', 'id_upr'];
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -21,7 +21,7 @@ class PenggunaModel extends Model
     public function getPengguna(){
         $this->builder()->join('role_pengguna','role_pengguna.id = pengguna.id_role');
         $this->builder()->join('upr_spbe','upr_spbe.id = pengguna.id_upr');
-        return $this->builder()->select('username, nama_pengguna, email,password, nama_role, pengguna.id, upr_spbe.upr_SPBE, pengguna.id_role, pengguna.id_upr')->get()->getResultArray();
+        return $this->builder()->select('username, nama_pengguna, email,password, nama_role, pengguna.id, upr_spbe.upr_SPBE, pengguna.id_role, pengguna.id_upr, nip')->get()->getResultArray();
         
     }
 

@@ -52,6 +52,12 @@
                     	<input type="text" class="form-control" id="username" name="username" value="<?= $pengguna['username'] ?>" required>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="nip">NIP</label>
+                        <input type="text" class="form-control" id="nip" name="nip" value="<?= $pengguna['nip'] ?>" required>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="upr">Pilih Unit Pemilik Risiko</label>
                     <select class="form-control" id="upr" name="upr" required>

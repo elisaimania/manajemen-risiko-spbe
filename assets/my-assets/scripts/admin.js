@@ -147,6 +147,7 @@ function loadDataPengguna() {
         <th>Nama</th>
         <th>Username</th>
         <th>Email</th>
+        <th>NIP</th>
         <th>Password</th>
         <th>Role</th>
         <th>UPR</th>
@@ -172,6 +173,9 @@ function loadDataPengguna() {
                     </td>
                     <td>
                         ${d.email}
+                    </td>
+                    <td>
+                        ${d.nip}
                     </td>
                     <td>
                         ${d.password}

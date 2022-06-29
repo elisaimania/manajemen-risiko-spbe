@@ -60,7 +60,7 @@ class PemantauanRisikoModel extends Model
             ON level_dampak_risiko_spbe.id = pemantauan_risiko_spbe.id_level_dampak_pemantauan
             WHERE penilaian_risiko_spbe.id_upr = " . session()->id_upr.
             " AND kriteria_kemungkinan_risiko_spbe.id_status_persetujuan = 2 AND kriteria_dampak_risiko_spbe.id_status_persetujuan = 2 AND kategori_risiko_spbe_terpilih.id_status_persetujuan = 2 AND area_dampak_risiko_spbe_terpilih.id_status_persetujuan
-             = 2 AND sasaran_spbe.id_status_persetujuan = 2 AND penilaian_risiko_spbe.id_keputusan = 2 AND penilaian_risiko_spbe.id_status_persetujuan = 2
+             = 2 AND sasaran_spbe.id_status_persetujuan = 2 AND penilaian_risiko_spbe.id_keputusan = 2 AND penilaian_risiko_spbe.id_status_persetujuan = 2 AND rencana_penanganan_risiko_spbe.id_status_persetujuan = 2
             ";
         return $db->query($query)->getResultArray();
     }
@@ -106,7 +106,7 @@ class PemantauanRisikoModel extends Model
             ON level_dampak_risiko_spbe.id = pemantauan_risiko_spbe.id_level_dampak_pemantauan
             WHERE penilaian_risiko_spbe.id_upr = " . session()->id_upr.
             " AND kriteria_kemungkinan_risiko_spbe.id_status_persetujuan = 2 AND kriteria_dampak_risiko_spbe.id_status_persetujuan = 2 AND kategori_risiko_spbe_terpilih.id_status_persetujuan = 2 AND area_dampak_risiko_spbe_terpilih.id_status_persetujuan
-             = 2 AND sasaran_spbe.id_status_persetujuan = 2 AND penilaian_risiko_spbe.id_keputusan = 2 AND penilaian_risiko_spbe.id_status_persetujuan = 2 AND pemantauan_risiko_spbe.id_status_persetujuan = 2
+             = 2 AND sasaran_spbe.id_status_persetujuan = 2 AND penilaian_risiko_spbe.id_keputusan = 2 AND penilaian_risiko_spbe.id_status_persetujuan = 2 AND pemantauan_risiko_spbe.id_status_persetujuan = 2 AND rencana_penanganan_risiko_spbe.id_status_persetujuan = 2
             ";
         return $db->query($query)->getResultArray();
     }
@@ -151,7 +151,7 @@ class PemantauanRisikoModel extends Model
             ON level_dampak_risiko_spbe.id = pemantauan_risiko_spbe.id_level_dampak_pemantauan
             WHERE penilaian_risiko_spbe.id_upr = " . session()->id_upr.
             " AND kriteria_kemungkinan_risiko_spbe.id_status_persetujuan = 2 AND kriteria_dampak_risiko_spbe.id_status_persetujuan = 2 AND kategori_risiko_spbe_terpilih.id_status_persetujuan = 2 AND area_dampak_risiko_spbe_terpilih.id_status_persetujuan
-             = 2 AND sasaran_spbe.id_status_persetujuan = 2 AND penilaian_risiko_spbe.id_keputusan = 2 AND penilaian_risiko_spbe.id_status_persetujuan = 2 AND pemantauan_risiko_spbe.id =".$id
+             = 2 AND sasaran_spbe.id_status_persetujuan = 2 AND penilaian_risiko_spbe.id_keputusan = 2 AND penilaian_risiko_spbe.id_status_persetujuan = 2 AND rencana_penanganan_risiko_spbe.id_status_persetujuan = 2 AND  pemantauan_risiko_spbe.id =".$id
             ;
         return $db->query($query)->getResultArray();
     }
