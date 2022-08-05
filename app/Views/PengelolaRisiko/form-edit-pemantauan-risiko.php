@@ -184,9 +184,9 @@ if ($besaranRisikoPemantauan >=$besaranRisikoMin) {
                     <div class="col">
                         <label for="deskripsi">Besaran/Level Risiko SPBE Saat ini dan Proyeksi Risiko SPBE
                         </label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi" style="width:100%;" required>Risiko SPBE pada awal tahun berada pada Level Risiko SPBE "<?= $risiko[0]['level_risiko']; ?>" dengan Besaran Risiko SPBE sebesar <?= $risiko[0]['besaran_risiko']; ?> dimana presentase kemungkinan terjadinya <?= $risiko[0]['presentase_kemungkinan'] ?> dalam satu periode (<?= $risiko[0]['level_kemungkinan']?>) dengan dampak <?= $risiko[0]['penjelasan'] ?> (<?= $risiko[0]['level_dampak'] ?>).
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" style="width:100%;" required>Risiko SPBE pada awal tahun berada pada Level Risiko SPBE "<?= $risiko[0]['level_risiko']; ?>" dengan Besaran Risiko SPBE sebesar <?= $risiko[0]['besaran_risiko']; ?>.
 
-Risiko SPBE tersebut pada <?= $periode; ?> ini  berada pada Level Risiko SPBE "<?= $levelRisikoPemantauan; ?>" dengan Besaran Risiko SPBE sebesar <?= $besaranRisikoPemantauan; ?> dimana presentase kemungkinan terjadinya <?= $kriteria_kemungkinan_pemantauan['presentase_kemungkinan']; ?>  dalam satu periode (<?= $levelKemungkinanPemantauan['level_kemungkinan']; ?>) dengan dampak <?= $kriteria_dampak_pemantauan['penjelasan']; ?> (<?= $levelDampakPemantauan['level_dampak']; ?>). <?= $kalimat; ?>
+Risiko SPBE tersebut pada <?= $periode; ?> ini  berada pada Level Risiko SPBE "<?= $levelRisikoPemantauan; ?>" dengan Besaran Risiko SPBE sebesar <?= $besaranRisikoPemantauan; ?>. <?= $kalimat; ?>
 
 (lanjutkan...)
 
@@ -198,7 +198,7 @@ Risiko SPBE tersebut pada <?= $periode; ?> ini  berada pada Level Risiko SPBE "<
                     <div class="col">
                         <label for="deskripsi">Besaran/Level Risiko SPBE Saat ini dan Proyeksi Risiko SPBE
                         </label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi" style="width:100%;" required>Risiko SPBE pada awal tahun berada pada Level Risiko SPBE "<?= $risiko[0]['level_risiko']; ?>" dengan Besaran Risiko SPBE sebesar <?= $risiko[0]['besaran_risiko']; ?> dimana presentase kemungkinan terjadinya <?= $risiko[0]['presentase_kemungkinan'] ?> dalam satu periode (<?= $risiko[0]['level_kemungkinan']?>) dengan dampak <?= $risiko[0]['penjelasan'] ?> (<?= $risiko[0]['level_dampak'] ?>).
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" style="width:100%;" required>Risiko SPBE pada awal tahun berada pada Level Risiko SPBE "<?= $risiko[0]['level_risiko']; ?>" dengan Besaran Risiko SPBE sebesar <?= $risiko[0]['besaran_risiko']; ?>.
 
 Setelah dilakukan pemantauan selama satu tahun secara umum risiko SPBE berada pada  level risiko "<?= $levelRisikoPemantauan; ?>" dengan besaran risiko SPBE sebesar <?= $besaranRisikoPemantauan; ?>. <?= $kalimat; ?>
 
