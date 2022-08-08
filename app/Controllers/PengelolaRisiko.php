@@ -3556,17 +3556,24 @@ class PengelolaRisiko extends BaseController
                     
                     $indikatorKinerja = $this->sasaranSPBEModel->where('indikator_kinerja_SPBE',$kolom1)->get()->getRowArray();
                     $kategoriRisiko = $this->kategoriRisikoModel->where('kategori_risiko', $kolom5)->get()->getRowArray();
-                    $kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->where(['id_kategori_risiko'=> $kategoriRisiko['id'], 'id_status_persetujuan' => 2])->getKategoriRisikoTerpilih();
                     $jenisRisiko = $this->jenisRisikoModel->where('jenis_risiko', $kolom2)->get()->getRowArray();
                     $dampakRisiko = $this->areaDampakRisikoModel->where('area_dampak', $kolom7)->get()->getRowArray();
-                    $dampakRisikoTerpilih = $this->areaDampakRisikoTerpilihModel->where(['id_area_dampak'=> $dampakRisiko['id'], 'id_status_persetujuan' => 2])->getAreaDampakRisikoTerpilih();
+                    
 
+                    if (!$kategoriRisiko) {
+                        continue;
+                    }
+                    $kategoriRisikoTerpilih = $this->kategoriRisikoTerpilihModel->where(['id_kategori_risiko'=> $kategoriRisiko['id'], 'id_status_persetujuan' => 2])->getKategoriRisikoTerpilih();
                     if (!$kategoriRisikoTerpilih) {
                         continue;
                     }
                     if (!$this->sasaranSPBEModel->where(['indikator_kinerja_SPBE'=> $kolom1, 'id_status_persetujuan' => 2, 'id_upr' => session()->id_upr])->get()->getRowArray()) {
                         continue;
                     }
+                    if (!$dampakRisiko) {
+                        continue;
+                    }
+                    $dampakRisikoTerpilih = $this->areaDampakRisikoTerpilihModel->where(['id_area_dampak'=> $dampakRisiko['id'], 'id_status_persetujuan' => 2])->getAreaDampakRisikoTerpilih();
                     if (!$dampakRisikoTerpilih) {
                         continue;
                     }
@@ -4010,10 +4017,7 @@ class PengelolaRisiko extends BaseController
                     }
 
                     $kolom1 = explode('_', $kolom1);
-                    
-                    $risiko = $this->penilaianRisikoModel->where('id' , $kolom1[1])->get()->getRowArray();
 
-                    $opsiPenanganan = $this->opsiPenangananModel->where(['opsi_penanganan'=> $kolom2, 'id_jenis_risiko' => $risiko['id_jenis_risiko']])->get()->getRowArray();
                     
                     $kolom5 = strtolower($kolom5);
                     $kolom5 = ucfirst($kolom5);
@@ -4045,9 +4049,12 @@ class PengelolaRisiko extends BaseController
                         $periode_implementasi = $kolom6 .' '. strval(date('Y'));
                     }
 
-                    if (!$this->penilaianRisikoModel->where(['id' => $risiko['id'], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray()) {
+                    if (!$this->penilaianRisikoModel->where(['id' => $kolom1[1], 'id_upr' => session()->id_upr, 'id_status_persetujuan' => 2])->get()->getRowArray()) {
                         continue;
                     }
+                    
+                    $risiko = $this->penilaianRisikoModel->where('id' , $kolom1[1])->get()->getRowArray();
+                    $opsiPenanganan = $this->opsiPenangananModel->where(['opsi_penanganan'=> $kolom2, 'id_jenis_risiko' => $risiko['id_jenis_risiko']])->get()->getRowArray();
 
                     if ($this->penangananRisikoModel->where('id_risiko', $risiko['id'])->get()->getRowArray()) {
                         continue;
@@ -4478,7 +4485,13 @@ class PengelolaRisiko extends BaseController
                 $waktu_pelaksanaan_rencana='';
             } else {
                 $periode_laporan = $this->request->getPost('periode_laporan').' '. strval(date('Y'));
-                $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+                if($this->request->getPost('rencana_penanganan') == ''){
+                    $waktu_pelaksanaan_rencana = '';
+                    $penanggungjawab ='';
+                } else {
+                    $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+                    $penanggungjawab = $this->request->getPost('penanggungjawab');
+                }
             }
             
 
@@ -4621,12 +4634,15 @@ class PengelolaRisiko extends BaseController
                     }
 
                     $kolom1 = explode('_', $kolom1);
-                    
-                    $risiko = $this->penilaianRisikoModel->getPenilaianById($kolom1[1]);
-
-                    $penanganan_risiko = $this->penangananRisikoModel->where('id_risiko',$risiko[0]['id'])->get()->getRowArray();
 
                     $jenis_laporan = strtolower($kolom2);
+
+                    if(!$this->penilaianRisikoModel->getPenilaianById($kolom1[1])){
+                        continue;
+                    }
+
+                    $risiko = $this->penilaianRisikoModel->getPenilaianById($kolom1[1]);
+                    $penanganan_risiko = $this->penangananRisikoModel->where('id_risiko',$risiko[0]['id'])->get()->getRowArray();
 
                     if ($jenis_laporan=='triwulanan') {
                         $jenis_laporan= substr($jenis_laporan, 0, 8);
@@ -4667,6 +4683,10 @@ class PengelolaRisiko extends BaseController
                         $rencana_penanganan = $kolom6;
                         $waktu_pelaksanaan_rencana = $kolom7.' '. strval(date('Y'));
                         $penanggungjawab = $kolom8;
+                        if($rencana_penanganan == ''){
+                            $waktu_pelaksanaan_rencana = '';
+                            $penanggungjawab = '';
+                        }
                      }
 
 
@@ -4867,7 +4887,13 @@ class PengelolaRisiko extends BaseController
                 $waktu_pelaksanaan_rencana='';
             } else {
                 $periode_laporan = $this->request->getPost('periode_laporan').' '. strval(date('Y'));
-                $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+                if($this->request->getPost('rencana_penanganan') == ''){
+                    $waktu_pelaksanaan_rencana = '';
+                    $penanggungjawab ='';
+                } else {
+                    $waktu_pelaksanaan_rencana = $this->request->getPost('waktu_pelaksanaan_rencana').' '. strval(date('Y'));
+                    $penanggungjawab = $this->request->getPost('penanggungjawab');
+                }
             }
 
 
@@ -4878,7 +4904,7 @@ class PengelolaRisiko extends BaseController
             ->set('deskripsi_risiko_saat_ini' , $this->request->getPost('deskripsi'))
             ->set('rekomendasi' , $this->request->getPost('rekomendasi'))
             ->set('rencana_penanganan' ,$this->request->getPost('rencana_penanganan'))
-            ->set('penanggungjawab' , $this->request->getPost('penanggungjawab'))
+            ->set('penanggungjawab' , $penanggungjawab)
             ->set('waktu_pelaksanaan_rencana' , $waktu_pelaksanaan_rencana)
             ->where('id' , $id)
             ->update();
@@ -5067,7 +5093,7 @@ class PengelolaRisiko extends BaseController
 
     public function downloadTemplateExcel($namaFile){
         // $data = file_get_contents(base_url('/public/Template_Excel/' . $namaFile));
-        return $this->response->download(FCPATH.'public\Template_Excel\\'.$namaFile, null);
+        return $this->response->download(FCPATH.'public/Template_Excel/'.$namaFile, null);
         
     }
 

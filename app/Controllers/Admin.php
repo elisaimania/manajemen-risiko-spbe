@@ -42,7 +42,7 @@ class Admin extends BaseController
             'link'      => 'daftarPengguna'
         ];
         //var_dump(session()->usernama);
-        return view('admin/daftar-pengguna', $data);
+        return view('Admin/daftar-pengguna', $data);
         
     }
 
@@ -69,7 +69,7 @@ class Admin extends BaseController
             'link'      => 'daftarKategori'
         ];
 
-        return view('admin/daftar-kategori', $data);
+        return view('Admin/daftar-kategori', $data);
         
     }
 
@@ -83,7 +83,7 @@ class Admin extends BaseController
             'link'      => 'daftarDampak'
         ];
 
-        return view('admin/daftar-dampak', $data);
+        return view('Admin/daftar-dampak', $data);
         
     }
 
@@ -97,7 +97,7 @@ class Admin extends BaseController
             'link'      => 'daftarPenanganan'
         ];
         
-        return view('admin/daftar-penanganan', $data);
+        return view('Admin/daftar-penanganan', $data);
         
     }
 
@@ -111,7 +111,7 @@ class Admin extends BaseController
             'link'      => 'daftarUPR'
         ];
         
-        return view('admin/daftar-upr', $data);
+        return view('Admin/daftar-upr', $data);
         
     }
 
@@ -170,7 +170,7 @@ class Admin extends BaseController
             'upr' => $this->uprSPBEModel->findAll()
         ];
 
-        return view('admin/form-tambah-pengguna' , $data);
+        return view('Admin/form-tambah-pengguna' , $data);
     }
 
     public function updateDataPengguna($id=null){
@@ -214,7 +214,7 @@ class Admin extends BaseController
 
             return redirect()->to(base_url('admin/daftarPengguna'));
         }
-        return view('admin/form-edit-pengguna' , $data);
+        return view('Admin/form-edit-pengguna' , $data);
     }
 
     public function editPassword($id=null){
@@ -258,7 +258,7 @@ class Admin extends BaseController
             $flash = session()->setFlashdata('flash', $flash);
             return redirect()->to(base_url('admin/daftarPengguna'));
         }
-        return view('admin/form-edit-password' , $data);
+        return view('Admin/form-edit-password' , $data);
     }
 
     public function hapusDataPengguna($id = null)
@@ -275,7 +275,7 @@ class Admin extends BaseController
                 </div>';
                 
         $flash = session()->setFlashdata('flash', $flash);
-        return redirect()->to(base_url('admin/daftarPengguna'));
+        return redirect()->to(base_url('Admin/daftarPengguna'));
         
     }
 
@@ -312,7 +312,7 @@ class Admin extends BaseController
             'link'  => 'daftarKategori'
         ];
 
-        return view('admin/form-tambah-kategori' , $data);
+        return view('Admin/form-tambah-kategori' , $data);
     }
 
     public function updateKategoriRisiko($id=null){
@@ -347,7 +347,7 @@ class Admin extends BaseController
 
             return redirect()->to(base_url('admin/daftarKategori'));
         }
-        return view('admin/form-edit-kategori' , $data);
+        return view('Admin/form-edit-kategori' , $data);
     }
 
    public function hapusKategoriRisiko($id = null)
@@ -364,7 +364,7 @@ class Admin extends BaseController
                 </div>';
                 
         $flash = session()->setFlashdata('flash', $flash);
-        return redirect()->to(base_url('admin/daftarKategori'));
+        return redirect()->to(base_url('Admin/daftarKategori'));
         
     }   
     
@@ -401,7 +401,7 @@ class Admin extends BaseController
             'link'  => 'daftarDampak'
         ];
 
-        return view('admin/form-tambah-dampak' , $data);
+        return view('Admin/form-tambah-dampak' , $data);
     }
 
     public function updateAreaDampak($id=null){
@@ -436,7 +436,7 @@ class Admin extends BaseController
 
             return redirect()->to(base_url('admin/daftarDampak'));
         }
-        return view('admin/form-edit-dampak' , $data);
+        return view('Admin/form-edit-dampak' , $data);
     }
 
    public function hapusAreaDampak($id = null)
@@ -453,7 +453,7 @@ class Admin extends BaseController
                 </div>';
                 
         $flash = session()->setFlashdata('flash', $flash);
-        return redirect()->to(base_url('admin/daftarDampak'));
+        return redirect()->to(base_url('Admin/daftarDampak'));
         
     }
 
@@ -497,7 +497,7 @@ class Admin extends BaseController
             'link'  => 'daftarPenanganan'
         ];
 
-        return view('admin/form-tambah-penanganan' , $data);
+        return view('Admin/form-tambah-penanganan' , $data);
     }
 
     public function updateOpsiPenanganan($id=null){
@@ -536,7 +536,7 @@ class Admin extends BaseController
 
             return redirect()->to(base_url('admin/daftarPenanganan'));
         }
-        return view('admin/form-edit-penanganan' , $data);
+        return view('Admin/form-edit-penanganan' , $data);
     } 
 
    public function hapusOpsiPenanganan($id = null)
@@ -553,7 +553,7 @@ class Admin extends BaseController
                 </div>';
                 
         $flash = session()->setFlashdata('flash', $flash);
-        return redirect()->to(base_url('admin/daftarPenanganan'));
+        return redirect()->to(base_url('Admin/daftarPenanganan'));
         
     }
     
@@ -590,7 +590,7 @@ class Admin extends BaseController
             'link'  => 'daftarUPR'
         ];
 
-        return view('admin/form-tambah-upr' , $data);
+        return view('Admin/form-tambah-upr' , $data);
     }
 
     public function updateUPR($id=null){
@@ -623,9 +623,9 @@ class Admin extends BaseController
                                 </div>';
             $flash = session()->setFlashdata('flash', $flash);
 
-            return redirect()->to(base_url('admin/daftarKategori'));
+            return redirect()->to(base_url('admin/daftarUPR'));
         }
-        return view('admin/form-edit-upr' , $data);
+        return view('Admin/form-edit-upr' , $data);
     }
 
    public function hapusUPR($id = null)
@@ -642,7 +642,7 @@ class Admin extends BaseController
                 </div>';
                 
         $flash = session()->setFlashdata('flash', $flash);
-        return redirect()->to(base_url('admin/daftarUPR'));
+        return redirect()->to(base_url('Admin/daftarUPR'));
         
     }   
 
